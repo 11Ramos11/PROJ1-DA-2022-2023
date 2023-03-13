@@ -36,7 +36,7 @@ public:
     void setIndegree(unsigned int indegree);
     void setDist(double dist);
     void setPath(Edge *path);
-    Edge * addEdge(Vertex *dest, double w);
+    Edge * addEdge(Vertex *dest, double w, std::string service);
     bool removeEdge(int destID);
 
     friend class MutablePriorityQueue<Vertex>;
@@ -60,7 +60,7 @@ protected:
 
 class Edge {
 public:
-    Edge(Vertex *orig, Vertex *dest, double w);
+    Edge(Vertex *orig, Vertex *dest, double w, std::string service);
 
     Vertex * getDest() const;
     double getWeight() const;
@@ -75,6 +75,7 @@ public:
 protected:
     Vertex * dest; // destination vertex
     double weight; // edge weight, can also be used for capacity
+    std::string service;
 
     // auxiliary fields
     bool selected = false;

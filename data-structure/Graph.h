@@ -8,7 +8,7 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
-#include "../data_structures/MutablePriorityQueue.h"
+#include "MutablePriorityQueue.h"
 
 #include "VertexEdge.h"
 
@@ -30,8 +30,8 @@ public:
      * destination vertices and the edge weight (w).
      * Returns true if successful, and false if the source or destination vertex does not exist.
      */
-    bool addEdge(const int &sourc, const int &dest, double w);
-    bool addBidirectionalEdge(const int &sourc, const int &dest, double w);
+    bool addEdge(const int &sourc, const int &dest, double w, std::string service);
+    bool addBidirectionalEdge(const int &sourc, const int &dest, double w, std::string service);
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;

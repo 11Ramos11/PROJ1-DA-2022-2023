@@ -3,15 +3,16 @@
 //
 
 #include <fstream>
+#include <iostream>
 #include "SourceReader.h"
 
-void SourceReader::read(){
+void SourceReader::read(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork){
 
-    readStations();
-    readNetwork();
+    readStations(stations, railwayNetwork);
+    readNetwork(stations, railwayNetwork);
 }
 
-void SourceReader::readStations() {
+void SourceReader::readStations(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork) {
 
     std::ifstream stationsFile("../resources/stations.csv");
     std::string entry;
@@ -19,6 +20,8 @@ void SourceReader::readStations() {
     getline(stationsFile, entry);
 
     std::string name, district, municipality, township, line;
+
+    int id = 1;
 
     do {
         getline(stationsFile, name, ',');
@@ -28,10 +31,17 @@ void SourceReader::readStations() {
         getline(stationsFile, township, ',');
         getline(stationsFile, line);
 
+        Station station = Station(id, name, district, municipality, township, line);
+        stations.insert(std::make_pair(name, station));
+
+        railwayNetwork.addVertex(id);
+
+        id++;
+
     } while (true);
 }
 
-void SourceReader::readNetwork() {
+void SourceReader::readNetwork(std::unordered_map<std::string, Station> stations, Graph &railwayNetwork) {
 
     std::ifstream networkFile("../resources/network.csv");
     std::string entry;
@@ -47,7 +57,11 @@ void SourceReader::readNetwork() {
         getline(networkFile, capacity, ',');
         getline(networkFile, service);
 
-        int capacityInt = stoi(capacity);
+        double capacityDouble = stod(capacity);
+
+        railwayNetwork.addEdge(
+                stations.at(stationA).getId(), stations.at(stationB).getId(),
+                capacityDouble, service);
 
     } while (true);
 }

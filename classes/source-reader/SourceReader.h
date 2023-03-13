@@ -5,15 +5,20 @@
 #ifndef PROJ1_DA_2022_2023_SOURCEREADER_H
 #define PROJ1_DA_2022_2023_SOURCEREADER_H
 
+#include <map>
+#include <unordered_map>
+#include "../station/Station.h"
+#include "../../data-structure/Graph.h"
+
 class SourceReader {
 
-    void readStations();
+    void readStations(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork);
 
-    void readNetwork();
+    void readNetwork(std::unordered_map<std::string, Station> stations, Graph &railwayNetwork);
 
 public:
 
-    void read();
+    void read(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork);
 
 };
 
