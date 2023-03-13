@@ -8,7 +8,7 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
-#include "../data_structures/MutablePriorityQueue.h"
+#include "../data-structure/MutablePriorityQueue.h"
 
 class Edge;
 
