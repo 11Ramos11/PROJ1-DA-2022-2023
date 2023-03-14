@@ -59,7 +59,7 @@ void SourceReader::readNetwork(std::unordered_map<std::string, Station> stations
 
         double capacityDouble = stod(capacity);
 
-        railwayNetwork.addEdge(
+        railwayNetwork.addBidirectionalEdge(
                 stations.at(stationA).getId(), stations.at(stationB).getId(),
                 capacityDouble, service);
 
