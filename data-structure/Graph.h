@@ -14,6 +14,8 @@
 
 class Graph {
 public:
+
+    void edmondsKarp(int source, int target);
     ~Graph();
     /*
     * Auxiliary function to find a vertex with a given ID.
