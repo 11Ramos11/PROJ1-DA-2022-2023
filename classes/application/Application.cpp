@@ -10,5 +10,6 @@ void Application::start(){
 
     SourceReader().read(stations, railwayNetwork);
 
+    basicServices.edmondsKarp(1, 97);
     std::cout << "Hello";
 }

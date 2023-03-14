@@ -8,12 +8,15 @@
 #include <unordered_map>
 #include <string>
 #include "../source-reader/SourceReader.h"
+#include "../functionalities/4.1/BasicServices.h"
 
 class Application {
 
-    std::unordered_map<std::string, Station> stations;
+    std::unordered_map<std::string, std::shared_ptr<Station>> stations;
 
     Graph railwayNetwork;
+
+    BasicServices basicServices = BasicServices(&railwayNetwork);
 
 public:
 

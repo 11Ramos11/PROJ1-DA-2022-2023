@@ -6,13 +6,13 @@
 #include <iostream>
 #include "SourceReader.h"
 
-void SourceReader::read(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork){
+void SourceReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
 
     readStations(stations, railwayNetwork);
     readNetwork(stations, railwayNetwork);
 }
 
-void SourceReader::readStations(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork) {
+void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork) {
 
     std::ifstream stationsFile("../resources/stations.csv");
     std::string entry;
@@ -31,17 +31,17 @@ void SourceReader::readStations(std::unordered_map<std::string, Station> &statio
         getline(stationsFile, township, ',');
         getline(stationsFile, line);
 
-        Station station = Station(id, name, district, municipality, township, line);
-        stations.insert(std::make_pair(name, station));
+        std::shared_ptr<Station> stationPTR = std::make_shared<Station>(id, name, district, municipality, township, line);
+        stations.insert(std::make_pair(name, stationPTR));
 
-        railwayNetwork.addVertex(id);
+        railwayNetwork.addVertex(id, stationPTR);
 
         id++;
 
     } while (true);
 }
 
-void SourceReader::readNetwork(std::unordered_map<std::string, Station> stations, Graph &railwayNetwork) {
+void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> stations, Graph &railwayNetwork) {
 
     std::ifstream networkFile("../resources/network.csv");
     std::string entry;
@@ -60,7 +60,7 @@ void SourceReader::readNetwork(std::unordered_map<std::string, Station> stations
         double capacityDouble = stod(capacity);
 
         railwayNetwork.addBidirectionalEdge(
-                stations.at(stationA).getId(), stations.at(stationB).getId(),
+                stations.at(stationA)->getId(), stations.at(stationB)->getId(),
                 capacityDouble, service);
 
     } while (true);

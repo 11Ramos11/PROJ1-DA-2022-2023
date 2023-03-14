@@ -4,7 +4,7 @@
 
 /************************* Vertex  **************************/
 
-Vertex::Vertex(int id): id(id) {}
+Vertex::Vertex(int id, std::shared_ptr<Station> station): id(id), station(station) {}
 
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),

@@ -8,17 +8,17 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
+#include <memory>
 #include "MutablePriorityQueue.h"
+#include "../classes/station/Station.h"
 
 class Edge;
-
-#define INF std::numeric_limits<double>::max()
 
 /************************* Vertex  **************************/
 
 class Vertex {
 public:
-    Vertex(int id);
+    Vertex(int id, std::shared_ptr<Station> station);
     bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
     int getId() const;
@@ -41,7 +41,8 @@ public:
 
     friend class MutablePriorityQueue<Vertex>;
 protected:
-    int id;                // identifier
+    int id;
+    std::shared_ptr<Station> station;// identifier
     std::vector<Edge *> adj;  // outgoing edges
 
     // auxiliary fields

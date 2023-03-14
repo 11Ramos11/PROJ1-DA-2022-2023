@@ -12,13 +12,13 @@
 
 class SourceReader {
 
-    void readStations(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork);
+    void readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
-    void readNetwork(std::unordered_map<std::string, Station> stations, Graph &railwayNetwork);
+    void readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> stations, Graph &railwayNetwork);
 
 public:
 
-    void read(std::unordered_map<std::string, Station> &stations, Graph &railwayNetwork);
+    void read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
 };
 
