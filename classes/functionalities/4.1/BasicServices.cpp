@@ -1,11 +1,12 @@
-//
-// Created by Matilde on 14/03/2023.
-//
+/** @file BasicServices.cpp
+ *  @brief Contains the BasicServices Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include "BasicServices.h"
 
 BasicServices::BasicServices(Graph *graph): graph(graph){}
-
 
 bool BasicServices::path(Vertex * s, Vertex * t){
 
@@ -104,11 +105,147 @@ void BasicServices::edmondsKarp(int source, int target) {
 
 double BasicServices::maxFlow(int source, int target) {
 
-    return 0;
+    edmondsKarp(source, target);
+
+    double max_flow = 0;
+
+    for(auto edge: graph->findVertex(source)->getAdj()){
+        max_flow += edge->getFlow();
+        if(edge->getDest() == graph->findVertex(target)){
+            continue;
+        }
+    }
+
+    return max_flow;
 }
 
+bool BasicServices::exitsPath(Vertex * s, Vertex * t){
 
+    for (auto v : graph->getVertexSet()) {
+        v->setVisited(false);
+    }
 
+    std::queue<Vertex*> q;
+    q.push(s);
+    s->setVisited(true);
 
+    while (!q.empty()) {
+        auto v = q.front();
+        q.pop();
 
+        for (auto e : v->getAdj()) {
+            auto w = e->getDest();
+            if (!w->isVisited()) {
+                w->setVisited(true);
+                q.push(w);
+
+                if (w->getId() == t->getId()) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+//se calhar e ver se o flow é igual à capacidade
+std::vector<std::pair<Vertex*, Vertex*>> BasicServices::stationspair(){
+    std::vector<std::pair<Vertex*, Vertex*>> ans;
+    double full_advantage=INT_MIN;
+    double maxflow;
+
+    for(auto station1: graph->getVertexSet()){
+        for(auto station2: graph->getVertexSet()){
+            if(station1 != station2 && exitsPath(station1,station2)){
+                maxflow = maxFlow(station1->getId(), station2->getId());
+            }
+            if(maxflow > full_advantage) full_advantage = maxflow;
+        }
+    }
+
+    for(auto station1: graph->getVertexSet()){
+        for(auto station2: graph->getVertexSet()){
+            if(station1 != station2 && exitsPath(station1,station2)){
+                maxflow = maxFlow(station1->getId(), station2->getId());
+            }
+            if(maxflow == full_advantage) {
+                ans.push_back(std::make_pair(station1, station2));
+            }
+        }
+    }
+    return ans;
+}
+
+std::vector<std::string> BasicServices::municipalities(int k){
+
+    std::vector<std::string>ans;
+    double maxflow;
+    std::map<double,std::string> maxflow_mun; //increasing order of keys(by default)
+
+    std::set<std::string> all_municipality;
+    for(auto station: graph->getVertexSet()){
+        all_municipality.insert(station->getStation()->getMunicipality());
+    }
+
+    for(auto municipality: all_municipality) {
+        for (auto station1: graph->getVertexSet()) {
+            if (station1->getStation()->getMunicipality() == municipality) {
+                for (auto station2: graph->getVertexSet()) {
+                    if (station2->getStation()->getMunicipality() == municipality) {
+                        if (station1 != station2 && exitsPath(station1, station2)) {
+                            maxflow += maxFlow(station1->getId(), station2->getId());
+                        }
+                    }
+                }
+            }
+        }
+        maxflow_mun[maxflow] =municipality;
+    }
+
+    auto it = maxflow_mun.begin();
+    std::advance(it, maxflow_mun.size()-1);
+
+    while(k>0){
+        ans.push_back(it->second);
+        it--;
+    }
+    return ans;
+}
+
+std::vector<std::string> BasicServices::districts(int k){
+
+    std::vector<std::string>ans;
+    double maxflow;
+    std::map<double,std::string> maxflow_dist; //increasing order of keys(by default)
+
+    std::set<std::string> all_districts;
+    for(auto station: graph->getVertexSet()){
+        all_districts.insert(station->getStation()->getDistrict());
+    }
+
+    for(auto district: all_districts) {
+        for (auto station1: graph->getVertexSet()) {
+            if (station1->getStation()->getDistrict() == district) {
+                for (auto station2: graph->getVertexSet()) {
+                    if (station2->getStation()->getDistrict() == district) {
+                        if (station1 != station2 && exitsPath(station1, station2)) {
+                            maxflow += maxFlow(station1->getId(), station2->getId());
+                        }
+                    }
+                }
+            }
+        }
+        maxflow_dist[maxflow] =district;
+    }
+
+    auto it = maxflow_dist.begin();
+    std::advance(it, maxflow_dist.size()-1);
+
+    while(k>0){
+        ans.push_back(it->second);
+        it--;
+        k--;
+    }
+    return ans;
+}
 

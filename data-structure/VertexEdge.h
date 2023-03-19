@@ -1,4 +1,8 @@
-// By: Gonçalo Leão
+/** @file VertexEdge.h
+ *  @brief Contains the VertexEdge class declaration.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #ifndef DA_TP_CLASSES_VERTEX_EDGE
 #define DA_TP_CLASSES_VERTEX_EDGE
@@ -22,6 +26,7 @@ public:
     bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
     int getId() const;
+    std::shared_ptr<Station> getStation() const;
     std::vector<Edge *> getAdj() const;
     bool isVisited() const;
     bool isProcessing() const;

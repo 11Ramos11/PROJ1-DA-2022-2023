@@ -1,4 +1,8 @@
-// By: Gonçalo Leão
+/** @file Graph.cpp
+ *  @brief Contains the Graph Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include "Graph.h"
 

@@ -1,15 +1,16 @@
-//
-// Created by Ramos on 3/13/2023.
-//
+/** @file Application.cpp
+ *  @brief Contains the Application Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include <iostream>
 #include "Application.h"
-
 
 void Application::start(){
 
     SourceReader().read(stations, railwayNetwork);
 
-    basicServices.edmondsKarp(1, 97);
-    std::cout << "Hello";
+    for(auto p :basicServices.districts(4))
+        std::cout << p;
 }

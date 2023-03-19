@@ -1,6 +1,8 @@
-//
-// Created by Ramos on 3/13/2023.
-//
+/** @file SourceReader.cpp
+ *  @brief Contains the SourceReader Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include <fstream>
 #include <iostream>
@@ -41,7 +43,7 @@ void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<
     } while (true);
 }
 
-void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> stations, Graph &railwayNetwork) {
+void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
 
     std::ifstream networkFile("../resources/network.csv");
     std::string entry;

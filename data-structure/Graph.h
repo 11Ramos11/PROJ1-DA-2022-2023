@@ -1,4 +1,8 @@
-// By: Gonçalo Leão
+/** @file Graph.h
+ *  @brief Contains the Graph class declaration.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #ifndef DA_TP_CLASSES_GRAPH
 #define DA_TP_CLASSES_GRAPH

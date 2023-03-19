@@ -1,4 +1,8 @@
-// By: Gonçalo Leão
+/** @file VertexEdge.cpp
+ *  @brief Contains the VertexEdge Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include "VertexEdge.h"
 
@@ -56,6 +60,10 @@ bool Vertex::operator<(Vertex & vertex) const {
 
 int Vertex::getId() const {
     return this->id;
+}
+
+std::shared_ptr<Station> Vertex::getStation() const {
+    return this->station;
 }
 
 std::vector<Edge*> Vertex::getAdj() const {

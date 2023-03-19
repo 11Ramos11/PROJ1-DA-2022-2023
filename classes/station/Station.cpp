@@ -1,6 +1,8 @@
-//
-// Created by Ramos on 3/13/2023.
-//
+/** @file Station.cpp
+ *  @brief Contains the Station Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include "Station.h"
 
