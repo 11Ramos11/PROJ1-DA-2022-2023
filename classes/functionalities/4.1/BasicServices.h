@@ -11,6 +11,7 @@
 #include "../../../data-structure/Graph.h"
 #include "../../source-reader/SourceReader.h"
 #include "../../station/Station.h"
+
 #include <set>
 #include <string>
 
@@ -89,6 +90,8 @@ public :
 
     std::vector<std::string> municipalities(int k);
     std::vector<std::string> districts(int k);
+
+    double max_trains_target(int target);
 };
 
 #endif //PROJ1_DA_2022_2023_BASICSERVICES_H

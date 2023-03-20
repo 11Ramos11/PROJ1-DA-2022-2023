@@ -11,6 +11,6 @@ void Application::start(){
 
     SourceReader().read(stations, railwayNetwork);
 
-    for(auto p :basicServices.districts(4))
+        for(auto p:basicServices.districts(2))
         std::cout << p;
 }
