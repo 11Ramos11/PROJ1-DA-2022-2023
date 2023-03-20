@@ -188,9 +188,13 @@ std::vector<std::string> BasicServices::municipalities(int k){
     double maxflow_per_mun=0;
 
     for(auto municipality: all_municipality){
-        for (auto station: graph->getVertexSet()) {
-            if (station->getStation()->getMunicipality() == municipality) {
-                maxflow_per_mun += max_trains_target(station->getId());
+        for (auto station1: graph->getVertexSet()) {
+            if (station1->getStation()->getMunicipality() == municipality) {
+                for(auto station2: graph->getVertexSet()){
+                    if(station2->getStation()->getMunicipality() != municipality)
+                        if(exitsPath(station1, station2))
+                            maxflow_per_mun += maxFlow(station1->getId(), station2->getId());
+                }
             }
         }
         maxflow_mun[maxflow_per_mun] = municipality;
@@ -219,9 +223,13 @@ std::vector<std::string> BasicServices::districts(int k){
     double maxflow_per_dist=0;
 
     for(auto district: all_districts){
-        for (auto station: graph->getVertexSet()) {
-            if (station->getStation()->getDistrict() == district) {
-                maxflow_per_dist += max_trains_target(station->getId());
+        for (auto station1: graph->getVertexSet()) {
+            if (station1->getStation()->getDistrict() == district) {
+                for(auto station2: graph->getVertexSet()){
+                    if(station2->getStation()->getDistrict() != district)
+                        if(exitsPath(station1, station2))
+                            maxflow_per_dist += maxFlow(station1->getId(), station2->getId());
+                    }
             }
         }
         maxflow_dist[maxflow_per_dist] = district;
