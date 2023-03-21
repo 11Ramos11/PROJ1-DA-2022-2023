@@ -11,6 +11,6 @@ void Application::start(){
 
     SourceReader().read(stations, railwayNetwork);
 
-        for(auto p:basicServices.districts(2))
-        std::cout << p;
+    std::cout << "Max Flow: " << basicServices.maxFlow(1,2) << std::endl;
+    std::cout << "Max Flow: " << basicServices.maxFlow(1,2);
 }

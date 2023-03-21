@@ -92,6 +92,8 @@ public :
     std::vector<std::string> districts(int k);
 
     double max_trains_target(int target);
+
+
 };
 
 #endif //PROJ1_DA_2022_2023_BASICSERVICES_H

@@ -17,11 +17,25 @@ std::vector<Vertex *> Graph::getVertexSet() const {
 /*
  * Auxiliary function to find a vertex with a given content.
  */
-Vertex * Graph::findVertex(const int &id) const {
-    for (auto v : vertexSet)
-        if (v->getId() == id)
-            return v;
-    return nullptr;
+Vertex * Graph::findVertex(int id) const {
+
+    id--;
+
+    if (id < 0 || id >= vertexSet.size())
+        return nullptr;
+
+    return vertexSet[id];
+}
+
+void Graph::dfs(int source){
+
+    Vertex* vertex = findVertex(source);
+    vertex->setVisited(true);
+
+    for (Edge* edge: vertex->getAdj()){
+        if (!edge->getDest()->isVisited())
+            dfs(edge->getDest()->getId());
+    }
 }
 
 /*

@@ -93,8 +93,10 @@ void BasicServices::edmondsKarp(int source, int target) {
     Vertex * t = graph->findVertex(target);
     double bottleneck;
 
-    for(auto edge: s->getAdj()){
-        edge->setFlow(0);
+    for(auto vertex: graph->getVertexSet()){
+        for (auto edge: vertex->getAdj()){
+            edge->setFlow(0);
+        }
     }
 
     while(path(s, t)){
@@ -109,12 +111,15 @@ double BasicServices::maxFlow(int source, int target) {
 
     double max_flow = 0;
 
-    for(auto edge: graph->findVertex(source)->getAdj()){
-        max_flow += edge->getFlow();
-        if(edge->getDest() == graph->findVertex(target)){
-            continue;
-        }
-    }
+    for (auto vertex: graph->getVertexSet())
+        vertex->setVisited(false);
+
+    graph->dfs(source);
+
+    for (auto vertex: graph->getVertexSet())
+        for (auto edge: vertex->getAdj())
+            if(edge->getDest()->getId() == target && graph->findVertex(edge->getOrig()->getId())->isVisited())
+                max_flow += edge->getFlow();
 
     return max_flow;
 }
