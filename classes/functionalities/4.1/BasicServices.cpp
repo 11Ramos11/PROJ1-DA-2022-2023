@@ -165,7 +165,7 @@ std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
             }
         }
     }
-
+    
     return optimalPairs;
 }
 

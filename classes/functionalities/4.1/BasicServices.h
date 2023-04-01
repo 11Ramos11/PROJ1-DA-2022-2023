@@ -26,13 +26,7 @@ private:
     //! @brief Holds the graph.
     Graph* graph;
 
-public :
-
-    /** Creates a new BasicServices with the respective graph.
-     *
-     * @param graph of Graph* type.
-     */
-    BasicServices(Graph* graph);
+protected:
 
     /** @brief Checks all paths between source and target in the residual graph.
      *
@@ -69,6 +63,22 @@ public :
      */
     void edmondsKarp(int source, int target);
 
+    /** @brief Checks if there is a path between two stations.
+     *
+     * @param s of Vertex* type.
+     * @param t of Vertex* type.
+     * @return True if there is a path or false if otherwise.
+     */
+    bool existsPath(Vertex * s, Vertex * t);
+
+public :
+
+    /** Creates a new BasicServices with the respective graph.
+     *
+     * @param graph of Graph* type.
+     */
+    BasicServices(Graph* graph);
+
     /** @brief Calculates the maximum number of trains between two stations.
      *
      * It uses edmondsKarp algorithm.
@@ -79,16 +89,10 @@ public :
      */
     double maxFlow(int source, int target);
 
-    /** @brief Checks if there is a path between two stations.
-     *
-     * @param s of Vertex* type.
-     * @param t of Vertex* type.
-     * @return True if there is a path or false if otherwise.
-     */
-    bool existsPath(Vertex * s, Vertex * t);
     std::vector<std::pair<Vertex*, Vertex*>> optimalPairs();
 
     std::vector<std::string> municipalities(int k);
+
     std::vector<std::string> districts(int k);
 
     double max_trains_target(int target);
