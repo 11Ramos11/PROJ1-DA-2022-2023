@@ -6,12 +6,32 @@
 
 #include "Graph.h"
 
+Graph::Graph(){}
+
+Graph::Graph(Graph *graph){
+
+    for (Vertex* vertex: graph->getVertexSet())
+        this->addVertex(vertex->getId(), vertex->getStation());
+
+    for (Vertex* vertex: graph->getVertexSet()){
+        for (Edge* edge: vertex->getAdj()){
+            Vertex* origin = findVertex(edge->getOrig()->getId());
+            Vertex* dest = findVertex(edge->getDest()->getId());
+            origin->addEdge(dest, edge->getWeight(), edge->getService());
+        }
+    }
+}
+
 int Graph::getNumVertex() const {
     return vertexSet.size();
 }
 
 std::vector<Vertex *> Graph::getVertexSet() const {
     return vertexSet;
+}
+
+void Graph::setVertexSet(std::vector<Vertex *> vertexSet) {
+    this->vertexSet = vertexSet;
 }
 
 /*

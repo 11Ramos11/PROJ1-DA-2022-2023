@@ -118,6 +118,8 @@ void Vertex::setPath(Edge *path) {
     this->path = path;
 }
 
+
+
 /********************** Edge  ****************************/
 
 Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string service):
@@ -145,6 +147,10 @@ bool Edge::isSelected() const {
 
 double Edge::getFlow() const {
     return flow;
+}
+
+std::string Edge::getService() const {
+    return service;
 }
 
 void Edge::setSelected(bool selected) {

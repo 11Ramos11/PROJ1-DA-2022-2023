@@ -19,6 +19,10 @@
 class Graph {
 public:
 
+    Graph();
+
+    Graph(Graph *graph);
+
     ~Graph();
     /*
     * Auxiliary function to find a vertex with a given ID.
@@ -39,7 +43,10 @@ public:
     bool addBidirectionalEdge(const int &sourc, const int &dest, double w, std::string service);
 
     int getNumVertex() const;
+
     std::vector<Vertex *> getVertexSet() const;
+
+    void setVertexSet(std::vector<Vertex *> vertexSet);
 
     void dfs(int source);
 

@@ -86,7 +86,7 @@ public :
      * @return True if there is a path or false if otherwise.
      */
     bool existsPath(Vertex * s, Vertex * t);
-    std::vector<std::pair<Vertex*, Vertex*>> stationspair();
+    std::vector<std::pair<Vertex*, Vertex*>> optimalPairs();
 
     std::vector<std::string> municipalities(int k);
     std::vector<std::string> districts(int k);
