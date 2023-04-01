@@ -57,11 +57,11 @@ public :
      * @param bottleneck of double type.
      * @return Void.
      */
-    void augmentsPath(Vertex * s, Vertex * t, double bottleneck);
+    void augmentPath(Vertex * s, Vertex * t, double bottleneck);
 
     /** @brief Represents the edmondsKarp algorithm.
      *
-     * It uses path, find_Bottleneck and augmentsPath methods.
+     * It uses path, find_Bottleneck and augmentPath methods.
      *
      * @param source of int type.
      * @param target of int type.
@@ -85,7 +85,7 @@ public :
      * @param t of Vertex* type.
      * @return True if there is a path or false if otherwise.
      */
-    bool exitsPath(Vertex * s, Vertex * t);
+    bool existsPath(Vertex * s, Vertex * t);
     std::vector<std::pair<Vertex*, Vertex*>> stationspair();
 
     std::vector<std::string> municipalities(int k);

@@ -69,7 +69,7 @@ double BasicServices::find_Bottleneck(Vertex *s, Vertex * t){
     return bottleneck;
 }
 
-void BasicServices::augmentsPath(Vertex * s, Vertex * t, double bottleneck){
+void BasicServices::augmentPath(Vertex * s, Vertex * t, double bottleneck){
     double new_flow;
 
     while(t != s){
@@ -101,7 +101,7 @@ void BasicServices::edmondsKarp(int source, int target) {
 
     while(path(s, t)){
         bottleneck = find_Bottleneck(s, t);
-        augmentsPath(s, t, bottleneck);
+        augmentPath(s, t, bottleneck);
     }
 }
 
@@ -117,7 +117,7 @@ double BasicServices::maxFlow(int source, int target) {
     return max_flow;
 }
 
-bool BasicServices::exitsPath(Vertex * s, Vertex * t){
+bool BasicServices::existsPath(Vertex * s, Vertex * t){
 
     for (auto v : graph->getVertexSet()) {
         v->setVisited(false);
@@ -146,31 +146,26 @@ bool BasicServices::exitsPath(Vertex * s, Vertex * t){
     return false;
 }
 
-std::vector<std::pair<Vertex*, Vertex*>> BasicServices::stationspair(){
-    std::vector<std::pair<Vertex*, Vertex*>> ans;
+std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
+    std::vector<std::pair<Vertex*, Vertex*>> optimalPairs;
     double full_advantage=INT_MIN;
     double maxflow;
 
     for(auto station1: graph->getVertexSet()){
         for(auto station2: graph->getVertexSet()){
-            if(station1 != station2 && exitsPath(station1,station2)){
+            if(station1 != station2 && existsPath(station1, station2)){
                 maxflow = maxFlow(station1->getId(), station2->getId());
+                if (maxflow == full_advantage)
+                    optimalPairs.push_back(std::make_pair(station1, station2));
+                if(maxflow > full_advantage) {
+                    full_advantage = maxflow;
+                    optimalPairs = {std::make_pair(station1, station2)};
+                }
             }
-            if(maxflow > full_advantage) full_advantage = maxflow;
         }
     }
 
-    for(auto station1: graph->getVertexSet()){
-        for(auto station2: graph->getVertexSet()){
-            if(station1 != station2 && exitsPath(station1,station2)){
-                maxflow = maxFlow(station1->getId(), station2->getId());
-            }
-            if(maxflow == full_advantage) {
-                ans.push_back(std::make_pair(station1, station2));
-            }
-        }
-    }
-    return ans;
+    return optimalPairs;
 }
 
 std::vector<std::string> BasicServices::municipalities(int k){
@@ -190,7 +185,7 @@ std::vector<std::string> BasicServices::municipalities(int k){
             if (station1->getStation()->getMunicipality() == municipality) {
                 for(auto station2: graph->getVertexSet()){
                     if(station2->getStation()->getMunicipality() != municipality)
-                        if(exitsPath(station1, station2))
+                        if(existsPath(station1, station2))
                             maxflow_per_mun += maxFlow(station1->getId(), station2->getId());
                 }
             }
@@ -225,7 +220,7 @@ std::vector<std::string> BasicServices::districts(int k){
             if (station1->getStation()->getDistrict() == district) {
                 for(auto station2: graph->getVertexSet()){
                     if(station2->getStation()->getDistrict() != district)
-                        if(exitsPath(station1, station2))
+                        if(existsPath(station1, station2))
                             maxflow_per_dist += maxFlow(station1->getId(), station2->getId());
                     }
             }
@@ -250,7 +245,7 @@ double BasicServices::max_trains_target(int target){
     double answer = INT_MIN;
 
     for(auto station: graph->getVertexSet()){
-        if(station->getId() != t->getId() && exitsPath(station, t)){
+        if(station->getId() != t->getId() && existsPath(station, t)){
             maxflow = maxFlow(station->getId(), t->getId());
         }
         if(maxflow > answer) answer = maxflow;
