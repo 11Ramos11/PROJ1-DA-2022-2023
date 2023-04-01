@@ -35,7 +35,7 @@ bool BasicServices::path(Vertex * s, Vertex * t){
                 }
             }
         }
-        for (auto e : v->getIncoming()) {
+         for (auto e : v->getIncoming()) {
             auto w = e->getOrig();
             if (!w->isVisited() && e->getFlow() > 0) {
                 w->setPath(e);
