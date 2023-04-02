@@ -14,7 +14,7 @@ Vertex::Vertex(int id, std::shared_ptr<Station> station): id(id), station(statio
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
  */
-Edge * Vertex::addEdge(Vertex *d, double w, std::string service) {
+Edge * Vertex::addEdge(Vertex *d, double w, ServiceType service) {
     auto newEdge = new Edge(this, d, w, service);
     adj.push_back(newEdge);
     d->incoming.push_back(newEdge);
@@ -122,7 +122,7 @@ void Vertex::setPath(Edge *path) {
 
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string service):
+Edge::Edge(Vertex *orig, Vertex *dest, double w, ServiceType service):
     orig(orig), dest(dest), weight(w), service(service) {}
 
 Vertex * Edge::getDest() const {
@@ -149,7 +149,7 @@ double Edge::getFlow() const {
     return flow;
 }
 
-std::string Edge::getService() const {
+ServiceType Edge::getService() const {
     return service;
 }
 

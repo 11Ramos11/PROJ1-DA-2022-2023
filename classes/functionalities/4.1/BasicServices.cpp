@@ -206,9 +206,9 @@ std::vector<std::string> BasicServices::municipalities(int k){
                 continue;
 
             if (vertex->getStation()->getMunicipality() == municipality)
-                tempGraph.addEdge(vertex->getId(), targetID, INT_MAX, "");
+                tempGraph.addEdge(vertex->getId(), targetID, INT_MAX, none);
             else
-                tempGraph.addEdge(sourceID, vertex->getId(), INT_MAX, "");
+                tempGraph.addEdge(sourceID, vertex->getId(), INT_MAX, none);
         }
 
         m.maxFlow = BasicServices(&tempGraph).maxFlow(sourceID, targetID);

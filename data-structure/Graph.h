@@ -39,8 +39,9 @@ public:
      * destination vertices and the edge weight (w).
      * Returns true if successful, and false if the source or destination vertex does not exist.
      */
-    bool addEdge(const int &sourc, const int &dest, double w, std::string service);
-    bool addBidirectionalEdge(const int &sourc, const int &dest, double w, std::string service);
+    bool addEdge(const int &sourc, const int &dest, double w, ServiceType service);
+
+    bool addBidirectionalEdge(const int &sourc, const int &dest, double w, ServiceType service);
 
     int getNumVertex() const;
 
