@@ -175,6 +175,7 @@ std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
 }
 
 std::vector<std::string> BasicServices::getMunicipalitiesOrDistricts(bool byMunicipality, int k) {
+
     std::unordered_set<std::string> categoriesNames;
     for (Vertex* vertex : graph->getVertexSet()) {
         if (byMunicipality)
@@ -226,10 +227,18 @@ std::vector<std::string> BasicServices::getMunicipalitiesOrDistricts(bool byMuni
 }
 
 double BasicServices::max_trains_target(int target){
-    Vertex * t = graph->findVertex(target);
-    double maxflow;
-    double answer = INT_MIN;
 
+    Graph tempG = Graph(graph);
 
-    return answer;
+    int sourceID = tempG.getNumVertex() + 1;
+    tempG.addVertex(sourceID, nullptr);
+
+    for (Vertex* v : tempG.getVertexSet()) {
+        if (v->getId() == target || v->getId() == sourceID)
+            continue;
+
+        tempG.addEdge(sourceID, v->getId(), INT_MAX, "");
+    }
+
+    return BasicServices(&tempG).maxFlow(sourceID, target);
 }

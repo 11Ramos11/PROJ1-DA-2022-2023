@@ -18,13 +18,15 @@ void Application::start(){
       std::cout << "Max Flow: " << basicServices.maxFlow(i,i / 2) << std::endl;
     */
 
-   std::cout << "Districts:\n";
+   /*std::cout << "Districts:\n";
     for (std::string mun: basicServices.getMunicipalitiesOrDistricts(false,5)){
         std::cout << mun << std::endl;
-    }
+    }*/
 
     /*for (auto pair: basicServices.optimalPairs()){
         std::cout << pair.first->getStation()->getName() << "," <<
                         pair.second->getStation()->getName() << std::endl;
     }*/
+
+    std::cout << basicServices.max_trains_target(1);
 }

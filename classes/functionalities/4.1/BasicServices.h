@@ -89,13 +89,34 @@ public :
      */
     double maxFlow(int source, int target);
 
+    /** @brief Returns the all pairs of stations that require the
+     * most amount of trains when taking full advantage of the network.
+     *
+     * @return Pair of stations.
+     */
     std::vector<std::pair<Vertex*, Vertex*>> optimalPairs();
 
+    /** @brief Calculates the top k municipalities or districts, regarding their transportation needs.
+     *
+     * Creates a source node that is linked to all nodes that do not belong to the destination municipality or district
+     * and creates a sink node that is linked to all nodes that belong to the destination municipality or district.
+     * It uses the maxFlow method.
+     *
+     * @param byMunicipality of bool type.
+     * @param k of int type.
+     * @return The top municipalities or districts names.
+     */
     std::vector<std::string> getMunicipalitiesOrDistricts(bool byMunicipality, int k);
 
+    /** @brief Calculates the maximum number of trains that can simultaneously arrive at specific station.
+     *
+     * Creates a source node that is linked to all nodes except the source and sink ones.
+     * It uses maxFlow method.
+     *
+     * @param target of int type.
+     * @return Number of trains.
+     */
     double max_trains_target(int target);
-
-
 };
 
 #endif //PROJ1_DA_2022_2023_BASICSERVICES_H
