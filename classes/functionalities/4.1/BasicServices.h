@@ -91,9 +91,7 @@ public :
 
     std::vector<std::pair<Vertex*, Vertex*>> optimalPairs();
 
-    std::vector<std::string> municipalities(int k);
-
-    std::vector<std::string> districts(int k);
+    std::vector<std::string> getMunicipalitiesOrDistricts(bool byMunicipality, int k);
 
     double max_trains_target(int target);
 
