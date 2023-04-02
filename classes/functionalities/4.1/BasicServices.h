@@ -98,6 +98,7 @@ public :
 
     /** @brief Calculates the top k municipalities or districts, regarding their transportation needs.
      *
+     * The category can be a municipality (if byMunicipality is true) or a district (if byMunicipality is false)
      * Creates a source node that is linked to all nodes that do not belong to the destination municipality or district
      * and creates a sink node that is linked to all nodes that belong to the destination municipality or district.
      * It uses the maxFlow method.
