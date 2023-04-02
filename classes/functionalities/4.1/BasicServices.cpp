@@ -9,6 +9,11 @@
 
 BasicServices::BasicServices(Graph *graph): graph(graph){}
 
+struct Category {
+    std::string name;
+    double maxFlow;
+};
+
 bool BasicServices::path(Vertex * s, Vertex * t){
 
     for (auto v : graph->getVertexSet()) {
@@ -169,30 +174,24 @@ std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
     return optimalPairs;
 }
 
+std::vector<std::string> BasicServices::getMunicipalitiesOrDistricts(bool byMunicipality, int k) {
 
-
-std::vector<std::string> BasicServices::municipalities(int k){
-
-    struct Municipality{
-        std::string name;
-        int maxFlow;
-    };
-    std::unordered_set<std::string> municipalities_names;
-    for (Vertex* vertex: graph->getVertexSet()){
-        std::string municipality = vertex->getStation()->getMunicipality();
-        municipalities_names.insert(municipality);
+    std::unordered_set<std::string> categoriesNames;
+    for (Vertex* vertex : graph->getVertexSet()) {
+        if (byMunicipality)
+            categoriesNames.insert(vertex->getStation()->getMunicipality());
+        else
+            categoriesNames.insert(vertex->getStation()->getDistrict());
     }
 
-    std::vector<Municipality> municipalities;
-    for (std::string name: municipalities_names)
-        municipalities.push_back({name, 0});
+    std::vector<Category> categories;
+    for (std::string name : categoriesNames)
+        categories.push_back({name, 0});
 
-    if (k > municipalities.size())
-        k = municipalities.size();
+    if (k > categories.size())
+        k = categories.size();
 
-    for (auto& m: municipalities){
-        std::string municipality = m.name;
-
+    for (auto& c : categories) {
         Graph tempGraph = Graph(graph);
 
         int targetID = tempGraph.getNumVertex() + 1;
@@ -201,76 +200,45 @@ std::vector<std::string> BasicServices::municipalities(int k){
         int sourceID = tempGraph.getNumVertex() + 1;
         tempGraph.addVertex(sourceID, nullptr);
 
-        for (Vertex* vertex: tempGraph.getVertexSet()){
+        for (Vertex* vertex : tempGraph.getVertexSet()) {
             if (vertex->getId() == targetID || vertex->getId() == sourceID)
                 continue;
 
-            if (vertex->getStation()->getMunicipality() == municipality)
+            if (byMunicipality && vertex->getStation()->getMunicipality() == c.name ||
+                !byMunicipality && vertex->getStation()->getDistrict() == c.name) {
                 tempGraph.addEdge(vertex->getId(), targetID, INT_MAX, "");
-            else
+            }
+            else {
                 tempGraph.addEdge(sourceID, vertex->getId(), INT_MAX, "");
+            }
         }
 
-        m.maxFlow = BasicServices(&tempGraph).maxFlow(sourceID, targetID);
+        c.maxFlow = BasicServices(&tempGraph).maxFlow(sourceID, targetID);
     }
 
-    std::sort(municipalities.begin(), municipalities.end(),
-              [](Municipality m1, Municipality m2){return m1.maxFlow > m2.maxFlow;});
+    std::sort(categories.begin(), categories.end(),
+              [](Category c1, Category c2) { return c1.maxFlow > c2.maxFlow; });
 
     std::vector<std::string> result;
-    for (int i = 0; i < k; i++){
-        result.push_back(municipalities[i].name);
+    for (int i = 0; i < k; i++) {
+        result.push_back(categories[i].name);
     }
     return result;
 }
 
-std::vector<std::string> BasicServices::districts(int k){
-
-    std::vector<std::string>ans;
-    std::map<double,std::string> maxflow_dist; //increasing order of keys(by default)
-
-    std::set<std::string> all_districts;
-    for(auto station: graph->getVertexSet()){
-        all_districts.insert(station->getStation()->getDistrict());
-    }
-
-    double maxflow_per_dist=0;
-
-    for(auto district: all_districts){
-        for (auto station1: graph->getVertexSet()) {
-            if (station1->getStation()->getDistrict() == district) {
-                for(auto station2: graph->getVertexSet()){
-                    if(station2->getStation()->getDistrict() != district)
-                        if(existsPath(station1, station2))
-                            maxflow_per_dist += maxFlow(station1->getId(), station2->getId());
-                    }
-            }
-        }
-        maxflow_dist[maxflow_per_dist] = district;
-    }
-
-    auto it = maxflow_dist.begin();
-    std::advance(it, maxflow_dist.size()-1);
-
-    while(k>0){
-        ans.push_back(it->second);
-        it--;
-        k--;
-    }
-    return ans;
-}
-
 double BasicServices::max_trains_target(int target){
-    Vertex * t = graph->findVertex(target);
-    double maxflow;
-    double answer = INT_MIN;
 
-    for(auto station: graph->getVertexSet()){
-        if(station->getId() != t->getId() && existsPath(station, t)){
-            maxflow = maxFlow(station->getId(), t->getId());
-        }
-        if(maxflow > answer) answer = maxflow;
+    Graph tempG = Graph(graph);
+
+    int sourceID = tempG.getNumVertex() + 1;
+    tempG.addVertex(sourceID, nullptr);
+
+    for (Vertex* v : tempG.getVertexSet()) {
+        if (v->getId() == target || v->getId() == sourceID)
+            continue;
+
+        tempG.addEdge(sourceID, v->getId(), INT_MAX, "");
     }
 
-    return answer;
+    return BasicServices(&tempG).maxFlow(sourceID, target);
 }
