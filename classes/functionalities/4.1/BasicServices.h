@@ -73,7 +73,7 @@ protected:
 
 public :
 
-    /** Creates a new BasicServices with the respective graph.
+    /** Creates a new BasicServices for the respective graph.
      *
      * @param graph of Graph* type.
      */
