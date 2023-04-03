@@ -205,6 +205,7 @@ void Application::costMenu(){
             }
             if (sourceID == 0 || targetID == 0) {
                 std::cout << "Invalid stations names!";
+                break;
             }
             //std::cout << basicServices.maxFlow(sourceID, targetID);
             break;
