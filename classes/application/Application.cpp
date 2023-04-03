@@ -6,13 +6,11 @@
 
 #include "Application.h"
 
-Application::Application() {}
-
 void Application::start(){
 
     SourceReader().read(stations, railwayNetwork);
 
-    menuState.push(WELCOMEMENU);
+    state.push(WELCOME_MENU);
     getMenu();
 }
 
@@ -24,7 +22,7 @@ void Application::welcomeMenu(){
     std::cout << "Click ENTER for the options";
     std::cin.ignore(1000,'\n');
 
-    menuState.push(INITIAL_MENU);
+    state.push(INITIAL_MENU);
     getMenu();
 }
 
@@ -41,18 +39,21 @@ void Application::initialMenu(){
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
+        if(choice >=5 || choice <=0){
+            std::cout << "Invalid option number!";
+        }
     }
     while(choice >=5 || choice <= 0);
 
     switch(choice){
         case 1:
-            menuState.push(BASICSERVICESMENU);
+            state.push(SERVICES_MENU);
             break;
         case 2:
-            menuState.push(COSTMENU);
+            state.push(COST_MENU);
             break;
         case 3:
-            menuState.push(FAILURESMENU);
+            state.push(FAILURE_MENU);
             break;
         case 4:
             exit(0);
@@ -60,7 +61,7 @@ void Application::initialMenu(){
     getMenu();
 }
 
-void Application::basicServicesMenu(){
+void Application::servicesMenu(){
     do{
         std::cout << std::endl << std::endl << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
@@ -76,6 +77,9 @@ void Application::basicServicesMenu(){
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
+        if(choice >=8 || choice <=0){
+            std::cout << "Invalid option number!";
+        }
     }
     while(choice >=8 || choice <= 0);
 
@@ -151,7 +155,7 @@ void Application::basicServicesMenu(){
             break;
         }
         case 6: {
-            menuState.pop();
+            state.pop();
             break;
         }
         case 7:
@@ -160,44 +164,62 @@ void Application::basicServicesMenu(){
     getMenu();
 }
 
-void Application::costOptimizationMenu(){
-    int sourceID=0;
-    int targetID=0;
+void Application::costMenu(){
     do{
         std::cout << std::endl << std::endl << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "             Operation Cost Optimization" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
-        std::string source;
-        std::string target;
-
-        std::cout << "Name of the source station: ";
-        getline(std::cin, source);
-        std::cout << "Name of the target station: ";
-        getline(std::cin, target);
-
-
-        for (auto s: stations) {
-            if (s.first == source) {
-                sourceID = s.second->getId();
-            }
-            if (s.first == target) {
-                targetID = s.second->getId();
-            }
-        }
-        if(sourceID==0 || targetID==0) {
-            std::cout << "Invalid stations names!";
+        std::cout << "1. Maximum number of trains between two specific stations" << std::endl;
+        std::cout << "2. Go Back" << std::endl;
+        std::cout << "3. Quit" << std::endl;
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
+        std::cin.ignore(1000,'\n');
+        if(choice >=3 || choice <=0){
+            std::cout << "Invalid option number!";
         }
     }
-    while(sourceID==0 || targetID==0);
+    while(choice >=3 || choice <=0);
 
-    //std::cout << basicServices.maxFlow(sourceID, targetID);
+    switch(choice) {
+        case 1: {
+            std::string source;
+            std::string target;
 
-    menuState.pop();
+            std::cout << "Name of the source station: ";
+            getline(std::cin, source);
+            std::cout << "Name of the target station: ";
+            getline(std::cin, target);
+
+            int sourceID=0;
+            int targetID=0;
+            for (auto s: stations) {
+                if (s.first == source) {
+                    sourceID = s.second->getId();
+                }
+                if (s.first == target) {
+                    targetID = s.second->getId();
+                }
+            }
+            if (sourceID == 0 || targetID == 0) {
+                std::cout << "Invalid stations names!";
+            }
+            //std::cout << basicServices.maxFlow(sourceID, targetID);
+            break;
+        }
+        case 2: {
+            state.pop();
+            break;
+        }
+        case 3:
+            exit(0);
+
+    }
     getMenu();
 }
 
-void Application::failuresMenu(){
+void Application::failureMenu(){
     do{
         std::cout << std::endl << std::endl << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
@@ -210,6 +232,9 @@ void Application::failuresMenu(){
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
+        if(choice >=4 || choice <=0){
+            std::cout << "Invalid option number!";
+        }
     }while(choice >=4 || choice <=0);
 
     switch(choice){
@@ -250,7 +275,7 @@ void Application::failuresMenu(){
             break;
         }
         case 3: {
-            menuState.pop();
+            state.pop();
             break;
         }
         case 4:
@@ -260,23 +285,23 @@ void Application::failuresMenu(){
 }
 
 void Application::getMenu(){
-    if(!menuState.empty()){
-        MenuState state = menuState.top();
-        switch(state){
-            case WELCOMEMENU:
+    if(!state.empty()){
+        States states = state.top();
+        switch(states){
+            case WELCOME_MENU:
                 welcomeMenu();
                 break;
             case INITIAL_MENU:
                 initialMenu();
                 break;
-            case BASICSERVICESMENU:
-                basicServicesMenu();
+            case SERVICES_MENU:
+                servicesMenu();
                 break;
-            case COSTMENU:
-                costOptimizationMenu();
+            case COST_MENU:
+                costMenu();
                 break;
-            case FAILURESMENU:
-                failuresMenu();
+            case FAILURE_MENU:
+                failureMenu();
                 break;
         }
     }
