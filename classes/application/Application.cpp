@@ -111,8 +111,9 @@ void Application::servicesMenu(){
             break;
         }
         case 2: {
+            std::cout << "Calculating the pairs..." << std::endl;
             for (auto p: basicServices.optimalPairs()) {
-                std::cout << p.first << ", " << p.second << std::endl;
+                std::cout << p.first->getStation()->getName() << ", " << p.second->getStation()->getName() << std::endl;
             }
             break;
         }

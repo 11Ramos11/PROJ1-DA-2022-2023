@@ -153,14 +153,30 @@ bool BasicServices::existsPath(Vertex * s, Vertex * t){
 }
 
 std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
+
     std::vector<std::pair<Vertex*, Vertex*>> optimalPairs;
     double full_advantage=INT_MIN;
     double maxflow;
+    std::set<std::pair<int, int>> visitedPairs;
 
     for(auto station1: graph->getVertexSet()){
         for(auto station2: graph->getVertexSet()){
             if(station1 != station2 && existsPath(station1, station2)){
-                maxflow = maxFlow(station1->getId(), station2->getId());
+                int station1ID = station1->getId();
+                int station2ID = station2->getId();
+                if (station1ID < station2ID) {
+                    if (visitedPairs.count({station1ID, station2ID}) > 0)
+                        continue;
+                    visitedPairs.insert({station1ID, station2ID});
+                }
+                else if (station2ID < station1ID) {
+                    if (visitedPairs.count({station2ID, station1ID}) > 0)
+                        continue;
+                    visitedPairs.insert({station2ID, station1ID});
+                }
+                else continue;
+
+                maxflow = maxFlow(station1ID, station2ID);
                 if (maxflow == full_advantage)
                     optimalPairs.push_back(std::make_pair(station1, station2));
                 if(maxflow > full_advantage) {
@@ -170,7 +186,6 @@ std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
             }
         }
     }
-    
     return optimalPairs;
 }
 
