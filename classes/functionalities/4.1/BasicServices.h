@@ -72,14 +72,35 @@ public :
      */
     double maxFlow(int source, int target);
 
+    /** @brief Returns the all pairs of stations that require the
+     * most amount of trains when taking full advantage of the network.
+     *
+     * @return Pair of stations.
+     */
     std::vector<std::pair<Vertex*, Vertex*>> optimalPairs();
 
-    std::vector<std::string> municipalities(int k);
+    /** @brief Calculates the top k municipalities or districts, regarding their transportation needs.
+     *
+     * The category can be a municipality (if byMunicipality is true) or a district (if byMunicipality is false).
+     * Creates a source node that is linked to all nodes that do not belong to the destination municipality or district
+     * and creates a sink node that is linked to all nodes that belong to the destination municipality or district.
+     * It uses the maxFlow method.
+     *
+     * @param byMunicipality of bool type.
+     * @param k of int type.
+     * @return The top municipalities or districts names.
+     */
+    std::vector<std::string> getMunicipalitiesOrDistricts(bool byMunicipality, int k);
 
-    std::vector<std::string> districts(int k);
-
+    /** @brief Calculates the maximum number of trains that can simultaneously arrive at specific station.
+     *
+     * Creates a source node that is linked to all nodes except the source and sink ones.
+     * It uses maxFlow method.
+     *
+     * @param target of int type.
+     * @return Number of trains.
+     */
     double max_trains_target(int target);
-
 
 /** @brief Find the minimum flow to augment in found path.
  *
