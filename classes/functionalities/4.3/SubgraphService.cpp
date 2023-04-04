@@ -46,3 +46,54 @@ int SubgraphService::maxFlow(int source, int target) {
 
     return BasicServices(subGraph).maxFlow(source, target);
 }
+
+std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest){
+
+    resetSubgraph();
+
+    BasicServices basicServices(subGraph);
+
+    std::map<Vertex*, double> og_averages, new_averages;
+
+    for(Vertex* s: subGraph->getVertexSet()){
+
+        double maxFlowSum = 0;
+        int count = 0;
+        for(Vertex* t: subGraph->getVertexSet()){
+            if (s == t)
+                continue;
+            maxFlowSum += basicServices.maxFlow(s->getId(), t->getId());
+            count++;
+        }
+        og_averages.insert(std::make_pair(s, maxFlowSum/count));
+    }
+
+    deleteEdge(orig, dest);
+
+    for(Vertex* s: subGraph->getVertexSet()){
+
+        double maxFlowSum = 0;
+        int count = 0;
+        for(Vertex* t: subGraph->getVertexSet()){
+            if (s == t)
+                continue;
+            maxFlowSum += basicServices.maxFlow(s->getId(), t->getId());
+            count++;
+        }
+        new_averages.insert(std::make_pair(s, maxFlowSum/count));
+    }
+
+    int maxDiff = INT_MIN;
+    std::vector<Vertex*> affected;
+
+    for(Vertex* s: subGraph->getVertexSet()) {
+
+        int diff = og_averages[s] - new_averages[s];
+        if (diff > maxDiff)
+            affected = {s};
+        else if (diff == maxDiff)
+            affected.push_back(s);
+    }
+
+    return affected;
+}
