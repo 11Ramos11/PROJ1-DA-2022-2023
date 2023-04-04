@@ -51,6 +51,8 @@ public:
 
     void dfs(int source);
 
+    void removeVertex(int id);
+
 protected:
 
     double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall

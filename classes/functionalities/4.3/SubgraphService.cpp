@@ -10,16 +10,24 @@ SubgraphService::SubgraphService(Graph *graph): originalGraph(graph){
 }
 
 void SubgraphService::resetSubgraph() {
-    *subGraph = *originalGraph;
+    *subGraph = Graph(*originalGraph);
 }
 
 void SubgraphService::deleteStation(int id) {
 
-    subGraph.
+    for (Edge* e: subGraph->findVertex(id)->getAdj())
+        subGraph->findVertex(e->getDest()->getId())->removeEdge(id);
+
+    subGraph->removeVertex(id);
 }
 
 void SubgraphService::deleteEdge(int orig, int dest) {
 
+    Vertex* o = subGraph->findVertex(orig);
+    o->removeEdge(dest);
+
+    Vertex* d = subGraph->findVertex(dest);
+    d->removeEdge(orig);
 }
 
 void SubgraphService::deleteService(ServiceType serviceType) {

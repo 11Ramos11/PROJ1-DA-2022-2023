@@ -127,3 +127,16 @@ Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
+
+void Graph::removeVertex(int id) {
+    auto it = vertexSet.begin();
+
+    while (it != vertexSet.end()){
+
+        if ((*it)->getId() == id) {
+            vertexSet.erase(it);
+            break;
+        }
+        it++;
+    }
+}
