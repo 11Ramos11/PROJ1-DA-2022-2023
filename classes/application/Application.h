@@ -11,6 +11,7 @@
 #include <string>
 #include "../source-reader/SourceReader.h"
 #include "../functionalities/4.1/BasicServices.h"
+#include "../functionalities/4.2/CostOptimizer.h"
 
 /** @brief Initializes and manages all the components of the application.
  *
@@ -27,6 +28,7 @@ class Application {
 
     //! @brief Initialization of the basicServices.
     BasicServices basicServices = BasicServices(&railwayNetwork);
+    CostOptimizer costOptimizer = CostOptimizer(&railwayNetwork);
 
 public:
 
