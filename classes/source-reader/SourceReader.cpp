@@ -59,11 +59,20 @@ void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<S
         getline(networkFile, capacity, ',');
         getline(networkFile, service);
 
-        double capacityDouble = stod(capacity);
+        ServiceType serviceType;
 
-        railwayNetwork.addBidirectionalEdge(
+       if (service == "STANDARD")
+            serviceType = STANDARD;
+       else if (service == "ALFA PENDULAR")
+            serviceType = ALFA_PENDULAR;
+       else
+           continue;
+
+       double capacityDouble = stod(capacity);
+
+       railwayNetwork.addBidirectionalEdge(
                 stations.at(stationA)->getId(), stations.at(stationB)->getId(),
-                capacityDouble, service);
+                capacityDouble, serviceType);
 
     } while (true);
 }

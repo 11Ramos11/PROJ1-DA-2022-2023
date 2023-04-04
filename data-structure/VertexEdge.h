@@ -16,8 +16,8 @@
 #include "MutablePriorityQueue.h"
 #include "../classes/station/Station.h"
 
+enum ServiceType {STANDARD = 2, ALFA_PENDULAR = 4, none = INT_MAX};
 class Edge;
-
 /************************* Vertex  **************************/
 
 class Vertex {
@@ -41,7 +41,7 @@ public:
     void setIndegree(unsigned int indegree);
     void setDist(double dist);
     void setPath(Edge *path);
-    Edge * addEdge(Vertex *dest, double w, std::string service);
+    Edge * addEdge(Vertex *dest, double w, ServiceType service);
     bool removeEdge(int destID);
 
     friend class MutablePriorityQueue<Vertex>;
@@ -66,7 +66,7 @@ protected:
 
 class Edge {
 public:
-    Edge(Vertex *orig, Vertex *dest, double w, std::string service);
+    Edge(Vertex *orig, Vertex *dest, double w, ServiceType service);
 
     Vertex * getDest() const;
     double getWeight() const;
@@ -74,7 +74,7 @@ public:
     Vertex * getOrig() const;
     Edge *getReverse() const;
     double getFlow() const;
-    std::string getService() const;
+    ServiceType getService() const;
 
     void setSelected(bool selected);
     void setReverse(Edge *reverse);
@@ -82,7 +82,7 @@ public:
 protected:
     Vertex * dest; // destination vertex
     double weight; // edge weight, can also be used for capacity
-    std::string service;
+    ServiceType service;
 
     // auxiliary fields
     bool selected = false;

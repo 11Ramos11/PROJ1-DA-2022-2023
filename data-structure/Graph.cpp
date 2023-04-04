@@ -84,7 +84,7 @@ bool Graph::addVertex(const int &id, std::shared_ptr<Station> station) {
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
-bool Graph::addEdge(const int &sourc, const int &dest, double w, std::string service) {
+bool Graph::addEdge(const int &sourc, const int &dest, double w, ServiceType service) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
@@ -93,7 +93,7 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w, std::string ser
     return true;
 }
 
-bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, std::string service) {
+bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, ServiceType service) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)

@@ -36,23 +36,6 @@ protected:
      */
     bool path(Vertex * s, Vertex * t);
 
-    /** @brief Find the minimum flow to augment in found path.
-     *
-     * @param s of Vertex* type.
-     * @param t of Vertex* type.
-     * @return The minimum flow.
-     */
-    double find_Bottleneck(Vertex *s, Vertex * t);
-
-    /** @brief Augments the flow by "bottleneck" units in found path.
-     *
-     * @param s of Vertex* type.
-     * @param t of Vertex* type.
-     * @param bottleneck of double type.
-     * @return Void.
-     */
-    void augmentPath(Vertex * s, Vertex * t, double bottleneck);
-
     /** @brief Represents the edmondsKarp algorithm.
      *
      * It uses path, find_Bottleneck and augmentPath methods.
@@ -118,6 +101,23 @@ public :
      * @return Number of trains.
      */
     double max_trains_target(int target);
+
+/** @brief Find the minimum flow to augment in found path.
+ *
+ * @param s of Vertex* type.
+ * @param t of Vertex* type.
+ * @return The minimum flow.
+ */
+double find_Bottleneck(Vertex *s, Vertex * t);
+
+/** @brief Augments the flow by "bottleneck" units in found path.
+ *
+ * @param s of Vertex* type.
+ * @param t of Vertex* type.
+ * @param bottleneck of double type.
+ * @return Void.
+ */
+void augmentPath(Vertex * s, Vertex * t, double bottleneck);
 };
 
 #endif //PROJ1_DA_2022_2023_BASICSERVICES_H

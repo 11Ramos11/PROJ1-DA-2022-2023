@@ -17,11 +17,15 @@ private:
 
 public:
 
-    /** Creates a new CostOptimizer for the respective graph.
+    /** @brief Creates a new CostOptimizer for the respective graph.
      *
      * @param graph of Graph* type.
      */
     CostOptimizer(Graph* graph);
+
+    std::pair<int,int> MaxTrainsWithMinCost(int source, int target);
+
+    bool dijkstra(Vertex* s, Vertex* t);
 };
 
 
