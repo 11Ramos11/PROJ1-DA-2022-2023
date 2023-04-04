@@ -23,7 +23,9 @@ public:
      */
     CostOptimizer(Graph* graph);
 
-    int MaxTrainsWithMinCost(int source, int target);
+    std::pair<int,int> MaxTrainsWithMinCost(int source, int target);
+
+    bool dijkstra(Vertex* s, Vertex* t);
 };
 
 
