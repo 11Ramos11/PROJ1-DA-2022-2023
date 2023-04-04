@@ -24,6 +24,8 @@ public:
     void deleteEdge(int orig, int dest);
 
     void deleteService(ServiceType serviceType);
+
+    int maxFlow(int source, int target);
 };
 
 

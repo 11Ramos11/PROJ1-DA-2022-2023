@@ -3,6 +3,7 @@
 //
 
 #include "SubgraphService.h"
+#include "../4.1/BasicServices.h"
 
 
 SubgraphService::SubgraphService(Graph *graph): originalGraph(graph){
@@ -41,3 +42,7 @@ void SubgraphService::deleteService(ServiceType serviceType) {
     }
 }
 
+int SubgraphService::maxFlow(int source, int target) {
+
+    return BasicServices(subGraph).maxFlow(source, target);
+}
