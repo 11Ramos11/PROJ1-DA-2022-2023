@@ -221,10 +221,10 @@ std::vector<std::string> BasicServices::getMunicipalitiesOrDistricts(bool byMuni
 
             if (byMunicipality && vertex->getStation()->getMunicipality() == c.name ||
                 !byMunicipality && vertex->getStation()->getDistrict() == c.name) {
-                tempGraph.addEdge(vertex->getId(), targetID, INT_MAX, "");
+                tempGraph.addEdge(vertex->getId(), targetID, INT_MAX, none);
             }
             else {
-                tempGraph.addEdge(sourceID, vertex->getId(), INT_MAX, "");
+                tempGraph.addEdge(sourceID, vertex->getId(), INT_MAX, none);
             }
         }
 
@@ -252,7 +252,7 @@ double BasicServices::max_trains_target(int target){
         if (v->getId() == target || v->getId() == sourceID)
             continue;
 
-        tempG.addEdge(sourceID, v->getId(), INT_MAX, "");
+        tempG.addEdge(sourceID, v->getId(), INT_MAX, none);
     }
 
     return BasicServices(&tempG).maxFlow(sourceID, target);
