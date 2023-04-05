@@ -45,7 +45,7 @@ class SourceReader {
     void readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
 public:
-    
+
     SourceReader();
 
     SourceReader(std::string stationsFileName, std::string networkFileName);
