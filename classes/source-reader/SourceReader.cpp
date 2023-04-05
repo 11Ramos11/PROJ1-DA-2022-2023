@@ -8,6 +8,11 @@
 #include <iostream>
 #include "SourceReader.h"
 
+SourceReader::SourceReader()= default;
+
+SourceReader::SourceReader(std::string stationsFileName, std::string networkFileName):
+    stationsFileName(stationsFileName), networkFileName(networkFileName){}
+
 void SourceReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
 
     readStations(stations, railwayNetwork);
@@ -16,7 +21,7 @@ void SourceReader::read(std::unordered_map<std::string, std::shared_ptr<Station>
 
 void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork) {
 
-    std::ifstream stationsFile("../resources/stations.csv");
+    std::ifstream stationsFile(stationsFileName);
     std::string entry;
 
     getline(stationsFile, entry);
@@ -45,7 +50,9 @@ void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<
 
 void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
 
-    std::ifstream networkFile("../resources/network.csv");
+
+    networkFileName = "../resources/network.csv";
+    std::ifstream networkFile(networkFileName);
     std::string entry;
 
     getline(networkFile, entry);
