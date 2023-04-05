@@ -47,7 +47,7 @@ int SubgraphService::maxFlow(int source, int target) {
     return BasicServices(subGraph).maxFlow(source, target);
 }
 
-std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest){
+std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, int k){
 
     resetSubgraph();
 
@@ -84,16 +84,17 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest){
     }
 
     int maxDiff = INT_MIN;
-    std::vector<Vertex*> affected;
+    std::vector<Vertex*> affected = subGraph->getVertexSet();
 
-    for(Vertex* s: subGraph->getVertexSet()) {
+    std::sort(affected.begin(), affected.end(),
+              [&og_averages, &new_averages](Vertex* v1, Vertex* v2){
+        return (og_averages[v1]-new_averages[v1]) > (og_averages[v2]-new_averages[v2]);
+    });
 
-        int diff = og_averages[s] - new_averages[s];
-        if (diff > maxDiff)
-            affected = {s};
-        else if (diff == maxDiff)
-            affected.push_back(s);
+    std::vector<Vertex*> topAffected;
+    
+    for(int i = 0; i < k; i++) {
+        topAffected.push_back(affected[i]);
     }
-
-    return affected;
+    return topAffected;
 }

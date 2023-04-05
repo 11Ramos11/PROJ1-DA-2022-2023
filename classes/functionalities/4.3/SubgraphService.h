@@ -27,7 +27,7 @@ public:
 
     int maxFlow(int source, int target);
 
-    std::vector<Vertex *> mostAffectedStations(int source, int target);
+    std::vector<Vertex *> mostAffectedStations(int source, int target, int k);
 };
 
 
