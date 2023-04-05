@@ -31,7 +31,11 @@ class Application {
 
     //! @brief Initialization of the basicServices.
     BasicServices basicServices = BasicServices(&railwayNetwork);
+
+    //! @brief Initialization of the costOptimizer.
     CostOptimizer costOptimizer = CostOptimizer(&railwayNetwork);
+
+    //! @brief Initialization of the subgraphService.
     SubgraphService subgraphService = SubgraphService(&railwayNetwork);
 
     //! @brief Creates the initial menu options.

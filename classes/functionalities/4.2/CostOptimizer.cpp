@@ -1,6 +1,8 @@
-//
-// Created by Ramos on 4/2/2023.
-//
+/** @file CostOptimizer.cpp
+ *  @brief Contains the CostOptimizer Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include <cfloat>
 #include "CostOptimizer.h"

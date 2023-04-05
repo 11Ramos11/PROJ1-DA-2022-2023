@@ -5,7 +5,6 @@
  */
 
 #include "Application.h"
-#include "../functionalities/4.2/CostOptimizer.h"
 
 void Application::start(){
 

@@ -1,6 +1,8 @@
-//
-// Created by joaof on 04/04/2023.
-//
+/** @file SubgraphService.cpp
+ *  @brief Contains the SubgraphService Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include "SubgraphService.h"
 #include "../4.1/BasicServices.h"
