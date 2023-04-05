@@ -10,7 +10,7 @@
 
 class SubgraphService {
 
-    const Graph* originalGraph;
+    Graph* originalGraph;
     Graph* subGraph;
 
 public:
