@@ -73,16 +73,16 @@ void Application::servicesMenu(){
         std::cout << "3. Top-k municipalities" << std::endl;
         std::cout << "4. Top-k districts" << std::endl;
         std::cout << "5. Maximum number of trains that arrive at a given station" << std::endl;
-        std::cout << "6. Go Back" << std::endl;
-        std::cout << "7. Quit" << std::endl;
+        std::cout << "0. Go Back" << std::endl;
+        std::cout << "9. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(choice >=8 || choice <=0){
+        if(choice < 0 || choice == 6 || choice ==7 || choice == 8 || choice >9){
             std::cout << "Invalid option number!";
         }
     }
-    while(choice >=8 || choice <= 0);
+    while(choice < 0 || choice == 6 || choice ==7 || choice == 8 || choice >9);
 
     switch(choice){
         case 1: {
@@ -94,21 +94,13 @@ void Application::servicesMenu(){
             std::cout << "Name of the target station: ";
             getline(std::cin, target);
 
-            int sourceID=0;
-            int targetID=0;
-            for (auto s: stations) {
-                if (s.first == source) {
-                    sourceID = s.second->getId();
-                }
-                if(s.first == target) {
-                    targetID = s.second->getId();
-                }
-            }
-            if(sourceID==0 || targetID==0){
+            auto sourceID = stations[source];
+            auto targetID = stations[target];
+            if(sourceID== nullptr || targetID== nullptr){
                 std::cout<< "Invalid stations names!";
                 break;
             }
-            std::cout << basicServices.maxFlow(sourceID, targetID);
+            std::cout << basicServices.maxFlow(sourceID->getId(), targetID->getId());
             break;
         }
         case 2: {
@@ -156,11 +148,11 @@ void Application::servicesMenu(){
             std::cout << basicServices.max_trains_target( targetID);
             break;
         }
-        case 6: {
+        case 0: {
             state.pop();
             break;
         }
-        case 7:
+        case 9:
             exit(0);
     }
     getMenu();
@@ -173,16 +165,16 @@ void Application::costMenu(){
         std::cout << "             Operation Cost Optimization" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "1. Maximum number of trains between two specific stations" << std::endl;
-        std::cout << "2. Go Back" << std::endl;
-        std::cout << "3. Quit" << std::endl;
+        std::cout << "0. Go Back" << std::endl;
+        std::cout << "9. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(choice >=3 || choice <=0){
+        if(!(choice==1 || choice==9 || choice ==0)){
             std::cout << "Invalid option number!";
         }
     }
-    while(choice >=3 || choice <=0);
+    while(!(choice==1 || choice==9 || choice ==0));
 
     switch(choice) {
         case 1: {
@@ -194,28 +186,24 @@ void Application::costMenu(){
             std::cout << "Name of the target station: ";
             getline(std::cin, target);
 
-            int sourceID=0;
-            int targetID=0;
-            for (auto s: stations) {
-                if (s.first == source) {
-                    sourceID = s.second->getId();
-                }
-                if (s.first == target) {
-                    targetID = s.second->getId();
-                }
-            }
-            if (sourceID == 0 || targetID == 0) {
-                std::cout << "Invalid stations names!";
+            auto sourceID = stations[source];
+            auto targetID = stations[target];
+            if(sourceID== nullptr || targetID== nullptr){
+                std::cout<< "Invalid stations names!";
                 break;
             }
-            //std::cout << basicServices.maxFlow(sourceID, targetID);
+
+            std::pair<int,int> answer;
+            answer = costOptimizer.MaxTrainsWithMinCost(sourceID->getId(), targetID->getId());
+            std::cout << "The maximum amount of trains: " << answer.first << std::endl;
+            std::cout << "Minimum cost: " << answer.second;
             break;
         }
-        case 2: {
+        case 0: {
             state.pop();
             break;
         }
-        case 3:
+        case 9:
             exit(0);
 
     }
@@ -230,15 +218,16 @@ void Application::failureMenu(){
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "1. Maximum number of trains between two specific stations" << std::endl;
         std::cout << "2. Top-k most affected stations for each segment" << std::endl;
-        std::cout << "3. Go Back" << std::endl;
-        std::cout << "4. Quit" << std::endl;
+        std::cout << "0. Go Back" << std::endl;
+        std::cout << "9. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(choice >=4 || choice <=0){
+        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9)){
             std::cout << "Invalid option number!";
         }
-    }while(choice >=4 || choice <=0);
+    }
+    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9));
 
     switch(choice){
         case 1:{
@@ -250,38 +239,49 @@ void Application::failureMenu(){
             std::cout << "Name of the target station: ";
             getline(std::cin, target);
 
-            int sourceID=0;
-            int targetID=0;
-            for (auto s: stations) {
-                if (s.first == source) {
-                    sourceID = s.second->getId();
-                }
-                if(s.first == target) {
-                    targetID = s.second->getId();
-                }
-            }
-            if(sourceID==0 || targetID==0){
+            auto sourceID = stations[source];
+            auto targetID = stations[target];
+            if(sourceID== nullptr || targetID== nullptr){
                 std::cout<< "Invalid stations names!";
                 break;
             }
+            std::cout << basicServices.maxFlow(sourceID->getId(), targetID->getId());
+            break;
+
             //std::cout << basicServices.maxFlow(sourceID, targetID);
             break;
         }
         case 2: {
-            int k_mun;
+            std::string source;
+            std::string target;
+
+            std::cout << "Name of the source station: ";
+            getline(std::cin, source);
+            std::cout << "Name of the target station: ";
+            getline(std::cin, target);
+
+            auto sourceID = stations[source];
+            auto targetID = stations[target];
+            if(sourceID== nullptr || targetID== nullptr){
+                std::cout<< "Invalid stations names!";
+                break;
+            }
+
+            int k;
             std::cout << "Insert the number of stations: ";
-            std::cin >> k_mun;
+            std::cin >> k;
             std::cin.ignore();
-            /*for (auto m: basicServices.getMunicipalitiesOrDistricts(true, k_mun)) {
+            /*for (auto m: subgraphService.mostAffectedStations(
+                    sourceID->getId(),targetID->getId(), k)) {
                 std::cout << m << std::endl;
             }*/
             break;
         }
-        case 3: {
+        case 0: {
             state.pop();
             break;
         }
-        case 4:
+        case 9:
             exit(0);
     }
     getMenu();
