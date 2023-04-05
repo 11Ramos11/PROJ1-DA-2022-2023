@@ -14,6 +14,11 @@
 
 class SourceReader {
 
+    std::string stationsFileName = "../resources/stations.csv";
+    std::string networkFileName = "../resources/network.csv";
+
+
+
     /** @brief Reads stations input file and stores them accordingly.
      *
      *  Reads the file "stations.csv" and for each line
@@ -40,6 +45,10 @@ class SourceReader {
     void readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
 public:
+
+    SourceReader();
+
+    SourceReader(std::string stationsFileName, std::string networkFileName);
 
     /** @brief Stores all the information of the database.
      *

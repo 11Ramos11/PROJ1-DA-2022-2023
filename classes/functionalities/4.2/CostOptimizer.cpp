@@ -86,7 +86,7 @@ std::pair<int,int> CostOptimizer::MaxTrainsWithMinCost(int source, int target){
     for(auto v : graph->getVertexSet()){
         for(auto e : v->getAdj()){
             if(e->getFlow() != 0){
-                minCost += e->getService();
+                minCost += e->getService() * e->getFlow();
             }
         }
     }
