@@ -92,9 +92,13 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, i
     });
 
     std::vector<Vertex*> topAffected;
-    
+
     for(int i = 0; i < k; i++) {
-        topAffected.push_back(affected[i]);
+
+        Vertex* v = affected[i];
+        if (og_averages[v]-new_averages[v] == 0)
+            continue;
+        topAffected.push_back(v);
     }
     return topAffected;
 }
