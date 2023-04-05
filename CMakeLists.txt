@@ -8,5 +8,5 @@ add_executable(PROJ1_DA_2022_2023 main.cpp classes/source-reader/SourceReader.cp
         classes/station/Station.cpp classes/station/Station.h data-structure/Graph.h data-structure/Graph.cpp
         data-structure/VertexEdge.cpp data-structure/VertexEdge.h classes/functionalities/4.1/BasicServices.cpp
         classes/functionalities/4.1/BasicServices.h classes/functionalities/4.2/CostOptimizer.cpp
-        classes/functionalities/4.2/CostOptimizer.h )
+        classes/functionalities/4.2/CostOptimizer.h classes/functionalities/4.3/SubgraphService.cpp classes/functionalities/4.3/SubgraphService.h)
 
