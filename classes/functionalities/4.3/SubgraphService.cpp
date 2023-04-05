@@ -7,7 +7,6 @@
 #include "SubgraphService.h"
 #include "../4.1/BasicServices.h"
 
-
 SubgraphService::SubgraphService(Graph *graph): originalGraph(graph){}
 
 void SubgraphService::resetSubgraph() {

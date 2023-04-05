@@ -12,7 +12,7 @@
 /** @brief Station class to represent a station.
  *
  */
-class   Station {
+class Station {
 
     //! @brief Holds the station id.
     const int id;
