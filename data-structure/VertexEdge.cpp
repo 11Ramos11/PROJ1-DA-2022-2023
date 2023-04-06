@@ -10,10 +10,6 @@
 
 Vertex::Vertex(int id, std::shared_ptr<Station> station): id(id), station(station) {}
 
-/*
- * Auxiliary function to add an outgoing edge to a vertex (this),
- * with a given destination vertex (d) and edge weight (w).
- */
 Edge * Vertex::addEdge(Vertex *d, double w, ServiceType service) {
     auto newEdge = new Edge(this, d, w, service);
     adj.push_back(newEdge);
@@ -21,11 +17,6 @@ Edge * Vertex::addEdge(Vertex *d, double w, ServiceType service) {
     return newEdge;
 }
 
-/*
- * Auxiliary function to remove an outgoing edge (with a given destination (d))
- * from a vertex (this).
- * Returns true if successful, and false if such edge does not exist.
- */
 bool Vertex::removeEdge(int destID) {
     bool removedEdge = false;
     auto it = adj.begin();
@@ -34,7 +25,6 @@ bool Vertex::removeEdge(int destID) {
         Vertex *dest = edge->getDest();
         if (dest->getId() == destID) {
             it = adj.erase(it);
-            // Also remove the corresponding edge from the incoming list
             auto it2 = dest->incoming.begin();
             while (it2 != dest->incoming.end()) {
                 if ((*it2)->getOrig()->getId() == id) {
@@ -45,7 +35,7 @@ bool Vertex::removeEdge(int destID) {
                 }
             }
             delete edge;
-            removedEdge = true; // allows for multiple edges to connect the same pair of vertices (multigraph)
+            removedEdge = true;
         }
         else {
             it++;
@@ -74,14 +64,6 @@ bool Vertex::isVisited() const {
     return this->visited;
 }
 
-bool Vertex::isProcessing() const {
-    return this->processing;
-}
-
-unsigned int Vertex::getIndegree() const {
-    return this->indegree;
-}
-
 double Vertex::getDist() const {
     return this->dist;
 }
@@ -94,20 +76,8 @@ std::vector<Edge *> Vertex::getIncoming() const {
     return this->incoming;
 }
 
-void Vertex::setId(int id) {
-    this->id = id;
-}
-
 void Vertex::setVisited(bool visited) {
     this->visited = visited;
-}
-
-void Vertex::setProcesssing(bool processing) {
-    this->processing = processing;
-}
-
-void Vertex::setIndegree(unsigned int indegree) {
-    this->indegree = indegree;
 }
 
 void Vertex::setDist(double dist) {
@@ -117,7 +87,6 @@ void Vertex::setDist(double dist) {
 void Vertex::setPath(Edge *path) {
     this->path = path;
 }
-
 
 
 /********************** Edge  ****************************/
@@ -137,24 +106,12 @@ Vertex * Edge::getOrig() const {
     return this->orig;
 }
 
-Edge *Edge::getReverse() const {
-    return this->reverse;
-}
-
-bool Edge::isSelected() const {
-    return this->selected;
-}
-
 double Edge::getFlow() const {
     return flow;
 }
 
 ServiceType Edge::getService() const {
     return service;
-}
-
-void Edge::setSelected(bool selected) {
-    this->selected = selected;
 }
 
 void Edge::setReverse(Edge *reverse) {

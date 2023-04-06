@@ -10,6 +10,10 @@
 #include <vector>
 
 template <class T>
+/** @brief MutablePriorityQueue class represents the Mutable Priority Queue data structure.
+ *
+ * @tparam T
+ */
 class MutablePriorityQueue {
 
     //! @brief Holds the pointers to elements of type T.

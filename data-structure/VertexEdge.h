@@ -16,82 +16,228 @@
 #include "MutablePriorityQueue.h"
 #include "../classes/station/Station.h"
 
+//! Holds the ServiceType options.
 enum ServiceType {STANDARD = 2, ALFA_PENDULAR = 4, none = 0};
+
+/** @brief Edge class to represent the edge from the graph.
+ *
+ */
 class Edge;
+
 /************************* Vertex  **************************/
 
+/** @brief Vertex class to represent the vertex from the graph.
+ *
+ */
 class Vertex {
-public:
-    Vertex(int id, std::shared_ptr<Station> station);
-    bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
+public:
+
+    /** @brief Creates a new Vertex.
+     *
+     * @param id of int type.
+     * @param station of std::shared_ptr<Station> type.
+     */
+    Vertex(int id, std::shared_ptr<Station> station);
+
+    /** @brief Operator overloading.
+     *
+     * @param vertex of Vertex type, by reference.
+     * @return Bool type.
+     */
+    bool operator<(Vertex & vertex) const;
+
+    /** @brief Represents the id of the vertex.
+     *
+     * @return Id of the vertex.
+     */
     int getId() const;
+
+    /** @brief Represents the station.
+     *
+     * @return Station.
+     */
     std::shared_ptr<Station> getStation() const;
+
+    /** @brief Represents the adjacent edges.
+     *
+     * @return Edges.
+     */
     std::vector<Edge *> getAdj() const;
+
+    /** @brief Represents if the vertex was visited or not.
+     *
+     * @return True if the vext
+     */
     bool isVisited() const;
-    bool isProcessing() const;
-    unsigned int getIndegree() const;
+
+    /** @brief Represents the distance.
+     *
+     * @return Distance.
+     */
     double getDist() const;
+
+    /** @brief Represents the path.
+      *
+      * @return Edge.
+      */
     Edge *getPath() const;
+
+    /** @brief Represents the incoming edges.
+     *
+     * @return Edges.
+     */
     std::vector<Edge *> getIncoming() const;
 
-    void setId(int info);
+    /** @brief Updates if the vertex was visited or not.
+     *
+     * @param visited of bool type.
+     * @return Void.
+     */
     void setVisited(bool visited);
-    void setProcesssing(bool processing);
-    void setIndegree(unsigned int indegree);
+
+    /** @brief Updates the vertex distance.
+     *
+     * @param dist of double type.
+     * @return Void.
+     */
     void setDist(double dist);
+
+    /** @brief Updates the vertex path.
+     *
+     * @param dist of Edge* type.
+     * @return Void.
+     */
     void setPath(Edge *path);
+
+    /** @brief Adds an outgoing edge to a vertex,
+     * with a given destination vertex and edge weight.
+     *
+     * @param dest of Vertex* type.
+     * @param w of double type.
+     * @param service of ServiceType type.
+     * @return Edge.
+     */
     Edge * addEdge(Vertex *dest, double w, ServiceType service);
+
+    /** @brief Removes an outgoing edge from a vertex.
+     *
+     * @param destID of int type.
+     * @return true if successful, and false if such edge does not exist.
+     */
     bool removeEdge(int destID);
 
+    //! @brief Friend declaration.
     friend class MutablePriorityQueue<Vertex>;
-protected:
-    int id;
-    std::shared_ptr<Station> station;// identifier
-    std::vector<Edge *> adj;  // outgoing edges
 
-    // auxiliary fields
-    bool visited = false; // used by DFS, BFS, Prim ...
-    bool processing = false; // used by isDAG (in addition to the visited attribute)
-    unsigned int indegree; // used by topsort
+protected:
+
+    //! @brief Holds the id of the vertex.
+    int id;
+
+    //! @brief Holds the station pointer.
+    std::shared_ptr<Station> station;
+
+    //! @brief Holds the adjacent edges.
+    std::vector<Edge *> adj;
+
+    //! @brief Holds the visited truth.
+    bool visited = false;
+
+    //! @brief Holds the distance of the vertex.
     double dist = 0;
+
+    //! @brief Holds the path of the vertex.
     Edge *path = nullptr;
 
-    std::vector<Edge *> incoming; // incoming edges
+    //! @brief Holds the incoming edges.
+    std::vector<Edge *> incoming;
 
-    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+    //! @brief Holds the index of the queue.
+    int queueIndex = 0;
 };
 
 /********************** Edge  ****************************/
 
+/** @brief Edge class to represent the edge from the graph.
+ *
+ */
 class Edge {
+
 public:
+
+    /** @brief Creates a new Edge.
+     *
+     * @param orig of Vertex* type.
+     * @param dest of Vertex* type.
+     * @param w of double type.
+     * @param service of ServiceType type.
+     */
     Edge(Vertex *orig, Vertex *dest, double w, ServiceType service);
 
+    /** @brief Represents the destination of the edge.
+     *
+     * @return Destination vertex.
+     */
     Vertex * getDest() const;
+
+    /** @brief Represents the weight of the edge.
+     *
+     * @return Weight.
+     */
     double getWeight() const;
-    bool isSelected() const;
+
+    /** @brief Represents the original vertex.
+     *
+     * @return Original vertex.
+     */
     Vertex * getOrig() const;
-    Edge *getReverse() const;
+
+    /** @brief Represents the flow of the edge.
+     *
+     * @return Flow.
+     */
     double getFlow() const;
+
+    /** @brief Represents the destination of the edge.
+     *
+     * @return Destination vertex.
+     */
     ServiceType getService() const;
 
-    void setSelected(bool selected);
+    /** @brief Represents the reverse edge.
+     *
+     * @param reverse of Edge* type.
+     * @return Void.
+     */
     void setReverse(Edge *reverse);
+
+    /** @brief Updates the flow of the edge.
+     *
+     * @param flow of double type.
+     * @return Void.
+     */
     void setFlow(double flow);
+
 protected:
-    Vertex * dest; // destination vertex
-    double weight; // edge weight, can also be used for capacity
+
+    //! @brief Holds the destination of the edge.
+    Vertex * dest;
+
+    //! @brief Holds the weight of the edge.
+    double weight;
+
+    //! @brief Holds the service of the edge.
     ServiceType service;
 
-    // auxiliary fields
-    bool selected = false;
-
-    // used for bidirectional edges
+    //! @brief Holds the original vertex.
     Vertex *orig;
+
+    //! @brief Holds the reverse edge.
     Edge *reverse = nullptr;
 
-    double flow; // for flow-related problems
+    //! @brief Holds the flow of the edge.
+    double flow;
 };
 
 #endif /* DA_TP_CLASSES_VERTEX_EDGE */
