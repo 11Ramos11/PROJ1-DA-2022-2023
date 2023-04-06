@@ -30,6 +30,8 @@ public:
 
     /** @brief Checks if there is a path between two stations.
      *
+     * Time Complexity: O(|V + E| * log(V)), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+     *
      * @param s of type Vertex*.
      * @param t of type Vertex*.
      * @return True if there is a path, false if otherwise.
@@ -38,6 +40,8 @@ public:
 
     /** @brief Calculates the maximum amount of trains that can simultaneously travel between
      * two specific stations with minimum cost for the company.
+     *
+     * Time Complexity: O(|V + E| * log(V)), in which V is the number of Vertexes and E is the number of Edges, in the graph.
      *
      * @param source of int type.
      * @param target of int type.
