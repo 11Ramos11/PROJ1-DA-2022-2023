@@ -54,7 +54,7 @@ void Application::readMenu(){
             std::cin.ignore(1000,'\n');
 
             fileReader.setFiles(file1, file2);
-            
+
             if (fileReader.read(stations, railwayNetwork)) {
                 fileReader.reset();
                 std::cout << std::endl;
@@ -146,7 +146,8 @@ void Application::servicesMenu(){
                 std::cout<< "Invalid stations names!";
                 break;
             }
-            std::cout << basicServices.maxFlow(sourceID->getId(), targetID->getId());
+            double maxFlow = basicServices.maxFlow(sourceID->getId(), targetID->getId());
+            std::cout << "The maximum amount of trains: " << maxFlow;
             break;
         }
         case 2: {
@@ -161,7 +162,8 @@ void Application::servicesMenu(){
             std::cout << "Insert the number of municipalities: ";
             std::cin >> k_mun;
             std::cin.ignore();
-            for (auto m: basicServices.getMunicipalitiesOrDistricts(true, k_mun)) {
+            auto top = basicServices.getMunicipalitiesOrDistricts(true, k_mun);
+            for (auto m: top) {
                 std::cout << m << std::endl;
             }
             break;
@@ -210,7 +212,7 @@ void Application::costMenu(){
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "             Operation Cost Optimization" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
-        std::cout << "1. Maximum number of trains between two specific stations" << std::endl;
+        std::cout << "1. Maximum number of trains between two specific stations with minimum cost" << std::endl;
         std::cout << "0. Go Back" << std::endl;
         std::cout << "9. Quit" << std::endl;
         std::cout << "Enter your choice: ";
@@ -241,6 +243,7 @@ void Application::costMenu(){
 
             std::pair<int,int> answer;
             answer = costOptimizer.MaxTrainsWithMinCost(sourceID->getId(), targetID->getId());
+            std::cout << std::endl;
             std::cout << "The maximum amount of trains: " << answer.first << std::endl;
             std::cout << "Minimum cost: " << answer.second;
             break;
