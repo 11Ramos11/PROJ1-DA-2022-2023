@@ -9,33 +9,75 @@
 
 #include <vector>
 
-/**
- * class T must have: (i) accessible field int queueIndex; (ii) operator< defined.
- */
-
 template <class T>
 class MutablePriorityQueue {
+
+    //! @brief Holds the pointers to elements of type T.
 	std::vector<T *> H;
+
+    /** @brief Used when inserting a new element
+     * or modifying the priority of an existing element.
+     *
+     * @param i of unsigned type.
+     * @return Void.
+     */
 	void heapifyUp(unsigned i);
+
+    /** @brief Used when deleting the element with the highest priority
+     * or modifying the priority of an existing element
+     *
+     * @param i of unsigned type.
+     * @return Void.
+     */
 	void heapifyDown(unsigned i);
+
+    /** @brief Updates the position of an element
+     *
+     * @param i of unsigned type.
+     * @param x of T* type.
+     */
 	inline void set(unsigned i, T * x);
+
 public:
+
+    /** @brief Creates a new MutablePriorityQueue.
+     *
+     */
 	MutablePriorityQueue();
+
+    /** @brief Inserts a new element.
+     *
+     * @param x of T* type.
+     * @return Void.
+     */
 	void insert(T * x);
+
+    /** @brief Extracts an element with the minimum value.
+     *
+     * @return Element of type T.
+     */
 	T * extractMin();
+
+    /** @brief decrease the priority of an element.
+     *
+     * @param x of T* type.
+     * @return Void.
+     */
 	void decreaseKey(T * x);
+
+    /** @brief Checks if the size of the heap is equal to 1.
+     *
+     * @return True if the heap is empty or false if otherwise.
+     */
 	bool empty();
 };
 
-// Index calculations
 #define parent(i) ((i) / 2)
 #define leftChild(i) ((i) * 2)
 
 template <class T>
 MutablePriorityQueue<T>::MutablePriorityQueue() {
 	H.push_back(nullptr);
-	// indices will be used starting in 1
-	// to facilitate parent/child calculations
 }
 
 template <class T>
