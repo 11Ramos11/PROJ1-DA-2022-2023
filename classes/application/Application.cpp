@@ -64,7 +64,7 @@ void Application::readMenu(){
                 fileReader.reset();
                 std::cout << std::endl;
                 std::cout << "Files specified not found.\n";
-                std::cout << "Default files were read instead. (stations.csv, network.csv).";
+                break;
             }
 
             state.push(INITIAL_MENU);
