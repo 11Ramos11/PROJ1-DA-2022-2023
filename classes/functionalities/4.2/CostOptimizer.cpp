@@ -1,9 +1,10 @@
-//
-// Created by Ramos on 4/2/2023.
-//
+/** @file CostOptimizer.cpp
+ *  @brief Contains the CostOptimizer Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include <cfloat>
-#include <numeric>
 #include "CostOptimizer.h"
 #include "../../../data-structure/Heap.h"
 #include "../4.1/BasicServices.h"
@@ -12,7 +13,7 @@
 
 CostOptimizer::CostOptimizer(Graph* graph): graph(graph){}
 
-bool CostOptimizer:: dijkstra(Vertex* s, Vertex* t){
+bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
 
     for (Vertex* v: graph->getVertexSet()) {
         v->setDist(INF);

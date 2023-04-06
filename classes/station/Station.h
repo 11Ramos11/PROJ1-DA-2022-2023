@@ -12,7 +12,7 @@
 /** @brief Station class to represent a station.
  *
  */
-class   Station {
+class Station {
 
     //! @brief Holds the station id.
     const int id;
@@ -82,6 +82,5 @@ public:
      */
     const std::string &getLine() const;
 };
-
 
 #endif //PROJ1_DA_2022_2023_STATION_H

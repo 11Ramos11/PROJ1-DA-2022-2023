@@ -14,10 +14,11 @@
 
 class SourceReader {
 
+    //! @brief Holds the default stations file.
     std::string stationsFileName = "../resources/stations.csv";
+
+    //! @brief Holds the default network file.
     std::string networkFileName = "../resources/network.csv";
-
-
 
     /** @brief Reads stations input file and stores them accordingly.
      *
@@ -46,8 +47,16 @@ class SourceReader {
 
 public:
 
+    /**@brief Creates a new SourceReader.
+     *
+     */
     SourceReader();
 
+    /** @brief Creates a new SourceReader.
+     *
+     * @param stationsFileName of std::string type.
+     * @param networkFileName of std::string type.
+     */
     SourceReader(std::string stationsFileName, std::string networkFileName);
 
     /** @brief Stores all the information of the database.

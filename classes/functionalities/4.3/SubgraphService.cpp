@@ -1,17 +1,16 @@
-//
-// Created by joaof on 04/04/2023.
-//
+/** @file SubgraphService.cpp
+ *  @brief Contains the SubgraphService Class implementation.
+ *  @author -
+ *  @bug No known bugs.
+ */
 
 #include "SubgraphService.h"
 #include "../4.1/BasicServices.h"
 
-
-SubgraphService::SubgraphService(Graph *graph): originalGraph(graph){
-    resetSubgraph();
-}
+SubgraphService::SubgraphService(Graph *graph): originalGraph(graph){}
 
 void SubgraphService::resetSubgraph() {
-    *subGraph = Graph(*originalGraph);
+    *subGraph = Graph(originalGraph);
 }
 
 void SubgraphService::deleteStation(int id) {
