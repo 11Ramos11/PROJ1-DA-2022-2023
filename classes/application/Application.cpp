@@ -30,20 +30,25 @@ void Application::readMenu(){
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "    Analysis Tool for Railway Network Management" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
-        std::cout << "1. Read files" << std::endl;
-        std::cout << "2. Use default files" << std::endl;
-        std::cout << "9. Quit" << std::endl << std::endl;
+        std::cout << "1. Use default files" << std::endl;
+        std::cout << "2. Read files" << std::endl;
+        std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 || choice==9)){
+        if(!(choice==1 ||choice==2 || choice==0)){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 || choice==9));
+    while(!(choice==1 ||choice==2 || choice==0));
 
     switch(choice){
-        case 1:{
+        case 1: {
+            fileReader.read(stations, railwayNetwork);
+            state.push(INITIAL_MENU);
+            break;
+        }
+        case 2:{
             std::string file1;
             std::string file2;
             std::cout << "Name of the stations file: ";
@@ -65,11 +70,8 @@ void Application::readMenu(){
             state.push(INITIAL_MENU);
             break;
         }
-        case 2: {
-            fileReader.read(stations, railwayNetwork);
-            state.push(INITIAL_MENU);
-            break;
-        }
+        case 0:
+            exit(0);
     }
     getMenu();
 }
@@ -82,15 +84,15 @@ void Application::initialMenu(){
         std::cout << "1. Basic Service Metrics" << std::endl;
         std::cout << "2. Operation Cost Optimization" << std::endl;
         std::cout << "3. Reliability and Sensitivity to Line Failures" << std::endl;
-        std::cout << "9. Quit" << std::endl << std::endl;
+        std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==3 ||choice==9)){
+        if(!(choice==1 ||choice==2 ||choice==3 ||choice==0)){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==3 ||choice==9));
+    while(!(choice==1 ||choice==2 ||choice==3 ||choice==0));
 
     switch(choice){
         case 1:
@@ -102,7 +104,7 @@ void Application::initialMenu(){
         case 3:
             state.push(FAILURE_MENU);
             break;
-        case 9:
+        case 0:
             exit(0);
     }
     getMenu();
@@ -119,8 +121,8 @@ void Application::servicesMenu(){
         std::cout << "3. Top-k municipalities" << std::endl;
         std::cout << "4. Top-k districts" << std::endl;
         std::cout << "5. Maximum number of trains that arrive at a given station" << std::endl;
-        std::cout << "0. Go Back" << std::endl;
-        std::cout << "9. Quit" << std::endl;
+        std::cout << "9. Go Back" << std::endl;
+        std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
@@ -196,11 +198,11 @@ void Application::servicesMenu(){
             std::cout << basicServices.max_trains_target( targetID);
             break;
         }
-        case 0: {
+        case 9: {
             state.pop();
             break;
         }
-        case 9:
+        case 0:
             exit(0);
     }
     getMenu();
@@ -213,8 +215,8 @@ void Application::costMenu(){
         std::cout << "             Operation Cost Optimization" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "1. Maximum number of trains between two specific stations with minimum cost" << std::endl;
-        std::cout << "0. Go Back" << std::endl;
-        std::cout << "9. Quit" << std::endl;
+        std::cout << "9. Go Back" << std::endl;
+        std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
@@ -248,11 +250,11 @@ void Application::costMenu(){
             std::cout << "Minimum cost: " << answer.second;
             break;
         }
-        case 0: {
+        case 9: {
             state.pop();
             break;
         }
-        case 9:
+        case 0:
             exit(0);
 
     }
@@ -267,8 +269,8 @@ void Application::failureMenu(){
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "1. Maximum number of trains between two specific stations" << std::endl;
         std::cout << "2. Top-k most affected stations for each segment" << std::endl;
-        std::cout << "0. Go Back" << std::endl;
-        std::cout << "9. Quit" << std::endl;
+        std::cout << "9. Go Back" << std::endl;
+        std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
@@ -309,11 +311,11 @@ void Application::failureMenu(){
             }
             break;
         }
-        case 0: {
+        case 9: {
             state.pop();
             break;
         }
-        case 9:
+        case 0:
             exit(0);
     }
     getMenu();
@@ -329,8 +331,8 @@ void Application::graphsMenu(){
         std::cout << "2. Delete the edge" << std::endl;
         std::cout << "3. Delete the service" << std::endl;
         std::cout << "4. Process" << std::endl;
-        std::cout << "0. Go Back" << std::endl;
-        std::cout << "9. Quit" << std::endl;
+        std::cout << "9. Go Back" << std::endl;
+        std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
@@ -413,11 +415,11 @@ void Application::graphsMenu(){
             std::cout << subgraphService.maxFlow(sourceID->getId(), targetID->getId());
             break;
         }
-        case 0: {
+        case 9: {
             state.pop();
             break;
         }
-        case 9:
+        case 0:
             exit(0);
     }
     getMenu();
