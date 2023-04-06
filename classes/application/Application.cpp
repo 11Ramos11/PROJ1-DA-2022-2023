@@ -101,9 +101,11 @@ void Application::initialMenu(){
         case 2:
             state.push(COST_MENU);
             break;
-        case 3:
+        case 3: {
+            subgraphService.resetSubgraph();
             state.push(FAILURE_MENU);
             break;
+        }
         case 0:
             exit(0);
     }
@@ -305,9 +307,13 @@ void Application::failureMenu(){
             std::cout << "Insert the number of stations: ";
             std::cin >> k;
             std::cin.ignore();
-            for (auto m: subgraphService.mostAffectedStations(
-                    sourceID->getId(),targetID->getId(), k)) {
-                std::cout << m << std::endl;
+            auto topAffected = subgraphService.mostAffectedStations(
+                    sourceID->getId(),targetID->getId(), k);
+            std::cout << std::endl;
+            std::cout << "Removed the segment " << source << "->" << target << std::endl;
+            std::cout << "Top " << k << " most affected stations:"  << std::endl;
+            for (auto m: topAffected) {
+                std::cout << m->getStation()->getName() << std::endl;
             }
             break;
         }
@@ -327,20 +333,21 @@ void Application::graphsMenu(){
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "     Reliability and Sensitivity to Line Failures" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
-        std::cout << "1. Delete the station" << std::endl;
-        std::cout << "2. Delete the edge" << std::endl;
-        std::cout << "3. Delete the service" << std::endl;
-        std::cout << "4. Process" << std::endl;
+        std::cout << "1. Delete a station" << std::endl;
+        std::cout << "2. Delete an edge" << std::endl;
+        std::cout << "3. Delete a service" << std::endl;
+        std::cout << "4. Reset alternate graph" << std::endl;
+        std::cout << "5. Process" << std::endl;
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4)){
+        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4 || choice == 5)){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4));
+    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4 || choice == 5));
 
     switch(choice){
         case 1: {
@@ -348,13 +355,13 @@ void Application::graphsMenu(){
             std::cout << "Name of the station: ";
             getline(std::cin, station);
 
-            auto stationID = stations[station];
-            if(stationID== nullptr){
+            auto stationID= subgraphService.getID(station);
+            if(stationID== -1){
                 std::cout<< "Invalid stations names!";
                 break;
             }
 
-            subgraphService.deleteStation(stationID->getId());
+            subgraphService.deleteStation(stationID);
             break;
         }
         case 2:{
@@ -366,14 +373,14 @@ void Application::graphsMenu(){
             std::cout << "Name of the target station: ";
             getline(std::cin, target);
 
-            auto sourceID = stations[source];
-            auto targetID = stations[target];
-            if(sourceID== nullptr || targetID== nullptr){
+            auto sourceID= subgraphService.getID(source);
+            auto targetID = subgraphService.getID(target);
+            if(sourceID== -1 || targetID== -1){
                 std::cout<< "Invalid stations names!";
                 break;
             }
 
-            subgraphService.deleteEdge(sourceID->getId(), targetID->getId());
+            subgraphService.deleteEdge(sourceID, targetID);
             break;
         }
         case 3:{
@@ -382,21 +389,21 @@ void Application::graphsMenu(){
             getline(std::cin, service);
             std::cout << service;
 
-            if(service != "STANDARD" && service != "ALFA PENDULAR"){
+            if(service != "Standard" && service != "Alfa Pendular"){
                 std::cout<< "Invalid service type!";
                 break;
             }
-            if(service == "STANDARD"){
-                ServiceType standard = STANDARD;
-                subgraphService.deleteService(standard);
-            }
-            else{
-                ServiceType alfa = ALFA_PENDULAR;
-                subgraphService.deleteService(alfa);
-            }
+            if(service == "STANDARD")
+                subgraphService.deleteService(STANDARD);
+            else
+                subgraphService.deleteService(ALFA_PENDULAR);
+
             break;
         }
-        case 4: {
+        case 4:
+            subgraphService.resetSubgraph();
+            break;
+        case 5: {
             std::string source;
             std::string target;
 
@@ -405,14 +412,14 @@ void Application::graphsMenu(){
             std::cout << "Name of the target station: ";
             getline(std::cin, target);
 
-            auto sourceID = stations[source];
-            auto targetID = stations[target];
-            if(sourceID== nullptr || targetID== nullptr){
+            auto sourceID= subgraphService.getID(source);
+            auto targetID = subgraphService.getID(target);
+            if(sourceID== -1 || targetID== -1){
                 std::cout<< "Invalid stations names!";
                 break;
             }
 
-            std::cout << subgraphService.maxFlow(sourceID->getId(), targetID->getId());
+            std::cout << subgraphService.maxFlow(sourceID, targetID);
             break;
         }
         case 9: {

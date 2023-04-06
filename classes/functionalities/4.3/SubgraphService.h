@@ -19,7 +19,7 @@ class SubgraphService {
     Graph* originalGraph;
 
     //! @brief Holds the subgraph.
-    Graph* subGraph;
+    Graph subGraph;
 
 public:
 
@@ -29,20 +29,22 @@ public:
      */
     SubgraphService(Graph* graph);
 
+    int getID(std::string stationName);
+
     /** @brief Resets the subgraph to the original graph.
      *
      * @return Void.
      */
     void resetSubgraph();
 
-    /** @brief Deletes the station from the graph.
+    /** @brief Deletes the specified station from the subgraph.
      *
      * @param id of int type.
      * @return Void.
      */
     void deleteStation(int id);
 
-    /** @brief Deletes the edge from the graph.
+    /** @brief Deletes the specified edge from the subgraph.
      *
      * @param orig of int type.
      * @param dest of int type.
@@ -50,7 +52,7 @@ public:
      */
     void deleteEdge(int orig, int dest);
 
-    /** @brief Deletes the service of the edge from the graph.
+    /** @brief Deletes the all edges with a certain service from the subgraph.
      *
      * @param serviceType of ServiceType type.
      * @return Void.
@@ -66,7 +68,7 @@ public:
      */
     int maxFlow(int source, int target);
 
-    /** @brief Provides the top-k stations that are the most affected by each segment failure.
+    /** @brief Provides the top-k stations that are the most affected by the specified segment failure.
      *
      * @param source of type int.
      * @param target of type int.

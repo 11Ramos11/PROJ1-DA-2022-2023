@@ -47,11 +47,11 @@ int FileReader::readStations(std::unordered_map<std::string, std::shared_ptr<Sta
         getline(stationsFile, line);
 
         std::shared_ptr<Station> stationPTR = std::make_shared<Station>(id, name, district, municipality, township, line);
-        stations.insert(std::make_pair(name, stationPTR));
-
-        railwayNetwork.addVertex(id, stationPTR);
-
-        id++;
+        auto insertion = stations.insert(std::make_pair(name, stationPTR));
+        if(insertion.second) {
+            railwayNetwork.addVertex(id, stationPTR);
+            id++;
+        }
 
     } while (true);
 

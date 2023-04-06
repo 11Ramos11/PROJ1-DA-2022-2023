@@ -10,7 +10,7 @@
 #include <unordered_map>
 #include <string>
 #include <stack>
-#include "../source-reader/FileReader.h"
+#include "../file-reader/FileReader.h"
 #include "../functionalities/4.1/BasicServices.h"
 #include "../functionalities/4.2/CostOptimizer.h"
 #include "../functionalities/4.3/SubgraphService.h"

@@ -10,29 +10,29 @@
 SubgraphService::SubgraphService(Graph *graph): originalGraph(graph){}
 
 void SubgraphService::resetSubgraph() {
-    *subGraph = Graph(originalGraph);
+    subGraph = Graph(originalGraph);
 }
 
 void SubgraphService::deleteStation(int id) {
 
-    for (Edge* e: subGraph->findVertex(id)->getAdj())
-        subGraph->findVertex(e->getDest()->getId())->removeEdge(id);
+    for (Edge* e: subGraph.findVertex(id)->getAdj())
+        subGraph.findVertex(e->getDest()->getId())->removeEdge(id);
 
-    subGraph->removeVertex(id);
+    subGraph.removeVertex(id);
 }
 
 void SubgraphService::deleteEdge(int orig, int dest) {
 
-    Vertex* o = subGraph->findVertex(orig);
+    Vertex* o = subGraph.findVertex(orig);
     o->removeEdge(dest);
 
-    Vertex* d = subGraph->findVertex(dest);
+    Vertex* d = subGraph.findVertex(dest);
     d->removeEdge(orig);
 }
 
 void SubgraphService::deleteService(ServiceType serviceType) {
 
-    for (Vertex* v: subGraph->getVertexSet()){
+    for (Vertex* v: subGraph.getVertexSet()){
         for (Edge* e: v->getAdj()){
             if (e->getService() == serviceType){
                 v->removeEdge(e->getDest()->getId());
@@ -43,22 +43,22 @@ void SubgraphService::deleteService(ServiceType serviceType) {
 
 int SubgraphService::maxFlow(int source, int target) {
 
-    return BasicServices(subGraph).maxFlow(source, target);
+    return BasicServices(&subGraph).maxFlow(source, target);
 }
 
 std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, int k){
 
     resetSubgraph();
 
-    BasicServices basicServices(subGraph);
+    BasicServices basicServices(&subGraph);
 
     std::map<Vertex*, double> og_averages, new_averages;
 
-    for(Vertex* s: subGraph->getVertexSet()){
+    for(Vertex* s: subGraph.getVertexSet()){
 
         double maxFlowSum = 0;
         int count = 0;
-        for(Vertex* t: subGraph->getVertexSet()){
+        for(Vertex* t: subGraph.getVertexSet()){
             if (s == t)
                 continue;
             maxFlowSum += basicServices.maxFlow(s->getId(), t->getId());
@@ -69,11 +69,11 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, i
 
     deleteEdge(orig, dest);
 
-    for(Vertex* s: subGraph->getVertexSet()){
+    for(Vertex* s: subGraph.getVertexSet()){
 
         double maxFlowSum = 0;
         int count = 0;
-        for(Vertex* t: subGraph->getVertexSet()){
+        for(Vertex* t: subGraph.getVertexSet()){
             if (s == t)
                 continue;
             maxFlowSum += basicServices.maxFlow(s->getId(), t->getId());
@@ -83,7 +83,7 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, i
     }
 
     int maxDiff = INT_MIN;
-    std::vector<Vertex*> affected = subGraph->getVertexSet();
+    std::vector<Vertex*> affected = subGraph.getVertexSet();
 
     std::sort(affected.begin(), affected.end(),
               [&og_averages, &new_averages](Vertex* v1, Vertex* v2){
@@ -100,4 +100,12 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, i
         topAffected.push_back(v);
     }
     return topAffected;
+}
+
+int SubgraphService::getID(std::string stationName) {
+
+    for(Vertex* v: subGraph.getVertexSet())
+        if (v->getStation()->getName() == stationName)
+            return v->getId();
+    return -1;
 }
