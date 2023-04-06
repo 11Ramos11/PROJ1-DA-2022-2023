@@ -84,15 +84,16 @@ void Application::initialMenu(){
         std::cout << "1. Basic Service Metrics" << std::endl;
         std::cout << "2. Operation Cost Optimization" << std::endl;
         std::cout << "3. Reliability and Sensitivity to Line Failures" << std::endl;
+        std::cout << "9. Go back" << std::endl;
         std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==3 ||choice==0)){
+        if(!(choice==1 ||choice==2 ||choice==3 || choice==9 || choice==0)){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==3 ||choice==0));
+    while(!(choice==1 ||choice==2 ||choice==3 || choice==9 || choice==0));
 
     switch(choice){
         case 1:
@@ -104,6 +105,10 @@ void Application::initialMenu(){
         case 3: {
             subgraphService.resetSubgraph();
             state.push(FAILURE_MENU);
+            break;
+        }
+        case 9: {
+            state.push(READ_MENU);
             break;
         }
         case 0:
@@ -385,11 +390,11 @@ void Application::graphsMenu(){
         }
         case 3:{
             std::string service;
-            std::cout << "Service type: ";
+            std::cout << "Service type (\"STANDARD\" or \"ALFA PENDULAR\"): ";
             getline(std::cin, service);
             std::cout << service;
 
-            if(service != "Standard" && service != "Alfa Pendular"){
+            if(service != "STANDARD" && service != "ALFA PENDULAR"){
                 std::cout<< "Invalid service type!";
                 break;
             }

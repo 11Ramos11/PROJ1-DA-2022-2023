@@ -36,12 +36,11 @@ void Graph::setVertexSet(std::vector<Vertex *> vertexSet) {
 
 Vertex * Graph::findVertex(int id) const {
 
-    id--;
+    for (Vertex* vertex: vertexSet)
+        if (vertex->getId() == id)
+            return vertex;
 
-    if (id < 0 || id >= vertexSet.size())
-        return nullptr;
-
-    return vertexSet[id];
+    return nullptr;
 }
 
 void Graph::dfs(int source){
