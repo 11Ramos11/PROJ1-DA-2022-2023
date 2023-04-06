@@ -6,7 +6,6 @@
 
 #include <cfloat>
 #include "CostOptimizer.h"
-#include "../../../data-structure/Heap.h"
 #include "../4.1/BasicServices.h"
 
 #define INF DBL_MAX

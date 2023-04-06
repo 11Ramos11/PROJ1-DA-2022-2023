@@ -104,6 +104,6 @@ void FileReader::reset() {
 }
 
 void FileReader::setFiles(std::string stationsFileName, std::string networkFileName) {
-    this->stationsFileName = stationsFileName;
-    this->networkFileName = networkFileName;
+    this->stationsFileName = "../resourceres/" + stationsFileName;
+    this->networkFileName = "../resourceres/" + networkFileName;
 }
