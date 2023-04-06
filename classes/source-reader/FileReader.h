@@ -1,18 +1,18 @@
-/** @file SourceReader.h
- *  @brief Contains the SourceReader class declaration.
+/** @file FileReader.h
+ *  @brief Contains the FileReader class declaration.
  *  @author -
  *  @bug No known bugs.
  */
 
-#ifndef PROJ1_DA_2022_2023_SOURCEREADER_H
-#define PROJ1_DA_2022_2023_SOURCEREADER_H
+#ifndef PROJ1_DA_2022_2023_FILEREADER_H
+#define PROJ1_DA_2022_2023_FILEREADER_H
 
 #include <map>
 #include <unordered_map>
 #include "../station/Station.h"
 #include "../../data-structure/Graph.h"
 
-class SourceReader {
+class FileReader {
 
     //! @brief Holds the default stations file.
     std::string stationsFileName = "../resources/stations.csv";
@@ -47,17 +47,17 @@ class SourceReader {
 
 public:
 
-    /**@brief Creates a new SourceReader.
+    /**@brief Creates a new FileReader.
      *
      */
-    SourceReader();
+    FileReader();
 
-    /** @brief Creates a new SourceReader.
+    /** @brief Creates a new FileReader.
      *
      * @param stationsFileName of std::string type.
      * @param networkFileName of std::string type.
      */
-    SourceReader(std::string stationsFileName, std::string networkFileName);
+    FileReader(std::string stationsFileName, std::string networkFileName);
 
     /** @brief Stores all the information of the database.
      *
@@ -68,4 +68,4 @@ public:
     void read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 };
 
-#endif //PROJ1_DA_2022_2023_SOURCEREADER_H
+#endif //PROJ1_DA_2022_2023_FILEREADER_H

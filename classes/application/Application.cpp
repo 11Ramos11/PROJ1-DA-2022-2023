@@ -53,13 +53,13 @@ void Application::readMenu(){
             std::cin >> file2;
             std::cin.ignore(1000,'\n');
 
-            SourceReader(file1, file2);
-            SourceReader().read(stations, railwayNetwork);
+            fileReader = FileReader(file1, file2);
+            fileReader.read(stations, railwayNetwork);
             state.push(INITIAL_MENU);
             break;
         }
         case 2: {
-            SourceReader().read(stations, railwayNetwork);
+            fileReader.read(stations, railwayNetwork);
             state.push(INITIAL_MENU);
             break;
         }

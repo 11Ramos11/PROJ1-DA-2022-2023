@@ -1,25 +1,25 @@
-/** @file SourceReader.cpp
- *  @brief Contains the SourceReader Class implementation.
+/** @file FileReader.cpp
+ *  @brief Contains the FileReader Class implementation.
  *  @author -
  *  @bug No known bugs.
  */
 
 #include <fstream>
 #include <iostream>
-#include "SourceReader.h"
+#include "FileReader.h"
 
-SourceReader::SourceReader()= default;
+FileReader::FileReader()= default;
 
-SourceReader::SourceReader(std::string stationsFileName, std::string networkFileName):
+FileReader::FileReader(std::string stationsFileName, std::string networkFileName):
     stationsFileName(stationsFileName), networkFileName(networkFileName){}
 
-void SourceReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
+void FileReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
 
     readStations(stations, railwayNetwork);
     readNetwork(stations, railwayNetwork);
 }
 
-void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork) {
+void FileReader::readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork) {
 
     std::ifstream stationsFile(stationsFileName);
     std::string entry;
@@ -32,7 +32,7 @@ void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<
 
     do {
         getline(stationsFile, name, ',');
-        if (name == "") break;
+        if (name.empty()) break;
         getline(stationsFile, district, ',');
         getline(stationsFile, municipality, ',');
         getline(stationsFile, township, ',');
@@ -48,9 +48,8 @@ void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<
     } while (true);
 }
 
-void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
+void FileReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
 
-    networkFileName = "../resources/network.csv";
     std::ifstream networkFile(networkFileName);
     std::string entry;
 
@@ -60,7 +59,7 @@ void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<S
 
     do {
         getline(networkFile, stationA, ',');
-        if (stationA == "") break;
+        if (stationA.empty()) break;
         getline(networkFile, stationB, ',');
         getline(networkFile, capacity, ',');
         getline(networkFile, service);

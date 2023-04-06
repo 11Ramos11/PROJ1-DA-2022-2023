@@ -10,7 +10,7 @@
 #include <unordered_map>
 #include <string>
 #include <stack>
-#include "../source-reader/SourceReader.h"
+#include "../source-reader/FileReader.h"
 #include "../functionalities/4.1/BasicServices.h"
 #include "../functionalities/4.2/CostOptimizer.h"
 #include "../functionalities/4.3/SubgraphService.h"
@@ -28,6 +28,9 @@ class Application {
 
     //! @brief Initialization of the graph.
     Graph railwayNetwork;
+
+    //! @brief Initialization of the fileReader.
+    FileReader fileReader;
 
     //! @brief Initialization of the basicServices.
     BasicServices basicServices = BasicServices(&railwayNetwork);
