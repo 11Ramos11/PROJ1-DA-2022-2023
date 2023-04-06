@@ -83,5 +83,4 @@ public:
     const std::string &getLine() const;
 };
 
-
 #endif //PROJ1_DA_2022_2023_STATION_H

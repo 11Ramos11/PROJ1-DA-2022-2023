@@ -50,7 +50,6 @@ void SourceReader::readStations(std::unordered_map<std::string, std::shared_ptr<
 
 void SourceReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
 
-
     networkFileName = "../resources/network.csv";
     std::ifstream networkFile(networkFileName);
     std::string entry;

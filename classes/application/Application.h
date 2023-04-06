@@ -41,10 +41,12 @@ class Application {
     //! @brief Creates the initial menu options.
     enum States{
         WELCOME_MENU,
+        READ_MENU,
         INITIAL_MENU,
         SERVICES_MENU,
         COST_MENU,
-        FAILURE_MENU
+        FAILURE_MENU,
+        GRAPHS_MENU
     };
 
     //! @brief Initialization of the user choice.
@@ -73,6 +75,12 @@ public:
      */
     void welcomeMenu();
 
+    /** @brief Displays the read files menu.
+     *
+     * @return Void.
+     */
+    void readMenu();
+
     /** @brief Displays the initial menu.
      *
      * @return Void.
@@ -97,6 +105,13 @@ public:
      * @return Void.
      */
     void failureMenu();
+
+    /** @brief Displays the Reliability and Sensitivity to Line Failures menu and the information
+     * that the user chooses to know.
+     *
+     * @return Void.
+     */
+    void graphsMenu();
 };
 
 #endif //PROJ1_DA_2022_2023_APPLICATION_H

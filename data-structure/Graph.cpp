@@ -34,9 +34,6 @@ void Graph::setVertexSet(std::vector<Vertex *> vertexSet) {
     this->vertexSet = vertexSet;
 }
 
-/*
- * Auxiliary function to find a vertex with a given content.
- */
 Vertex * Graph::findVertex(int id) const {
 
     id--;
@@ -58,9 +55,6 @@ void Graph::dfs(int source){
     }
 }
 
-/*
- * Finds the index of the vertex with a given content.
- */
 int Graph::findVertexIdx(const int &id) const {
     for (unsigned i = 0; i < vertexSet.size(); i++)
         if (vertexSet[i]->getId() == id)
@@ -68,10 +62,6 @@ int Graph::findVertexIdx(const int &id) const {
     return -1;
 }
 
-/*
- *  Adds a vertex with a given content or info (in) to a graph (this).
- *  Returns true if successful, and false if a vertex with that content already exists.
- */
 bool Graph::addVertex(const int &id, std::shared_ptr<Station> station) {
     if (findVertex(id) != nullptr)
         return false;
@@ -79,11 +69,6 @@ bool Graph::addVertex(const int &id, std::shared_ptr<Station> station) {
     return true;
 }
 
-/*
- * Adds an edge to a graph (this), given the contents of the source and
- * destination vertices and the edge weight (w).
- * Returns true if successful, and false if the source or destination vertex does not exist.
- */
 bool Graph::addEdge(const int &sourc, const int &dest, double w, ServiceType service) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
