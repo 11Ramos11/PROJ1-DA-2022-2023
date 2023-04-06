@@ -53,8 +53,15 @@ void Application::readMenu(){
             std::cin >> file2;
             std::cin.ignore(1000,'\n');
 
-            fileReader = FileReader(file1, file2);
-            fileReader.read(stations, railwayNetwork);
+            fileReader.setFiles(file1, file2);
+            
+            if (fileReader.read(stations, railwayNetwork)) {
+                fileReader.reset();
+                std::cout << std::endl;
+                std::cout << "Files specified not found.\n";
+                std::cout << "Default files were read instead. (stations.csv, network.csv).";
+            }
+
             state.push(INITIAL_MENU);
             break;
         }

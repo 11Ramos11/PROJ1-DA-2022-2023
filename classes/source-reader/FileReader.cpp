@@ -13,15 +13,23 @@ FileReader::FileReader()= default;
 FileReader::FileReader(std::string stationsFileName, std::string networkFileName):
     stationsFileName(stationsFileName), networkFileName(networkFileName){}
 
-void FileReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
+int FileReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
 
-    readStations(stations, railwayNetwork);
-    readNetwork(stations, railwayNetwork);
+    if (readStations(stations, railwayNetwork))
+        return -1;
+    if (readNetwork(stations, railwayNetwork))
+        return -1;
+
+    return 0;
 }
 
-void FileReader::readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork) {
+int FileReader::readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork) {
 
     std::ifstream stationsFile(stationsFileName);
+
+    if (stationsFile.fail())
+        return -1;
+
     std::string entry;
 
     getline(stationsFile, entry);
@@ -46,11 +54,17 @@ void FileReader::readStations(std::unordered_map<std::string, std::shared_ptr<St
         id++;
 
     } while (true);
+
+    return 0;
 }
 
-void FileReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
+int FileReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>>& stations, Graph &railwayNetwork) {
 
     std::ifstream networkFile(networkFileName);
+
+    if (networkFile.fail())
+        return -1;
+
     std::string entry;
 
     getline(networkFile, entry);
@@ -80,4 +94,16 @@ void FileReader::readNetwork(std::unordered_map<std::string, std::shared_ptr<Sta
                 capacityDouble, serviceType);
 
     } while (true);
+
+    return 0;
+}
+
+void FileReader::reset() {
+    stationsFileName = "../resources/stations.csv";
+    networkFileName = "../resources/network.csv";
+}
+
+void FileReader::setFiles(std::string stationsFileName, std::string networkFileName) {
+    this->stationsFileName = stationsFileName;
+    this->networkFileName = networkFileName;
 }

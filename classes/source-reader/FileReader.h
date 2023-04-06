@@ -30,9 +30,9 @@ class FileReader {
      *
      *  @param stations of std::unordered_map<std::string, std::shared_ptr<Station>> type, by reference.
      *  @param railwayNetwork of Graph type, by reference.
-     *  @return Void.
+     *  @return 0 on success, -1 if file not found
      */
-    void readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
+    int readStations(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
     /** @brief Reads network input file and stores them accordingly.
      *
@@ -41,9 +41,9 @@ class FileReader {
      *
      * @param stations of std::unordered_map<std::string, std::shared_ptr<Station>> type, by reference.
      * @param railwayNetwork of Graph type, by reference.
-     * @return Void.
+     * @return 0 on success, -1 if file not found
      */
-    void readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
+    int readNetwork(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
 public:
 
@@ -63,9 +63,13 @@ public:
      *
      * @param stations of std::unordered_map<std::string, std::shared_ptr<Station>> type, by reference.
      * @param railwayNetwork of Graph type, by reference.
-     * @return Void.
+     * @return 0 on success, -1 if one or mores files not found
      */
-    void read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
+    int read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
+
+    void reset();
+
+    void setFiles(std::string stationsFileName, std::string networkFileName);
 };
 
 #endif //PROJ1_DA_2022_2023_FILEREADER_H
