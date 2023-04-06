@@ -1,6 +1,6 @@
 /** @file FileReader.h
  *  @brief Contains the FileReader class declaration.
- *  @author -
+ *  @author João Ramos e Matilde Simões
  *  @bug No known bugs.
  */
 

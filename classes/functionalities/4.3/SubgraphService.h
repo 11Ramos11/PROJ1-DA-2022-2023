@@ -1,6 +1,6 @@
 /** @file SubgraphService.h
  *  @brief Contains the SubgraphService class declaration.
- *  @author -
+ *  @author João Ramos e Matilde Simões
  *  @bug No known bugs.
  */
 

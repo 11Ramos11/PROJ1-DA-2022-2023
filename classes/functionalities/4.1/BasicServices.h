@@ -1,6 +1,6 @@
 /** @file BasicServices.h
  *  @brief Contains the BasicServices class declaration.
- *  @author -
+ *  @author João Ramos e Matilde Simões
  *  @bug No known bugs.
  */
 

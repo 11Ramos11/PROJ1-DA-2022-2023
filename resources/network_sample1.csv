@@ -1,0 +1,7 @@
+Station_A,Station_B,Capacity,Service
+source,1,3,ALFA PENDULAR
+source,2,4,STANDARD
+1,target,2,ALFA PENDULAR
+2,target,1,ALFA PENDULAR
+2,3,3,ALFA PENDULAR
+3,target,4,STANDARD

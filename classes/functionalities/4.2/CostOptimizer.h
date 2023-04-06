@@ -1,6 +1,6 @@
 /** @file CostOptimizer.h
  *  @brief Contains the CostOptimizer class declaration.
- *  @author -
+ *  @author João Ramos e Matilde Simões
  *  @bug No known bugs.
  */
 

@@ -1,6 +1,6 @@
 /** @file Application.h
  *  @brief Contains the Application class declaration.
- *  @author -
+ *  @author João Ramos e Matilde Simões
  *  @bug No known bugs.
  */
 
