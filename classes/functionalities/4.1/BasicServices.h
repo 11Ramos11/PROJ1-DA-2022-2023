@@ -28,17 +28,24 @@ private:
 
 protected:
 
-    /** @brief Checks all paths between source and target in the residual graph.
+    /** @brief Checks if there is still an augmenting path between source and target in the residual graph.
+     *
+     * Time Complexity: O(|V + E|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
      *
      * @param s of Vertex* type.
      * @param t of Vertex* type.
-     * @return True if there is a path or false if otherwise.
+     * @return True if there is a path, false if otherwise.
      */
     bool path(Vertex * s, Vertex * t);
 
-    /** @brief Represents the edmondsKarp algorithm.
+    /** @brief Runs the edmondsKarp algorithm.
      *
-     * It uses path, find_Bottleneck and augmentPath methods.
+     * Time Complexity: O(|V * E^2|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+     *
+     * It runs path() to find an augmenting path.\n
+     * If it finds one, it uses findBottleneck() to get the maximum flow that can be used in that path
+     * and uses augmentPath() to then update the residual graph.\n
+     * The function ends when path() is not longer able to find an augmenting path.
      *
      * @param source of int type.
      * @param target of int type.
@@ -47,6 +54,8 @@ protected:
     void edmondsKarp(int source, int target);
 
     /** @brief Checks if there is a path between two stations.
+     *
+     * Time Complexity: O(|V + E|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
      *
      * @param s of Vertex* type.
      * @param t of Vertex* type.
@@ -62,9 +71,12 @@ public :
      */
     BasicServices(Graph* graph);
 
-    /** @brief Calculates the maximum number of trains between two stations.
+    /** @brief Calculates the maximum number of trains that can travel between two stations, simultaneously.
      *
-     * It uses edmondsKarp algorithm.
+     * It uses edmondsKarp().\n
+     * Then it sums the flow of all the source outgoing edges, to determine the maximum flow.
+     *
+     * Time Complexity: O(|V * E^2|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
      *
      * @param source of int type.
      * @param target of int type.
@@ -72,10 +84,14 @@ public :
      */
     double maxFlow(int source, int target);
 
-    /** @brief Returns the all pairs of stations that require the
-     * most amount of trains when taking full advantage of the network.
+    /** @brief Finds the most optimal pairs of stations, which require the
+     * most amount of trains when taking full advantage of the existing network capacity
      *
-     * @return Pair of stations.
+     * Checks for all pairs of stations in the graph, if they have the highest maximum flow.
+     *
+     * Time Complexity: O(|V^3 * E^2|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+     *
+     * @return vector with the pair or pairs of stations, that have the highest maximum flow in the graph.
      */
     std::vector<std::pair<Vertex*, Vertex*>> optimalPairs();
 
@@ -86,16 +102,20 @@ public :
      * and creates a sink node that is linked to all nodes that belong to the destination municipality or district.
      * It uses the maxFlow method.
      *
+     * Time Complexity: O(|V^2 * E^2|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+     *
      * @param byMunicipality of bool type.
      * @param k of int type.
      * @return The top municipalities or districts names.
      */
-    std::vector<std::string> getMunicipalitiesOrDistricts(bool byMunicipality, int k);
+    std::vector<std::string> topMunicipalitiesOrDistricts(bool byMunicipality, int k);
 
     /** @brief Calculates the maximum number of trains that can simultaneously arrive at specific station.
      *
      * Creates a source node that is linked to all nodes except the source and sink ones.
      * It uses maxFlow method.
+     *
+     * Time Complexity: O(|V * E^2|), in which V is the number of Vertexes and E is the number of Edges, in the graph.
      *
      * @param target of int type.
      * @return Number of trains.
@@ -104,13 +124,17 @@ public :
 
     /** @brief Find the minimum flow to augment in found path.
      *
+     * Time Complexity: O(|V|), in which V is the number of Vertexes, in the graph.
+     *
      * @param s of Vertex* type.
      * @param t of Vertex* type.
      * @return The minimum flow.
      */
-    double find_Bottleneck(Vertex *s, Vertex * t);
+    double findBottleneck(Vertex *s, Vertex * t);
 
     /** @brief Augments the flow by "bottleneck" units in found path.
+     *
+     * Time Complexity: O(|V|), in which V is the number of Vertexes, in the graph.
      *
      * @param s of Vertex* type.
      * @param t of Vertex* type.

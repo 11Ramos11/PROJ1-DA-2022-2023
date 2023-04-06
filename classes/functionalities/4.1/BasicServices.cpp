@@ -57,7 +57,7 @@ bool BasicServices::path(Vertex * s, Vertex * t){
     return false;
 }
 
-double BasicServices::find_Bottleneck(Vertex *s, Vertex * t){
+double BasicServices::findBottleneck(Vertex *s, Vertex * t){
     double bottleneck = INT_MAX;
     while(t != s){
         auto edge = t->getPath();
@@ -106,7 +106,7 @@ void BasicServices::edmondsKarp(int source, int target) {
     }
 
     while(path(s, t)){
-        bottleneck = find_Bottleneck(s, t);
+        bottleneck = findBottleneck(s, t);
         augmentPath(s, t, bottleneck);
     }
 }
@@ -189,7 +189,7 @@ std::vector<std::pair<Vertex*, Vertex*>> BasicServices::optimalPairs(){
     return optimalPairs;
 }
 
-std::vector<std::string> BasicServices::getMunicipalitiesOrDistricts(bool byMunicipality, int k) {
+std::vector<std::string> BasicServices::topMunicipalitiesOrDistricts(bool byMunicipality, int k) {
 
     std::unordered_set<std::string> categoriesNames;
     for (Vertex* vertex : graph->getVertexSet()) {

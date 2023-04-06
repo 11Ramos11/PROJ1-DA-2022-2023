@@ -22,7 +22,7 @@ class FileReader {
 
     /** @brief Reads stations input file and stores them accordingly.
      *
-     *  Reads the file "stations.csv" and for each line
+     *  Reads the file specified by the attribute stationsFileName and, for each line,
      *  it reads a station name, its district, municipality, township and
      *  line name.
      *  If the station corresponds to a new station,
@@ -36,7 +36,7 @@ class FileReader {
 
     /** @brief Reads network input file and stores them accordingly.
      *
-     *  Reads the file "network.csv" and for each line
+     *  Reads the file specified by the attribute networkFileName and, for each line,
      *  it reads the name of two stations, its capacity and service.
      *
      * @param stations of std::unordered_map<std::string, std::shared_ptr<Station>> type, by reference.
@@ -52,13 +52,6 @@ public:
      */
     FileReader();
 
-    /** @brief Creates a new FileReader.
-     *
-     * @param stationsFileName of std::string type.
-     * @param networkFileName of std::string type.
-     */
-    FileReader(std::string stationsFileName, std::string networkFileName);
-
     /** @brief Stores all the information of the database.
      *
      * @param stations of std::unordered_map<std::string, std::shared_ptr<Station>> type, by reference.
@@ -67,8 +60,15 @@ public:
      */
     int read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork);
 
+    /** @brief resets attributes stationsFileName and networkFileName to the default files paths
+     */
     void reset();
 
+    /** @brief Sets both station file and network file
+     *
+     * @param stationsFileName, path for the stations file
+     * @param networkFileName, path for the network file
+     */
     void setFiles(std::string stationsFileName, std::string networkFileName);
 };
 

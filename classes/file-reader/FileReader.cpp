@@ -10,9 +10,6 @@
 
 FileReader::FileReader()= default;
 
-FileReader::FileReader(std::string stationsFileName, std::string networkFileName):
-    stationsFileName(stationsFileName), networkFileName(networkFileName){}
-
 int FileReader::read(std::unordered_map<std::string, std::shared_ptr<Station>> &stations, Graph &railwayNetwork){
 
     if (readStations(stations, railwayNetwork))

@@ -147,7 +147,7 @@ void Application::servicesMenu(){
             auto sourceID = stations[source];
             auto targetID = stations[target];
             if(sourceID== nullptr || targetID== nullptr){
-                std::cout<< "Invalid stations names!";
+                std::cout<< "Invalid station names!";
                 break;
             }
             double maxFlow = basicServices.maxFlow(sourceID->getId(), targetID->getId());
@@ -166,7 +166,7 @@ void Application::servicesMenu(){
             std::cout << "Insert the number of municipalities: ";
             std::cin >> k_mun;
             std::cin.ignore();
-            auto top = basicServices.getMunicipalitiesOrDistricts(true, k_mun);
+            auto top = basicServices.topMunicipalitiesOrDistricts(true, k_mun);
             for (auto m: top) {
                 std::cout << m << std::endl;
             }
@@ -177,7 +177,7 @@ void Application::servicesMenu(){
             std::cout << "Insert the number of districts: ";
             std::cin >> k_dist;
             std::cin.ignore();
-            for (auto d: basicServices.getMunicipalitiesOrDistricts(false, k_dist)) {
+            for (auto d: basicServices.topMunicipalitiesOrDistricts(false, k_dist)) {
                 std::cout << d << std::endl;
             }
             break;
@@ -241,7 +241,7 @@ void Application::costMenu(){
             auto sourceID = stations[source];
             auto targetID = stations[target];
             if(sourceID== nullptr || targetID== nullptr){
-                std::cout<< "Invalid stations names!";
+                std::cout<< "Invalid station names!";
                 break;
             }
 
@@ -299,7 +299,7 @@ void Application::failureMenu(){
             auto sourceID = stations[source];
             auto targetID = stations[target];
             if(sourceID== nullptr || targetID== nullptr){
-                std::cout<< "Invalid stations names!";
+                std::cout<< "Invalid station names!";
                 break;
             }
 
@@ -357,7 +357,7 @@ void Application::graphsMenu(){
 
             auto stationID= subgraphService.getID(station);
             if(stationID== -1){
-                std::cout<< "Invalid stations names!";
+                std::cout<< "Invalid station name!";
                 break;
             }
 
@@ -376,7 +376,7 @@ void Application::graphsMenu(){
             auto sourceID= subgraphService.getID(source);
             auto targetID = subgraphService.getID(target);
             if(sourceID== -1 || targetID== -1){
-                std::cout<< "Invalid stations names!";
+                std::cout<< "Invalid station names!";
                 break;
             }
 
@@ -415,7 +415,7 @@ void Application::graphsMenu(){
             auto sourceID= subgraphService.getID(source);
             auto targetID = subgraphService.getID(target);
             if(sourceID== -1 || targetID== -1){
-                std::cout<< "Invalid stations names!";
+                std::cout<< "Invalid station names!";
                 break;
             }
 

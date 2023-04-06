@@ -73,7 +73,7 @@ std::pair<int,int> CostOptimizer::MaxTrainsWithMinCost(int source, int target){
     }
 
     while(dijkstra(s, t)){
-        bottleneck = basicServices.find_Bottleneck(s, t);
+        bottleneck = basicServices.findBottleneck(s, t);
         basicServices.augmentPath(s, t, bottleneck);
     }
 

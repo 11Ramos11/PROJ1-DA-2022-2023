@@ -16,7 +16,7 @@
 #include "MutablePriorityQueue.h"
 #include "../classes/station/Station.h"
 
-enum ServiceType {STANDARD = 2, ALFA_PENDULAR = 4, none = INT_MAX};
+enum ServiceType {STANDARD = 2, ALFA_PENDULAR = 4, none = 0};
 class Edge;
 /************************* Vertex  **************************/
 
