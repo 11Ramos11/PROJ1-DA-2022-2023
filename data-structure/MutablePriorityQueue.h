@@ -1,17 +1,13 @@
-/*
- * MutablePriorityQueue.h
- * A simple implementation of mutable priority queues, required by dijkstra algorithm.
- *
- * Created on: 17/03/2018
- *      Author: João Pascoal Faria
+/** @file Graph.h
+ *  @brief Contains the Graph class declaration.
+ *  @author João Ramos e Matilde Simões
+ *  @bug No known bugs.
  */
 
 #ifndef DA_TP_CLASSES_MUTABLEPRIORITYQUEUE
 #define DA_TP_CLASSES_MUTABLEPRIORITYQUEUE
 
 #include <vector>
-
-
 
 /**
  * class T must have: (i) accessible field int queueIndex; (ii) operator< defined.

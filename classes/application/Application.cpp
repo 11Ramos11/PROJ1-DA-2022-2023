@@ -34,13 +34,16 @@ void Application::readMenu(){
         std::cout << "2. Read files" << std::endl;
         std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 || choice==0)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 || choice==0));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1: {
@@ -86,13 +89,16 @@ void Application::initialMenu(){
         std::cout << "3. Reliability and Sensitivity to Line Failures" << std::endl;
         std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==3 ||choice==0)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="3" ||stringChoice=="0")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==3 ||choice==0));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="3" ||stringChoice=="0"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1:
@@ -126,13 +132,16 @@ void Application::servicesMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(choice < 0 || choice == 6 || choice ==7 || choice == 8 || choice >9){
+
+        if(stringChoice < "0" || stringChoice == "6" || stringChoice =="7" || stringChoice == "8" || stringChoice >"9"){
             std::cout << "Invalid option number!";
         }
     }
-    while(choice < 0 || choice == 6 || choice ==7 || choice == 8 || choice >9);
+    while(stringChoice < "0" || stringChoice == "6" || stringChoice =="7" || stringChoice == "8" || stringChoice >"9");
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1: {
@@ -220,13 +229,16 @@ void Application::costMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 || choice==9 || choice ==0)){
+
+        if(!(stringChoice=="1" || stringChoice=="9" || stringChoice =="0")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 || choice==9 || choice ==0));
+    while(!(stringChoice=="1" || stringChoice=="9" || stringChoice =="0"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice) {
         case 1: {
@@ -274,13 +286,16 @@ void Application::failureMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1:{
@@ -341,13 +356,18 @@ void Application::graphsMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4 || choice == 5)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9"
+                || stringChoice =="3" || stringChoice == "4" || stringChoice == "5")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4 || choice == 5));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9"
+            || stringChoice =="3" || stringChoice == "4" || stringChoice == "5"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1: {
@@ -387,9 +407,8 @@ void Application::graphsMenu(){
             std::string service;
             std::cout << "Service type: ";
             getline(std::cin, service);
-            std::cout << service;
 
-            if(service != "Standard" && service != "Alfa Pendular"){
+            if(service != "STANDARD" && service != "ALFA PENDULAR"){
                 std::cout<< "Invalid service type!";
                 break;
             }

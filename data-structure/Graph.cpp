@@ -30,10 +30,6 @@ std::vector<Vertex *> Graph::getVertexSet() const {
     return vertexSet;
 }
 
-void Graph::setVertexSet(std::vector<Vertex *> vertexSet) {
-    this->vertexSet = vertexSet;
-}
-
 Vertex * Graph::findVertex(int id) const {
 
     id--;
@@ -53,13 +49,6 @@ void Graph::dfs(int source){
         if (!edge->getDest()->isVisited())
             dfs(edge->getDest()->getId());
     }
-}
-
-int Graph::findVertexIdx(const int &id) const {
-    for (unsigned i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->getId() == id)
-            return i;
-    return -1;
 }
 
 bool Graph::addVertex(const int &id, std::shared_ptr<Station> station) {
@@ -88,29 +77,6 @@ bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w, Se
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
-}
-
-void deleteMatrix(int **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
-
-void deleteMatrix(double **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
-
-Graph::~Graph() {
-    deleteMatrix(distMatrix, vertexSet.size());
-    deleteMatrix(pathMatrix, vertexSet.size());
 }
 
 void Graph::removeVertex(int id) {

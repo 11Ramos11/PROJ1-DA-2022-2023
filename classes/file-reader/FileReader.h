@@ -12,6 +12,9 @@
 #include "../station/Station.h"
 #include "../../data-structure/Graph.h"
 
+/** @brief FileReader class to deal with data set files.
+ *
+ */
 class FileReader {
 
     //! @brief Holds the default stations file.

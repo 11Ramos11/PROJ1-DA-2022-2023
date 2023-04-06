@@ -1,6 +1,6 @@
 /** @file VertexEdge.h
  *  @brief Contains the VertexEdge class declaration.
- *  @author -
+ *  @author João Ramos e Matilde Simões
  *  @bug No known bugs.
  */
 

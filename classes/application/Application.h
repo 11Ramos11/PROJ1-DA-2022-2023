@@ -54,6 +54,7 @@ class Application {
 
     //! @brief Initialization of the user choice.
     int choice;
+    std::string stringChoice;
 
     //! @brief Initialization of the stack that contains the application states.
     std::stack<States> state;

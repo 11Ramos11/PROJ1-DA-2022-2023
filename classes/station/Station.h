@@ -69,18 +69,6 @@ public:
      * @return Municipality,by reference.
      */
     const std::string &getMunicipality() const;
-
-    /** @brief Represents the station township.
-     *
-     * @return Township,by reference.
-     */
-    const std::string &getTownship() const;
-
-    /** @brief Represents the station line.
-     *
-     * @return Line,by reference.
-     */
-    const std::string &getLine() const;
 };
 
 #endif //PROJ1_DA_2022_2023_STATION_H
