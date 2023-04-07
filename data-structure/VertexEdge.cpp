@@ -122,10 +122,10 @@ void Edge::setFlow(double flow) {
     this->flow = flow;
 }
 
-double Edge::getMaxResidual() {
+double Edge::getMinResidual() {
     return maxResidual;
 }
 
-void Edge::setMaxResidual(int minResidual){
+void Edge::setMinResidual(int minResidual){
     this->maxResidual = minResidual;
 }

@@ -51,6 +51,7 @@ void Application::readMenu(){
 
     switch(choice){
         case 1: {
+            fileReader.reset();
             fileReader.read(stations, railwayNetwork);
             state.push(INITIAL_MENU);
             break;

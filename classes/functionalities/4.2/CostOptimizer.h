@@ -48,6 +48,10 @@ public:
      * @return Pair of the maximum flow and the minimum cut.
      */
     std::pair<int, int> MaxTrainsWithMinCost(int source, int target);
+
+    void
+    relaxEdge(MutablePriorityQueue<Vertex> &queue, const Vertex *u, Edge *edge, Vertex *v, double d,
+              int residualCapacity) const;
 };
 
 #endif //PROJ1_DA_2022_2023_COSTOPTIMIZER_H

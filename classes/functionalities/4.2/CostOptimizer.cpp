@@ -19,7 +19,7 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
         v->setPath(nullptr);
         v->setVisited(false);
         for (Edge* e: v->getAdj()){
-            e->setMaxResidual(0);
+            e->setMinResidual(0);
         }
     }
 
@@ -37,24 +37,21 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
             Vertex* v = edge->getDest();
             if (!v->isVisited()) {
                 double d = edge->getService();
-                if (edge->getWeight() - edge->getFlow() > 0) {
+                int residualCapacity = edge->getWeight() - edge->getFlow();
+                if (residualCapacity > 0) {
                     if (v->getDist() > u->getDist() + d) {
-                        v->setDist(u->getDist() + d);
+                        relaxEdge(queue, u, edge, v, d, residualCapacity);
                         v->setPath(edge);
-                        edge->setMaxResidual(edge->getWeight() - edge->getFlow());
-                        queue.decreaseKey(v);
                     }
                     else if (v->getDist() == u->getDist() + d && v->getPath() != nullptr) {
-                        if ((edge->getWeight() - edge->getFlow()) > v->getPath()->getMaxResidual()) {
+                        relaxEdge(queue, u, edge, v, d, residualCapacity);
+                        if (v->getPath()->getMinResidual() < edge->getMinResidual())
                             v->setPath(edge);
-                            edge->setMaxResidual(edge->getWeight() - edge->getFlow());
-                            queue.decreaseKey(v);
-                        }
                     }
                 }
             }
         }
-        /*
+
         for (Edge* edge: u->getIncoming()){
             Vertex* v = edge->getDest();
             if (!v->isVisited()) {
@@ -65,11 +62,26 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
                     queue.decreaseKey(v);
                 }
             }
-        }*/
+        }
 
         u->setVisited(true);
     }
     return t->getDist() != INF;
+}
+
+void CostOptimizer::relaxEdge(MutablePriorityQueue<Vertex> &queue, const Vertex *u, Edge *edge, Vertex *v, double d,
+                              int residualCapacity) const {
+    v->setDist(u->getDist() + d);
+
+    edge->setMinResidual(residualCapacity);
+
+    if (u->getPath() != nullptr) {
+        if (residualCapacity < u->getPath()->getMinResidual())
+            edge->setMinResidual(residualCapacity);
+        else
+            edge->setMinResidual(u->getPath()->getMinResidual());
+    }
+    queue.decreaseKey(v );
 }
 
 std::pair<int,int> CostOptimizer::MaxTrainsWithMinCost(int source, int target){

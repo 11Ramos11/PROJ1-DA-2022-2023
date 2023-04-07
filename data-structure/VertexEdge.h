@@ -203,7 +203,7 @@ public:
      *
      * @return maxResidual
      */
-    double getMaxResidual();
+    double getMinResidual();
 
     /** @brief Gets the destination of the edge.
      *
@@ -225,7 +225,7 @@ public:
      */
     void setFlow(double flow);
 
-    void setMaxResidual(int minResidual);
+    void setMinResidual(int minResidual);
 
 protected:
 
