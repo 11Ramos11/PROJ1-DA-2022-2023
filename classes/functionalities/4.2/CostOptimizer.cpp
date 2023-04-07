@@ -55,11 +55,18 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
         for (Edge* edge: u->getIncoming()){
             Vertex* v = edge->getDest();
             if (!v->isVisited()) {
-                double w = edge->getService();
-                if (v->getDist() > u->getDist() + w && edge->getFlow() > 0) {
-                    v->setDist(u->getDist() + w);
-                    v->setPath(edge);
-                    queue.decreaseKey(v);
+                double d = edge->getService();
+                int residualCapacity = edge->getFlow();
+                if (residualCapacity > 0) {
+                    if (v->getDist() > u->getDist() + d) {
+                        relaxEdge(queue, u, edge, v, d, residualCapacity);
+                        v->setPath(edge);
+                    }
+                    else if (v->getDist() == u->getDist() + d && v->getPath() != nullptr) {
+                        relaxEdge(queue, u, edge, v, d, residualCapacity);
+                        if (v->getPath()->getMinResidual() < edge->getMinResidual())
+                            v->setPath(edge);
+                    }
                 }
             }
         }
