@@ -34,13 +34,16 @@ void Application::readMenu(){
         std::cout << "2. Read files" << std::endl;
         std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 || choice==0)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 || choice==0));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1: {
@@ -87,13 +90,16 @@ void Application::initialMenu(){
         std::cout << "9. Go back" << std::endl;
         std::cout << "0. Quit" << std::endl << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==3 || choice==9 || choice==0)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="3" || stringChoice=="9" ||stringChoice=="0")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==3 || choice==9 || choice==0));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="3" || stringChoice=="9" ||stringChoice=="0"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1:
@@ -130,13 +136,16 @@ void Application::servicesMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(choice < 0 || choice == 6 || choice ==7 || choice == 8 || choice >9){
+
+        if(stringChoice < "0" || stringChoice == "6" || stringChoice =="7" || stringChoice == "8" || stringChoice >"9"){
             std::cout << "Invalid option number!";
         }
     }
-    while(choice < 0 || choice == 6 || choice ==7 || choice == 8 || choice >9);
+    while(stringChoice < "0" || stringChoice == "6" || stringChoice =="7" || stringChoice == "8" || stringChoice >"9");
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1: {
@@ -167,22 +176,27 @@ void Application::servicesMenu(){
         }
         case 3: {
             int k_mun;
+            int index=1;
             std::cout << "Insert the number of municipalities: ";
             std::cin >> k_mun;
             std::cin.ignore();
             auto top = basicServices.topMunicipalitiesOrDistricts(true, k_mun);
+            std::cout << "The top " << k_mun << " municipalities: " << std::endl;
             for (auto m: top) {
-                std::cout << m << std::endl;
+                std::cout << index++ << ". " << m << std::endl;
             }
             break;
         }
         case 4: {
             int k_dist;
+            int index =1;
             std::cout << "Insert the number of districts: ";
             std::cin >> k_dist;
             std::cin.ignore();
-            for (auto d: basicServices.topMunicipalitiesOrDistricts(false, k_dist)) {
-                std::cout << d << std::endl;
+            auto top = basicServices.topMunicipalitiesOrDistricts(false, k_dist);
+            std::cout << "The top " << k_dist << " districts: " << std::endl;
+            for (auto d: top) {
+                std::cout << index++ << ". " << d << std::endl;
             }
             break;
         }
@@ -201,7 +215,8 @@ void Application::servicesMenu(){
                 std::cout<< "Invalid station name!";
                 break;
             }
-            std::cout << basicServices.max_trains_target( targetID);
+            int answer = basicServices.max_trains_target( targetID);
+            std::cout << "The maximum amount of trains: " << answer;
             break;
         }
         case 9: {
@@ -224,13 +239,16 @@ void Application::costMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 || choice==9 || choice ==0)){
+
+        if(!(stringChoice=="1" || stringChoice=="9" || stringChoice =="0")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 || choice==9 || choice ==0));
+    while(!(stringChoice=="1" || stringChoice=="9" || stringChoice =="0"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice) {
         case 1: {
@@ -278,13 +296,16 @@ void Application::failureMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1:{
@@ -312,16 +333,18 @@ void Application::failureMenu(){
             }
 
             int k;
+            int index=1;
             std::cout << "Insert the number of stations: ";
             std::cin >> k;
             std::cin.ignore();
+            std::cout << "Calculating the most affected stations... " << std::endl;
             auto topAffected = subgraphService.mostAffectedStations(
                     sourceID->getId(),targetID->getId(), k);
             std::cout << std::endl;
             std::cout << "Removed the segment " << source << "->" << target << std::endl;
             std::cout << "Top " << k << " most affected stations:"  << std::endl;
             for (auto m: topAffected) {
-                std::cout << m->getStation()->getName() << std::endl;
+                std::cout << index++ << ". " << m->getStation()->getName() << std::endl;
             }
             break;
         }
@@ -349,13 +372,18 @@ void Application::graphsMenu(){
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
-        std::cin >> choice;
+        std::cin >> stringChoice;
         std::cin.ignore(1000,'\n');
-        if(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4 || choice == 5)){
+
+        if(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9"
+                || stringChoice =="3" || stringChoice == "4" || stringChoice == "5")){
             std::cout << "Invalid option number!";
         }
     }
-    while(!(choice==1 ||choice==2 ||choice==0 ||choice==9 || choice ==3 || choice == 4 || choice == 5));
+    while(!(stringChoice=="1" ||stringChoice=="2" ||stringChoice=="0" ||stringChoice=="9"
+            || stringChoice =="3" || stringChoice == "4" || stringChoice == "5"));
+
+    choice = std::stoi(stringChoice);
 
     switch(choice){
         case 1: {
@@ -370,6 +398,7 @@ void Application::graphsMenu(){
             }
 
             subgraphService.deleteStation(stationID);
+            std::cout << "Successfully deleted!";
             break;
         }
         case 2:{
@@ -389,13 +418,13 @@ void Application::graphsMenu(){
             }
 
             subgraphService.deleteEdge(sourceID, targetID);
+            std::cout << "Successfully deleted!";
             break;
         }
         case 3:{
             std::string service;
             std::cout << "Service type (\"STANDARD\" or \"ALFA PENDULAR\"): ";
             getline(std::cin, service);
-            std::cout << service;
 
             if(service != "STANDARD" && service != "ALFA PENDULAR"){
                 std::cout<< "Invalid service type!";
@@ -406,10 +435,12 @@ void Application::graphsMenu(){
             else
                 subgraphService.deleteService(ALFA_PENDULAR);
 
+            std::cout << "Successfully deleted!";
             break;
         }
         case 4:
             subgraphService.resetSubgraph();
+            std::cout << "Successfully reset!";
             break;
         case 5: {
             std::string source;
@@ -427,7 +458,8 @@ void Application::graphsMenu(){
                 break;
             }
 
-            std::cout << subgraphService.maxFlow(sourceID, targetID);
+            int answer = subgraphService.maxFlow(sourceID, targetID);
+            std::cout << "The maximum amount of trains: " << answer << std::endl;
             break;
         }
         case 9: {
