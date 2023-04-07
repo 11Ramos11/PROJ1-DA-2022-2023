@@ -25,6 +25,10 @@ void Application::welcomeMenu(){
 }
 
 void Application::readMenu(){
+
+    railwayNetwork = Graph();
+    stations = {};
+
     do{
         std::cout << std::endl << std::endl << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
@@ -342,9 +346,18 @@ void Application::failureMenu(){
                     sourceID->getId(),targetID->getId(), k);
             std::cout << std::endl;
             std::cout << "Removed the segment " << source << "->" << target << std::endl;
-            std::cout << "Top " << k << " most affected stations:"  << std::endl;
-            for (auto m: topAffected) {
-                std::cout << index++ << ". " << m->getStation()->getName() << std::endl;
+            std::cout << std::endl;
+
+            if (topAffected.size() == 0){
+                std::cout << "No stations were affected";
+            }
+            else if (topAffected.size() < k)
+                std::cout << "There were only " << topAffected.size() << " affected stations";
+            else {
+                std::cout << "Top " << k << " most affected stations:" << std::endl;
+                for (auto m: topAffected) {
+                    std::cout << index++ << ". " << m->getStation()->getName() << std::endl;
+                }
             }
             break;
         }

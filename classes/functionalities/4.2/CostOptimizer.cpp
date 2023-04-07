@@ -18,6 +18,9 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
         v->setDist(INF);
         v->setPath(nullptr);
         v->setVisited(false);
+        for (Edge* e: v->getAdj()){
+            e->setMaxResidual(0);
+        }
     }
 
     s->setDist(0);
@@ -30,21 +33,30 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
 
     while (!queue.empty()){
         Vertex* u = queue.extractMin();
-
-        u->setVisited(true);
         for (Edge* edge: u->getAdj()){
             Vertex* v = edge->getDest();
             if (!v->isVisited()) {
-                double w = edge->getService();
-                if (v->getDist() > u->getDist() + w && edge->getWeight() - edge->getFlow() > 0) {
-                    v->setDist(u->getDist() + w);
-                    v->setPath(edge);
-                    queue.decreaseKey(v);
+                double d = edge->getService();
+                if (edge->getWeight() - edge->getFlow() > 0) {
+                    if (v->getDist() > u->getDist() + d) {
+                        v->setDist(u->getDist() + d);
+                        v->setPath(edge);
+                        edge->setMaxResidual(edge->getWeight() - edge->getFlow());
+                        queue.decreaseKey(v);
+                    }
+                    else if (v->getDist() == u->getDist() + d && v->getPath() != nullptr) {
+                        if ((edge->getWeight() - edge->getFlow()) > v->getPath()->getMaxResidual()) {
+                            v->setPath(edge);
+                            edge->setMaxResidual(edge->getWeight() - edge->getFlow());
+                            queue.decreaseKey(v);
+                        }
+                    }
                 }
             }
         }
+        /*
         for (Edge* edge: u->getIncoming()){
-            Vertex* v = edge->getOrig();
+            Vertex* v = edge->getDest();
             if (!v->isVisited()) {
                 double w = edge->getService();
                 if (v->getDist() > u->getDist() + w && edge->getFlow() > 0) {
@@ -53,7 +65,9 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
                     queue.decreaseKey(v);
                 }
             }
-        }
+        }*/
+
+        u->setVisited(true);
     }
     return t->getDist() != INF;
 }

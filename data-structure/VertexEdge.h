@@ -175,37 +175,43 @@ public:
      */
     Edge(Vertex *orig, Vertex *dest, double w, ServiceType service);
 
-    /** @brief Represents the destination of the edge.
+    /** @brief Gets the destination of the edge.
      *
      * @return Destination vertex.
      */
     Vertex * getDest() const;
 
-    /** @brief Represents the weight of the edge.
+    /** @brief Gets the weight of the edge.
      *
      * @return Weight.
      */
     double getWeight() const;
 
-    /** @brief Represents the original vertex.
+    /** @brief Gets the original vertex.
      *
      * @return Original vertex.
      */
     Vertex * getOrig() const;
 
-    /** @brief Represents the flow of the edge.
+    /** @brief Gets the flow of the edge.
      *
      * @return Flow.
      */
     double getFlow() const;
 
-    /** @brief Represents the destination of the edge.
+    /**@brief Gets the minimum residual capacity
+     *
+     * @return maxResidual
+     */
+    double getMaxResidual();
+
+    /** @brief Gets the destination of the edge.
      *
      * @return Destination vertex.
      */
     ServiceType getService() const;
 
-    /** @brief Represents the reverse edge.
+    /** @brief Sets the reverse edge.
      *
      * @param reverse of Edge* type.
      * @return Void.
@@ -218,6 +224,8 @@ public:
      * @return Void.
      */
     void setFlow(double flow);
+
+    void setMaxResidual(int minResidual);
 
 protected:
 
@@ -235,6 +243,9 @@ protected:
 
     //! @brief Holds the reverse edge.
     Edge *reverse = nullptr;
+
+    //! @brief Holds the minimum residual capacity along the path.
+    int maxResidual;
 
     //! @brief Holds the flow of the edge.
     double flow;

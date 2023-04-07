@@ -1,0 +1,10 @@
+Station_A,Station_B,Capacity,Service
+Barcelos,Espinho,10,STANDARD
+Barcelos,Marco de Canaveses,10,STANDARD
+Espinho,Marco de Canaveses,2,STANDARD
+Espinho,Gata,4,ALFA PENDULAR
+Espinho,Dois Portos,8,STANDARD
+Marco de Canaveses,Dois Portos,9,STANDARD
+Gata,Irivo,10,ALFA PENDULAR
+Dois Portos,Gata,6,ALFA PENDULAR
+Dois Portos,Irivo,10,STANDARD

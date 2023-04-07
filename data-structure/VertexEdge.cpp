@@ -121,3 +121,11 @@ void Edge::setReverse(Edge *reverse) {
 void Edge::setFlow(double flow) {
     this->flow = flow;
 }
+
+double Edge::getMaxResidual() {
+    return maxResidual;
+}
+
+void Edge::setMaxResidual(int minResidual){
+    this->maxResidual = minResidual;
+}
