@@ -1,0 +1,37 @@
+\hypertarget{_file_reader_8h_source}{}\doxysection{File\+Reader.\+h}
+\label{_file_reader_8h_source}\index{classes/file-\/reader/FileReader.h@{classes/file-\/reader/FileReader.h}}
+\mbox{\hyperlink{_file_reader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef PROJ1\_DA\_2022\_2023\_FILEREADER\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define PROJ1\_DA\_2022\_2023\_FILEREADER\_H}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}../station/Station.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}../../data-\/structure/Graph.h"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_file_reader}{FileReader}} \{}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{21     std::string \mbox{\hyperlink{class_file_reader_ab38508a44fe2f2bccb1b21cc8f1da9e6}{stationsFileName}} = \textcolor{stringliteral}{"{}../resources/stations.csv"{}};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{24     std::string \mbox{\hyperlink{class_file_reader_af112d23a4bd14505ea08d56c2e63b65f}{networkFileName}} = \textcolor{stringliteral}{"{}../resources/network.csv"{}};}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{38     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_file_reader_aaa2a03915031e635f3a561f19dd1ef40}{readStations}}(std::unordered\_map<std::string, std::shared\_ptr<Station>> \&stations, \mbox{\hyperlink{class_graph}{Graph}} \&railwayNetwork);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{49     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_file_reader_afc5d832a8ebf91c8e5697d90bef49414}{readNetwork}}(std::unordered\_map<std::string, std::shared\_ptr<Station>> \&stations, \mbox{\hyperlink{class_graph}{Graph}} \&railwayNetwork);}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51 \textcolor{keyword}{public}:}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{56     \mbox{\hyperlink{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}{FileReader}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{64     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_file_reader_a4e96692271b8bb9fd10bafdb090323fc}{read}}(std::unordered\_map<std::string, std::shared\_ptr<Station>> \&stations, \mbox{\hyperlink{class_graph}{Graph}} \&railwayNetwork);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_file_reader_a4d1e54053173a934d3daa488b484a6b6}{reset}}();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_file_reader_a610f71951408f71ee2f711aa05e0abc9}{setFiles}}(std::string \mbox{\hyperlink{class_file_reader_ab38508a44fe2f2bccb1b21cc8f1da9e6}{stationsFileName}}, std::string \mbox{\hyperlink{class_file_reader_af112d23a4bd14505ea08d56c2e63b65f}{networkFileName}});}
+\DoxyCodeLine{76 \};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJ1\_DA\_2022\_2023\_FILEREADER\_H}}
+
+\end{DoxyCode}

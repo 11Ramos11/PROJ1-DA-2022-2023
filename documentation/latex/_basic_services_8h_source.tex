@@ -1,0 +1,50 @@
+\hypertarget{_basic_services_8h_source}{}\doxysection{Basic\+Services.\+h}
+\label{_basic_services_8h_source}\index{classes/functionalities/4.1/BasicServices.h@{classes/functionalities/4.1/BasicServices.h}}
+\mbox{\hyperlink{_basic_services_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef PROJ1\_DA\_2022\_2023\_BASICSERVICES\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define PROJ1\_DA\_2022\_2023\_BASICSERVICES\_H}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../../../data-\/structure/VertexEdge.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../../../data-\/structure/Graph.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}../../file-\/reader/FileReader.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}../../station/Station.h"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_basic_services}{BasicServices}} \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{private}:}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{27     \mbox{\hyperlink{class_graph}{Graph}}* \mbox{\hyperlink{class_basic_services_a020fa986676c89756965667affe9adf3}{graph}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_basic_services_afda81275fdaf42c23d3fdaa553f4ac01}{path}}(\mbox{\hyperlink{class_vertex}{Vertex}} * s, \mbox{\hyperlink{class_vertex}{Vertex}} * t);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_basic_services_a37a2dc3e2d37332c7eebb2bf1689f591}{edmondsKarp}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} target);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{64     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_basic_services_a76d4785d5d1df3124d8d0adf99a556ed}{existsPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} * s, \mbox{\hyperlink{class_vertex}{Vertex}} * t);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66 public :}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{72     \mbox{\hyperlink{class_basic_services}{BasicServices}}(\mbox{\hyperlink{class_graph}{Graph}}* \mbox{\hyperlink{class_basic_services_a020fa986676c89756965667affe9adf3}{graph}});}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{85     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_basic_services_a9ba43571156268d53ddfea28828f626f}{maxFlow}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} target);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{96     std::vector<std::pair<Vertex*, Vertex*>> \mbox{\hyperlink{class_basic_services_a2fd559ee9ce4540db373c9af4cbe05dc}{optimalPairs}}();}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{111     std::vector<std::string> \mbox{\hyperlink{class_basic_services_a8b8edcf8e9766259183680c9e4c08729}{topMunicipalitiesOrDistricts}}(\textcolor{keywordtype}{bool} byMunicipality, \textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{123     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_basic_services_a56df07a78a6c9acedadf7c28a17f663e}{max\_trains\_target}}(\textcolor{keywordtype}{int} target);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{133     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_basic_services_a4bc5afb8530be3f4d28224a7b318009f}{findBottleneck}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} * t);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{144     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_basic_services_a5804b6e3134ed5a6dc7615ba083184d6}{augmentPath}}(\mbox{\hyperlink{class_vertex}{Vertex}} * s, \mbox{\hyperlink{class_vertex}{Vertex}} * t, \textcolor{keywordtype}{double} bottleneck);}
+\DoxyCodeLine{145 \};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJ1\_DA\_2022\_2023\_BASICSERVICES\_H}}
+
+\end{DoxyCode}

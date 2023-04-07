@@ -1,0 +1,32 @@
+\hypertarget{_cost_optimizer_8h_source}{}\doxysection{Cost\+Optimizer.\+h}
+\label{_cost_optimizer_8h_source}\index{classes/functionalities/4.2/CostOptimizer.h@{classes/functionalities/4.2/CostOptimizer.h}}
+\mbox{\hyperlink{_cost_optimizer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef PROJ1\_DA\_2022\_2023\_COSTOPTIMIZER\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define PROJ1\_DA\_2022\_2023\_COSTOPTIMIZER\_H}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../../../data-\/structure/Graph.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_cost_optimizer}{CostOptimizer}} \{}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{keyword}{private}:}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{21     \mbox{\hyperlink{class_graph}{Graph}} *\mbox{\hyperlink{class_cost_optimizer_a05cf80b07404b0935d91d813a5809588}{graph}};}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{29     \mbox{\hyperlink{class_cost_optimizer}{CostOptimizer}}(\mbox{\hyperlink{class_graph}{Graph}} *\mbox{\hyperlink{class_cost_optimizer_a05cf80b07404b0935d91d813a5809588}{graph}});}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_cost_optimizer_ab674e28f73a331932ba9f006db6e41db}{dijkstra}}(\mbox{\hyperlink{class_vertex}{Vertex}} *s, \mbox{\hyperlink{class_vertex}{Vertex}} *t);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{50     std::pair<int, int> \mbox{\hyperlink{class_cost_optimizer_acafc0b37360a135a1a991b2044dd5e05}{MaxTrainsWithMinCost}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} target);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void}}
+\DoxyCodeLine{53     \mbox{\hyperlink{class_cost_optimizer_a7c114e89874d3fdd6fb0b4a9a6e3082b}{relaxEdge}}(\mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue<Vertex>}} \&queue, \textcolor{keyword}{const} \mbox{\hyperlink{class_vertex}{Vertex}} *u, \mbox{\hyperlink{class_edge}{Edge}} *edge, \mbox{\hyperlink{class_vertex}{Vertex}} *v, \textcolor{keywordtype}{double} d,}
+\DoxyCodeLine{54               \textcolor{keywordtype}{int} residualCapacity) \textcolor{keyword}{const};}
+\DoxyCodeLine{55 \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJ1\_DA\_2022\_2023\_COSTOPTIMIZER\_H}}
+
+\end{DoxyCode}

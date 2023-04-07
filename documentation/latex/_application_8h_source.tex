@@ -1,0 +1,70 @@
+\hypertarget{_application_8h_source}{}\doxysection{Application.\+h}
+\label{_application_8h_source}\index{classes/application/Application.h@{classes/application/Application.h}}
+\mbox{\hyperlink{_application_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef PROJ1\_DA\_2022\_2023\_APPLICATION\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define PROJ1\_DA\_2022\_2023\_APPLICATION\_H}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <stack>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}../file-\/reader/FileReader.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../functionalities/4.1/BasicServices.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}../functionalities/4.2/CostOptimizer.h"{}}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include "{}../functionalities/4.3/SubgraphService.h"{}}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{24 \textcolor{keyword}{class }\mbox{\hyperlink{class_application}{Application}} \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{27     std::unordered\_map<std::string, std::shared\_ptr<Station>> \mbox{\hyperlink{class_application_ad2729db4c2be8b511fce5abe4dc18345}{stations}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railwayNetwork}};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33     \mbox{\hyperlink{class_file_reader}{FileReader}} \mbox{\hyperlink{class_application_ad4745fea830526e38a63973b9d8d6361}{fileReader}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36     \mbox{\hyperlink{class_basic_services}{BasicServices}} \mbox{\hyperlink{class_application_ae875c88275ee5f1b2097053b34866017}{basicServices}} = \mbox{\hyperlink{class_basic_services}{BasicServices}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railwayNetwork}});}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39     \mbox{\hyperlink{class_cost_optimizer}{CostOptimizer}} \mbox{\hyperlink{class_application_a01cc29390b031d4fb4a1b80ffcab1473}{costOptimizer}} = \mbox{\hyperlink{class_cost_optimizer}{CostOptimizer}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railwayNetwork}});}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{42     \mbox{\hyperlink{class_subgraph_service}{SubgraphService}} \mbox{\hyperlink{class_application_ae3fa29709c939d5c148434f617588e32}{subgraphService}} = \mbox{\hyperlink{class_subgraph_service}{SubgraphService}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railwayNetwork}});}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{45     \textcolor{keyword}{enum} \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8}{States}}\{}
+\DoxyCodeLine{46         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a6e96e8af1a5872217bcb6a4d86d9493a}{WELCOME\_MENU}},}
+\DoxyCodeLine{47         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a3439d37a1a7dbe142a424c29e37799a3}{READ\_MENU}},}
+\DoxyCodeLine{48         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a413dcd77dda6a8ffe3179c3f2e2c75c5}{INITIAL\_MENU}},}
+\DoxyCodeLine{49         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8ad37b922a0c8e67e042bb0555100d8bf9}{SERVICES\_MENU}},}
+\DoxyCodeLine{50         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a497b7b168a18c13fc5bb0e28eb2e1020}{COST\_MENU}},}
+\DoxyCodeLine{51         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a7f06cf39c7d81f1941356f2247cc54d6}{FAILURE\_MENU}},}
+\DoxyCodeLine{52         \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a085a818c60b0a2701d2ece34cf95fff0}{GRAPHS\_MENU}}}
+\DoxyCodeLine{53     \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{56     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_application_a7d63c0b15a0170c51035b8220c41d4d9}{choice}};}
+\DoxyCodeLine{57     std::string \mbox{\hyperlink{class_application_a432d10510fbea03a758d31bbc25ab559}{stringChoice}};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{60     std::stack<States> \mbox{\hyperlink{class_application_a459d4d8913d6c8306fa4cd6f13d3bf22}{state}};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{keyword}{public}:}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_aa38ca47b50935092078cef4281ab66bc}{start}}();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{74     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a0da6ea5c07a1f44f89791df398982f5f}{getMenu}}();}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a3bf9749584ea10a365c6f1b496ef4f07}{welcomeMenu}}();}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{86     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a98d89f35f3ff9f12cd7c3682881df393}{readMenu}}();}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a393329c496837662838146e9e2cec1d2}{initialMenu}}();}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{98     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_afa132bec086678fac832674edf2e742d}{servicesMenu}}();}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{104     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a004b536984a35aeec3ce4fb9e4d81756}{costMenu}}();}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{111     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_ab366ac1e1725f29ab12e773be0c6e296}{failureMenu}}();}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{118     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_application_a8904df7318b9cdcff1288bffdb9e62a3}{graphsMenu}}();}
+\DoxyCodeLine{119 \};}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJ1\_DA\_2022\_2023\_APPLICATION\_H}}
+
+\end{DoxyCode}

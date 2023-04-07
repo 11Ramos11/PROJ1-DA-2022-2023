@@ -1,0 +1,330 @@
+\hypertarget{class_application}{}\doxysection{Application Class Reference}
+\label{class_application}\index{Application@{Application}}
+
+
+Initializes and manages all the components of the application.  
+
+
+
+
+{\ttfamily \#include $<$Application.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_application_aa38ca47b50935092078cef4281ab66bc}{start}} ()
+\begin{DoxyCompactList}\small\item\em Starts the project. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_a0da6ea5c07a1f44f89791df398982f5f}{get\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Controls the application states. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_a3bf9749584ea10a365c6f1b496ef4f07}{welcome\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the welcome menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_a98d89f35f3ff9f12cd7c3682881df393}{read\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the read files menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_a393329c496837662838146e9e2cec1d2}{initial\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the initial menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_afa132bec086678fac832674edf2e742d}{services\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the Basic Service Metrics menu and the information that the user chooses to know. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_a004b536984a35aeec3ce4fb9e4d81756}{cost\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the Operation Cost Optimization menu and the information that the user chooses to know. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_ab366ac1e1725f29ab12e773be0c6e296}{failure\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the Reliability and Sensitivity to Line Failures menu and the information that the user chooses to know. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_application_a8904df7318b9cdcff1288bffdb9e62a3}{graphs\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the Reliability and Sensitivity to Line Failures menu and the information that the user chooses to know. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8}{States}} \{ \newline
+\mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a6e96e8af1a5872217bcb6a4d86d9493a}{WELCOME\+\_\+\+MENU}}
+, \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a3439d37a1a7dbe142a424c29e37799a3}{READ\+\_\+\+MENU}}
+, \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a413dcd77dda6a8ffe3179c3f2e2c75c5}{INITIAL\+\_\+\+MENU}}
+, \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8ad37b922a0c8e67e042bb0555100d8bf9}{SERVICES\+\_\+\+MENU}}
+, \newline
+\mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a497b7b168a18c13fc5bb0e28eb2e1020}{COST\+\_\+\+MENU}}
+, \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a7f06cf39c7d81f1941356f2247cc54d6}{FAILURE\+\_\+\+MENU}}
+, \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8a085a818c60b0a2701d2ece34cf95fff0}{GRAPHS\+\_\+\+MENU}}
+ \}
+\begin{DoxyCompactList}\small\item\em Creates the initial menu options. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \mbox{\hyperlink{class_application_ad2729db4c2be8b511fce5abe4dc18345}{stations}}
+\begin{DoxyCompactList}\small\item\em Initialization of the stations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}}
+\begin{DoxyCompactList}\small\item\em Initialization of the graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_file_reader}{File\+Reader}} \mbox{\hyperlink{class_application_ad4745fea830526e38a63973b9d8d6361}{file\+Reader}}
+\begin{DoxyCompactList}\small\item\em Initialization of the file\+Reader. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_basic_services}{Basic\+Services}} \mbox{\hyperlink{class_application_ae875c88275ee5f1b2097053b34866017}{basic\+Services}} = \mbox{\hyperlink{class_basic_services}{Basic\+Services}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}})
+\begin{DoxyCompactList}\small\item\em Initialization of the basic\+Services. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}} \mbox{\hyperlink{class_application_a01cc29390b031d4fb4a1b80ffcab1473}{cost\+Optimizer}} = \mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}})
+\begin{DoxyCompactList}\small\item\em Initialization of the cost\+Optimizer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}} \mbox{\hyperlink{class_application_ae3fa29709c939d5c148434f617588e32}{subgraph\+Service}} = \mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}})
+\begin{DoxyCompactList}\small\item\em Initialization of the subgraph\+Service. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_application_a7d63c0b15a0170c51035b8220c41d4d9}{choice}}
+\begin{DoxyCompactList}\small\item\em Initialization of the user choice. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_application_a432d10510fbea03a758d31bbc25ab559}{string\+Choice}}
+\item 
+std\+::stack$<$ \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8}{States}} $>$ \mbox{\hyperlink{class_application_a459d4d8913d6c8306fa4cd6f13d3bf22}{state}}
+\begin{DoxyCompactList}\small\item\em Initialization of the stack that contains the application states. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Initializes and manages all the components of the application. 
+
+Intended to be instanced once. Manages the interaction between the user and the application. 
+
+\doxysubsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8}\label{class_application_a569a48a54be18e4496919362b864e5c8}} 
+\index{Application@{Application}!States@{States}}
+\index{States@{States}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{States}{States}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8}{Application\+::\+States}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Creates the initial menu options. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WELCOME\_MENU@{WELCOME\_MENU}!Application@{Application}}\index{Application@{Application}!WELCOME\_MENU@{WELCOME\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8a6e96e8af1a5872217bcb6a4d86d9493a}\label{class_application_a569a48a54be18e4496919362b864e5c8a6e96e8af1a5872217bcb6a4d86d9493a}} 
+WELCOME\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{READ\_MENU@{READ\_MENU}!Application@{Application}}\index{Application@{Application}!READ\_MENU@{READ\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8a3439d37a1a7dbe142a424c29e37799a3}\label{class_application_a569a48a54be18e4496919362b864e5c8a3439d37a1a7dbe142a424c29e37799a3}} 
+READ\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INITIAL\_MENU@{INITIAL\_MENU}!Application@{Application}}\index{Application@{Application}!INITIAL\_MENU@{INITIAL\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8a413dcd77dda6a8ffe3179c3f2e2c75c5}\label{class_application_a569a48a54be18e4496919362b864e5c8a413dcd77dda6a8ffe3179c3f2e2c75c5}} 
+INITIAL\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SERVICES\_MENU@{SERVICES\_MENU}!Application@{Application}}\index{Application@{Application}!SERVICES\_MENU@{SERVICES\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8ad37b922a0c8e67e042bb0555100d8bf9}\label{class_application_a569a48a54be18e4496919362b864e5c8ad37b922a0c8e67e042bb0555100d8bf9}} 
+SERVICES\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COST\_MENU@{COST\_MENU}!Application@{Application}}\index{Application@{Application}!COST\_MENU@{COST\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8a497b7b168a18c13fc5bb0e28eb2e1020}\label{class_application_a569a48a54be18e4496919362b864e5c8a497b7b168a18c13fc5bb0e28eb2e1020}} 
+COST\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FAILURE\_MENU@{FAILURE\_MENU}!Application@{Application}}\index{Application@{Application}!FAILURE\_MENU@{FAILURE\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8a7f06cf39c7d81f1941356f2247cc54d6}\label{class_application_a569a48a54be18e4496919362b864e5c8a7f06cf39c7d81f1941356f2247cc54d6}} 
+FAILURE\+\_\+\+MENU&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GRAPHS\_MENU@{GRAPHS\_MENU}!Application@{Application}}\index{Application@{Application}!GRAPHS\_MENU@{GRAPHS\_MENU}}}\mbox{\Hypertarget{class_application_a569a48a54be18e4496919362b864e5c8a085a818c60b0a2701d2ece34cf95fff0}\label{class_application_a569a48a54be18e4496919362b864e5c8a085a818c60b0a2701d2ece34cf95fff0}} 
+GRAPHS\+\_\+\+MENU&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_application_a004b536984a35aeec3ce4fb9e4d81756}\label{class_application_a004b536984a35aeec3ce4fb9e4d81756}} 
+\index{Application@{Application}!costMenu@{costMenu}}
+\index{costMenu@{costMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{costMenu()}{costMenu()}}
+{\footnotesize\ttfamily void Application\+::cost\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the Operation Cost Optimization menu and the information that the user chooses to know. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_ab366ac1e1725f29ab12e773be0c6e296}\label{class_application_ab366ac1e1725f29ab12e773be0c6e296}} 
+\index{Application@{Application}!failureMenu@{failureMenu}}
+\index{failureMenu@{failureMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{failureMenu()}{failureMenu()}}
+{\footnotesize\ttfamily void Application\+::failure\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the Reliability and Sensitivity to Line Failures menu and the information that the user chooses to know. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a0da6ea5c07a1f44f89791df398982f5f}\label{class_application_a0da6ea5c07a1f44f89791df398982f5f}} 
+\index{Application@{Application}!getMenu@{getMenu}}
+\index{getMenu@{getMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{getMenu()}{getMenu()}}
+{\footnotesize\ttfamily void Application\+::get\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Controls the application states. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a8904df7318b9cdcff1288bffdb9e62a3}\label{class_application_a8904df7318b9cdcff1288bffdb9e62a3}} 
+\index{Application@{Application}!graphsMenu@{graphsMenu}}
+\index{graphsMenu@{graphsMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{graphsMenu()}{graphsMenu()}}
+{\footnotesize\ttfamily void Application\+::graphs\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the Reliability and Sensitivity to Line Failures menu and the information that the user chooses to know. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a393329c496837662838146e9e2cec1d2}\label{class_application_a393329c496837662838146e9e2cec1d2}} 
+\index{Application@{Application}!initialMenu@{initialMenu}}
+\index{initialMenu@{initialMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{initialMenu()}{initialMenu()}}
+{\footnotesize\ttfamily void Application\+::initial\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the initial menu. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a98d89f35f3ff9f12cd7c3682881df393}\label{class_application_a98d89f35f3ff9f12cd7c3682881df393}} 
+\index{Application@{Application}!readMenu@{readMenu}}
+\index{readMenu@{readMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{readMenu()}{readMenu()}}
+{\footnotesize\ttfamily void Application\+::read\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the read files menu. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_afa132bec086678fac832674edf2e742d}\label{class_application_afa132bec086678fac832674edf2e742d}} 
+\index{Application@{Application}!servicesMenu@{servicesMenu}}
+\index{servicesMenu@{servicesMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{servicesMenu()}{servicesMenu()}}
+{\footnotesize\ttfamily void Application\+::services\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the Basic Service Metrics menu and the information that the user chooses to know. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_aa38ca47b50935092078cef4281ab66bc}\label{class_application_aa38ca47b50935092078cef4281ab66bc}} 
+\index{Application@{Application}!start@{start}}
+\index{start@{start}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void Application\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Starts the project. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_application_a3bf9749584ea10a365c6f1b496ef4f07}\label{class_application_a3bf9749584ea10a365c6f1b496ef4f07}} 
+\index{Application@{Application}!welcomeMenu@{welcomeMenu}}
+\index{welcomeMenu@{welcomeMenu}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{welcomeMenu()}{welcomeMenu()}}
+{\footnotesize\ttfamily void Application\+::welcome\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the welcome menu. 
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_application_ae875c88275ee5f1b2097053b34866017}\label{class_application_ae875c88275ee5f1b2097053b34866017}} 
+\index{Application@{Application}!basicServices@{basicServices}}
+\index{basicServices@{basicServices}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{basicServices}{basicServices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_basic_services}{Basic\+Services}} Application\+::basic\+Services = \mbox{\hyperlink{class_basic_services}{Basic\+Services}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the basic\+Services. 
+
+\mbox{\Hypertarget{class_application_a7d63c0b15a0170c51035b8220c41d4d9}\label{class_application_a7d63c0b15a0170c51035b8220c41d4d9}} 
+\index{Application@{Application}!choice@{choice}}
+\index{choice@{choice}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{choice}{choice}}
+{\footnotesize\ttfamily int Application\+::choice\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the user choice. 
+
+\mbox{\Hypertarget{class_application_a01cc29390b031d4fb4a1b80ffcab1473}\label{class_application_a01cc29390b031d4fb4a1b80ffcab1473}} 
+\index{Application@{Application}!costOptimizer@{costOptimizer}}
+\index{costOptimizer@{costOptimizer}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{costOptimizer}{costOptimizer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}} Application\+::cost\+Optimizer = \mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the cost\+Optimizer. 
+
+\mbox{\Hypertarget{class_application_ad4745fea830526e38a63973b9d8d6361}\label{class_application_ad4745fea830526e38a63973b9d8d6361}} 
+\index{Application@{Application}!fileReader@{fileReader}}
+\index{fileReader@{fileReader}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{fileReader}{fileReader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_file_reader}{File\+Reader}} Application\+::file\+Reader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the file\+Reader. 
+
+\mbox{\Hypertarget{class_application_af6bfad2752a0eb2e4310878811f5a955}\label{class_application_af6bfad2752a0eb2e4310878811f5a955}} 
+\index{Application@{Application}!railwayNetwork@{railwayNetwork}}
+\index{railwayNetwork@{railwayNetwork}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{railwayNetwork}{railwayNetwork}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Application\+::railway\+Network\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the graph. 
+
+\mbox{\Hypertarget{class_application_a459d4d8913d6c8306fa4cd6f13d3bf22}\label{class_application_a459d4d8913d6c8306fa4cd6f13d3bf22}} 
+\index{Application@{Application}!state@{state}}
+\index{state@{state}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily std\+::stack$<$\mbox{\hyperlink{class_application_a569a48a54be18e4496919362b864e5c8}{States}}$>$ Application\+::state\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the stack that contains the application states. 
+
+\mbox{\Hypertarget{class_application_ad2729db4c2be8b511fce5abe4dc18345}\label{class_application_ad2729db4c2be8b511fce5abe4dc18345}} 
+\index{Application@{Application}!stations@{stations}}
+\index{stations@{stations}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{stations}{stations}}
+{\footnotesize\ttfamily std\+::unordered\+\_\+map$<$std\+::string, std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_station}{Station}}$>$ $>$ Application\+::stations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the stations. 
+
+\mbox{\Hypertarget{class_application_a432d10510fbea03a758d31bbc25ab559}\label{class_application_a432d10510fbea03a758d31bbc25ab559}} 
+\index{Application@{Application}!stringChoice@{stringChoice}}
+\index{stringChoice@{stringChoice}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{stringChoice}{stringChoice}}
+{\footnotesize\ttfamily std\+::string Application\+::string\+Choice\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_application_ae3fa29709c939d5c148434f617588e32}\label{class_application_ae3fa29709c939d5c148434f617588e32}} 
+\index{Application@{Application}!subgraphService@{subgraphService}}
+\index{subgraphService@{subgraphService}!Application@{Application}}
+\doxysubsubsection{\texorpdfstring{subgraphService}{subgraphService}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}} Application\+::subgraph\+Service = \mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}}(\&\mbox{\hyperlink{class_application_af6bfad2752a0eb2e4310878811f5a955}{railway\+Network}})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initialization of the subgraph\+Service. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/application/\mbox{\hyperlink{_application_8h}{Application.\+h}}\item 
+classes/application/\mbox{\hyperlink{_application_8cpp}{Application.\+cpp}}\end{DoxyCompactItemize}

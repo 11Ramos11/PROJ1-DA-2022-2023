@@ -1,0 +1,289 @@
+\hypertarget{class_basic_services}{}\doxysection{Basic\+Services Class Reference}
+\label{class_basic_services}\index{BasicServices@{BasicServices}}
+
+
+\mbox{\hyperlink{class_basic_services}{Basic\+Services}} class to represent all Basic Service Metrics of a network and all implementations that uses a graph directly.  
+
+
+
+
+{\ttfamily \#include $<$Basic\+Services.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_basic_services_a0abeb042d24a876205e5c0e8d0c9383f}{Basic\+Services}} (\mbox{\hyperlink{class_graph}{Graph}} $\ast$\mbox{\hyperlink{class_basic_services_a020fa986676c89756965667affe9adf3}{graph}})
+\item 
+double \mbox{\hyperlink{class_basic_services_a9ba43571156268d53ddfea28828f626f}{max\+Flow}} (int source, int target)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can travel between two stations, simultaneously. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_basic_services_a2fd559ee9ce4540db373c9af4cbe05dc}{optimal\+Pairs}} ()
+\begin{DoxyCompactList}\small\item\em Finds the most optimal pairs of stations, which require the most amount of trains when taking full advantage of the existing network capacity. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_basic_services_a8b8edcf8e9766259183680c9e4c08729}{top\+Municipalities\+Or\+Districts}} (bool by\+Municipality, int k)
+\begin{DoxyCompactList}\small\item\em Calculates the top k municipalities or districts, regarding their transportation needs. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_basic_services_a56df07a78a6c9acedadf7c28a17f663e}{max\+\_\+trains\+\_\+target}} (int target)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can simultaneously arrive at specific station. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_basic_services_a4bc5afb8530be3f4d28224a7b318009f}{find\+Bottleneck}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Find the minimum flow to augment in found path. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_basic_services_a5804b6e3134ed5a6dc7615ba083184d6}{augment\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t, double bottleneck)
+\begin{DoxyCompactList}\small\item\em Augments the flow by \char`\"{}bottleneck\char`\"{} units in found path. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_basic_services_afda81275fdaf42c23d3fdaa553f4ac01}{path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Checks if there is still an augmenting path between source and target in the residual graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_basic_services_a37a2dc3e2d37332c7eebb2bf1689f591}{edmonds\+Karp}} (int source, int target)
+\begin{DoxyCompactList}\small\item\em Runs the edmonds\+Karp algorithm. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_basic_services_a76d4785d5d1df3124d8d0adf99a556ed}{exists\+Path}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Checks if there is a path between two stations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} $\ast$ \mbox{\hyperlink{class_basic_services_a020fa986676c89756965667affe9adf3}{graph}}
+\begin{DoxyCompactList}\small\item\em Holds the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_basic_services}{Basic\+Services}} class to represent all Basic Service Metrics of a network and all implementations that uses a graph directly. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_basic_services_a0abeb042d24a876205e5c0e8d0c9383f}\label{class_basic_services_a0abeb042d24a876205e5c0e8d0c9383f}} 
+\index{BasicServices@{BasicServices}!BasicServices@{BasicServices}}
+\index{BasicServices@{BasicServices}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{BasicServices()}{BasicServices()}}
+{\footnotesize\ttfamily Basic\+Services\+::\+Basic\+Services (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+Creates a new \mbox{\hyperlink{class_basic_services}{Basic\+Services}} for the respective graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & of Graph$\ast$ type. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_basic_services_a5804b6e3134ed5a6dc7615ba083184d6}\label{class_basic_services_a5804b6e3134ed5a6dc7615ba083184d6}} 
+\index{BasicServices@{BasicServices}!augmentPath@{augmentPath}}
+\index{augmentPath@{augmentPath}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{augmentPath()}{augmentPath()}}
+{\footnotesize\ttfamily void Basic\+Services\+::augment\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t,  }\item[{double}]{bottleneck }\end{DoxyParamCaption})}
+
+
+
+Augments the flow by \char`\"{}bottleneck\char`\"{} units in found path. 
+
+Time Complexity\+: O($\vert$\+V$\vert$), in which V is the number of Vertexes, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & of Vertex$\ast$ type. \\
+\hline
+{\em t} & of Vertex$\ast$ type. \\
+\hline
+{\em bottleneck} & of double type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a37a2dc3e2d37332c7eebb2bf1689f591}\label{class_basic_services_a37a2dc3e2d37332c7eebb2bf1689f591}} 
+\index{BasicServices@{BasicServices}!edmondsKarp@{edmondsKarp}}
+\index{edmondsKarp@{edmondsKarp}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{edmondsKarp()}{edmondsKarp()}}
+{\footnotesize\ttfamily void Basic\+Services\+::edmonds\+Karp (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{target }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Runs the edmonds\+Karp algorithm. 
+
+Time Complexity\+: O($\vert$V $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+It runs \mbox{\hyperlink{class_basic_services_afda81275fdaf42c23d3fdaa553f4ac01}{path()}} to find an augmenting path.~\newline
+If it finds one, it uses \mbox{\hyperlink{class_basic_services_a4bc5afb8530be3f4d28224a7b318009f}{find\+Bottleneck()}} to get the maximum flow that can be used in that path and uses \mbox{\hyperlink{class_basic_services_a5804b6e3134ed5a6dc7615ba083184d6}{augment\+Path()}} to then update the residual graph.~\newline
+The function ends when \mbox{\hyperlink{class_basic_services_afda81275fdaf42c23d3fdaa553f4ac01}{path()}} is not longer able to find an augmenting path.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & of int type. \\
+\hline
+{\em target} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a76d4785d5d1df3124d8d0adf99a556ed}\label{class_basic_services_a76d4785d5d1df3124d8d0adf99a556ed}} 
+\index{BasicServices@{BasicServices}!existsPath@{existsPath}}
+\index{existsPath@{existsPath}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{existsPath()}{existsPath()}}
+{\footnotesize\ttfamily bool Basic\+Services\+::exists\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Checks if there is a path between two stations. 
+
+Time Complexity\+: O($\vert$V + E$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & of Vertex$\ast$ type. \\
+\hline
+{\em t} & of Vertex$\ast$ type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there is a path or false if otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a4bc5afb8530be3f4d28224a7b318009f}\label{class_basic_services_a4bc5afb8530be3f4d28224a7b318009f}} 
+\index{BasicServices@{BasicServices}!findBottleneck@{findBottleneck}}
+\index{findBottleneck@{findBottleneck}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{findBottleneck()}{findBottleneck()}}
+{\footnotesize\ttfamily double Basic\+Services\+::find\+Bottleneck (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Find the minimum flow to augment in found path. 
+
+Time Complexity\+: O($\vert$\+V$\vert$), in which V is the number of Vertexes, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & of Vertex$\ast$ type. \\
+\hline
+{\em t} & of Vertex$\ast$ type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The minimum flow. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a56df07a78a6c9acedadf7c28a17f663e}\label{class_basic_services_a56df07a78a6c9acedadf7c28a17f663e}} 
+\index{BasicServices@{BasicServices}!max\_trains\_target@{max\_trains\_target}}
+\index{max\_trains\_target@{max\_trains\_target}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{max\_trains\_target()}{max\_trains\_target()}}
+{\footnotesize\ttfamily double Basic\+Services\+::max\+\_\+trains\+\_\+target (\begin{DoxyParamCaption}\item[{int}]{target }\end{DoxyParamCaption})}
+
+
+
+Calculates the maximum number of trains that can simultaneously arrive at specific station. 
+
+Creates a source node that is linked to all nodes except the source and sink ones. It uses max\+Flow method.
+
+Time Complexity\+: O($\vert$V $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em target} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of trains. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a9ba43571156268d53ddfea28828f626f}\label{class_basic_services_a9ba43571156268d53ddfea28828f626f}} 
+\index{BasicServices@{BasicServices}!maxFlow@{maxFlow}}
+\index{maxFlow@{maxFlow}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
+{\footnotesize\ttfamily double Basic\+Services\+::max\+Flow (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{target }\end{DoxyParamCaption})}
+
+
+
+Calculates the maximum number of trains that can travel between two stations, simultaneously. 
+
+It uses \mbox{\hyperlink{class_basic_services_a37a2dc3e2d37332c7eebb2bf1689f591}{edmonds\+Karp()}}.~\newline
+Then it sums the flow of all the source outgoing edges, to determine the maximum flow.
+
+Time Complexity\+: O($\vert$V $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & of int type. \\
+\hline
+{\em target} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum flow. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a2fd559ee9ce4540db373c9af4cbe05dc}\label{class_basic_services_a2fd559ee9ce4540db373c9af4cbe05dc}} 
+\index{BasicServices@{BasicServices}!optimalPairs@{optimalPairs}}
+\index{optimalPairs@{optimalPairs}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{optimalPairs()}{optimalPairs()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ $>$ Basic\+Services\+::optimal\+Pairs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Finds the most optimal pairs of stations, which require the most amount of trains when taking full advantage of the existing network capacity. 
+
+Checks for all pairs of stations in the graph, if they have the highest maximum flow.
+
+Time Complexity\+: O($\vert$\+V$^\wedge$3 $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+\begin{DoxyReturn}{Returns}
+vector with the pair or pairs of stations, that have the highest maximum flow in the graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_afda81275fdaf42c23d3fdaa553f4ac01}\label{class_basic_services_afda81275fdaf42c23d3fdaa553f4ac01}} 
+\index{BasicServices@{BasicServices}!path@{path}}
+\index{path@{path}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{path()}{path()}}
+{\footnotesize\ttfamily bool Basic\+Services\+::path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Checks if there is still an augmenting path between source and target in the residual graph. 
+
+Time Complexity\+: O($\vert$V + E$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & of Vertex$\ast$ type. \\
+\hline
+{\em t} & of Vertex$\ast$ type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there is a path, false if otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_basic_services_a8b8edcf8e9766259183680c9e4c08729}\label{class_basic_services_a8b8edcf8e9766259183680c9e4c08729}} 
+\index{BasicServices@{BasicServices}!topMunicipalitiesOrDistricts@{topMunicipalitiesOrDistricts}}
+\index{topMunicipalitiesOrDistricts@{topMunicipalitiesOrDistricts}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{topMunicipalitiesOrDistricts()}{topMunicipalitiesOrDistricts()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Basic\+Services\+::top\+Municipalities\+Or\+Districts (\begin{DoxyParamCaption}\item[{bool}]{by\+Municipality,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Calculates the top k municipalities or districts, regarding their transportation needs. 
+
+The category can be a municipality (if by\+Municipality is true) or a district (if by\+Municipality is false). Creates a source node that is linked to all nodes that do not belong to the destination municipality or district and creates a sink node that is linked to all nodes that belong to the destination municipality or district. It uses the max\+Flow method.
+
+Time Complexity\+: O($\vert$\+V$^\wedge$2 $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em by\+Municipality} & of bool type. \\
+\hline
+{\em k} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The top municipalities or districts names. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_basic_services_a020fa986676c89756965667affe9adf3}\label{class_basic_services_a020fa986676c89756965667affe9adf3}} 
+\index{BasicServices@{BasicServices}!graph@{graph}}
+\index{graph@{graph}!BasicServices@{BasicServices}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}}$\ast$ Basic\+Services\+::graph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Holds the graph. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/functionalities/4.\+1/\mbox{\hyperlink{_basic_services_8h}{Basic\+Services.\+h}}\item 
+classes/functionalities/4.\+1/\mbox{\hyperlink{_basic_services_8cpp}{Basic\+Services.\+cpp}}\end{DoxyCompactItemize}

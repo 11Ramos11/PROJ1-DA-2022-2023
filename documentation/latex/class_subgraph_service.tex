@@ -1,0 +1,221 @@
+\hypertarget{class_subgraph_service}{}\doxysection{Subgraph\+Service Class Reference}
+\label{class_subgraph_service}\index{SubgraphService@{SubgraphService}}
+
+
+\mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}} class to represent all Reliability and Sensitivity to Line Failures of a network and all implementations that uses a graph directly.  
+
+
+
+
+{\ttfamily \#include $<$Subgraph\+Service.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_subgraph_service_a95570e788fcec06c12555af2541715a3}{Subgraph\+Service}} (\mbox{\hyperlink{class_graph}{Graph}} $\ast$graph)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}} for the respective graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_subgraph_service_a638099f89f13152cd3df3a6e3d1cc604}{get\+ID}} (std\+::string station\+Name)
+\item 
+void \mbox{\hyperlink{class_subgraph_service_a048bd8a52e881ee0daff89c85d39c788}{reset\+Subgraph}} ()
+\begin{DoxyCompactList}\small\item\em Resets the subgraph to the original graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_subgraph_service_a63563e5fdeb3d90e31009a07218d985a}{delete\+Station}} (int id)
+\begin{DoxyCompactList}\small\item\em Deletes the specified station from the subgraph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_subgraph_service_a12fd6bfb89da163935421c2988c890fd}{delete\+Edge}} (int orig, int dest)
+\begin{DoxyCompactList}\small\item\em Deletes the specified edge from the subgraph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_subgraph_service_ac777b32c1b36aacf92da3a71044f05b7}{delete\+Service}} (\mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{Service\+Type}} service\+Type)
+\begin{DoxyCompactList}\small\item\em Deletes the all edges with a certain service from the subgraph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_subgraph_service_af8ed4511668ac8fe00b0bfbae1d65918}{max\+Flow}} (int source, int target)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can simultaneously travel between two specific stations in a network of reduced connectivity. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_subgraph_service_a1bab2789f440d4afccd00c4e2c8f00e3}{most\+Affected\+Stations}} (int source, int target, int k)
+\begin{DoxyCompactList}\small\item\em Provides the top-\/k stations that are the most affected by the specified segment failure. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} $\ast$ \mbox{\hyperlink{class_subgraph_service_a094b65e1ecc4eed9b67ae7475fb5aaaa}{original\+Graph}}
+\begin{DoxyCompactList}\small\item\em Holds the original graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_subgraph_service_aa223a0a0c9c7707cee9f5ec1b8cfcef4}{sub\+Graph}}
+\begin{DoxyCompactList}\small\item\em Holds the subgraph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}} class to represent all Reliability and Sensitivity to Line Failures of a network and all implementations that uses a graph directly. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_subgraph_service_a95570e788fcec06c12555af2541715a3}\label{class_subgraph_service_a95570e788fcec06c12555af2541715a3}} 
+\index{SubgraphService@{SubgraphService}!SubgraphService@{SubgraphService}}
+\index{SubgraphService@{SubgraphService}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{SubgraphService()}{SubgraphService()}}
+{\footnotesize\ttfamily Subgraph\+Service\+::\+Subgraph\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Creates a new \mbox{\hyperlink{class_subgraph_service}{Subgraph\+Service}} for the respective graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & of Graph$\ast$ type. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_subgraph_service_a12fd6bfb89da163935421c2988c890fd}\label{class_subgraph_service_a12fd6bfb89da163935421c2988c890fd}} 
+\index{SubgraphService@{SubgraphService}!deleteEdge@{deleteEdge}}
+\index{deleteEdge@{deleteEdge}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{deleteEdge()}{deleteEdge()}}
+{\footnotesize\ttfamily void Subgraph\+Service\+::delete\+Edge (\begin{DoxyParamCaption}\item[{int}]{orig,  }\item[{int}]{dest }\end{DoxyParamCaption})}
+
+
+
+Deletes the specified edge from the subgraph. 
+
+Time Complexity\+: O(\+E), in which E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em orig} & of int type. \\
+\hline
+{\em dest} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_subgraph_service_ac777b32c1b36aacf92da3a71044f05b7}\label{class_subgraph_service_ac777b32c1b36aacf92da3a71044f05b7}} 
+\index{SubgraphService@{SubgraphService}!deleteService@{deleteService}}
+\index{deleteService@{deleteService}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{deleteService()}{deleteService()}}
+{\footnotesize\ttfamily void Subgraph\+Service\+::delete\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{Service\+Type}}}]{service\+Type }\end{DoxyParamCaption})}
+
+
+
+Deletes the all edges with a certain service from the subgraph. 
+
+Time Complexity\+: O($\vert$V + E$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em service\+Type} & of Service\+Type type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_subgraph_service_a63563e5fdeb3d90e31009a07218d985a}\label{class_subgraph_service_a63563e5fdeb3d90e31009a07218d985a}} 
+\index{SubgraphService@{SubgraphService}!deleteStation@{deleteStation}}
+\index{deleteStation@{deleteStation}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{deleteStation()}{deleteStation()}}
+{\footnotesize\ttfamily void Subgraph\+Service\+::delete\+Station (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Deletes the specified station from the subgraph. 
+
+Time Complexity\+: O($\vert$V + E$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_subgraph_service_a638099f89f13152cd3df3a6e3d1cc604}\label{class_subgraph_service_a638099f89f13152cd3df3a6e3d1cc604}} 
+\index{SubgraphService@{SubgraphService}!getID@{getID}}
+\index{getID@{getID}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily int Subgraph\+Service\+::get\+ID (\begin{DoxyParamCaption}\item[{std\+::string}]{station\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_subgraph_service_af8ed4511668ac8fe00b0bfbae1d65918}\label{class_subgraph_service_af8ed4511668ac8fe00b0bfbae1d65918}} 
+\index{SubgraphService@{SubgraphService}!maxFlow@{maxFlow}}
+\index{maxFlow@{maxFlow}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{maxFlow()}{maxFlow()}}
+{\footnotesize\ttfamily int Subgraph\+Service\+::max\+Flow (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{target }\end{DoxyParamCaption})}
+
+
+
+Calculates the maximum number of trains that can simultaneously travel between two specific stations in a network of reduced connectivity. 
+
+Time Complexity\+: O($\vert$V $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & of int type. \\
+\hline
+{\em target} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_subgraph_service_a1bab2789f440d4afccd00c4e2c8f00e3}\label{class_subgraph_service_a1bab2789f440d4afccd00c4e2c8f00e3}} 
+\index{SubgraphService@{SubgraphService}!mostAffectedStations@{mostAffectedStations}}
+\index{mostAffectedStations@{mostAffectedStations}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{mostAffectedStations()}{mostAffectedStations()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Subgraph\+Service\+::most\+Affected\+Stations (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{target,  }\item[{int}]{k }\end{DoxyParamCaption})}
+
+
+
+Provides the top-\/k stations that are the most affected by the specified segment failure. 
+
+Time Complexity\+: O($\vert$\+V$^\wedge$3 $\ast$ E$^\wedge$2$\vert$), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & of type int. \\
+\hline
+{\em target} & of type int. \\
+\hline
+{\em k} & of type int. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The most affected stations. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_subgraph_service_a048bd8a52e881ee0daff89c85d39c788}\label{class_subgraph_service_a048bd8a52e881ee0daff89c85d39c788}} 
+\index{SubgraphService@{SubgraphService}!resetSubgraph@{resetSubgraph}}
+\index{resetSubgraph@{resetSubgraph}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{resetSubgraph()}{resetSubgraph()}}
+{\footnotesize\ttfamily void Subgraph\+Service\+::reset\+Subgraph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Resets the subgraph to the original graph. 
+
+Time Complexity\+: O(1).
+
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_subgraph_service_a094b65e1ecc4eed9b67ae7475fb5aaaa}\label{class_subgraph_service_a094b65e1ecc4eed9b67ae7475fb5aaaa}} 
+\index{SubgraphService@{SubgraphService}!originalGraph@{originalGraph}}
+\index{originalGraph@{originalGraph}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{originalGraph}{originalGraph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}}$\ast$ Subgraph\+Service\+::original\+Graph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Holds the original graph. 
+
+\mbox{\Hypertarget{class_subgraph_service_aa223a0a0c9c7707cee9f5ec1b8cfcef4}\label{class_subgraph_service_aa223a0a0c9c7707cee9f5ec1b8cfcef4}} 
+\index{SubgraphService@{SubgraphService}!subGraph@{subGraph}}
+\index{subGraph@{subGraph}!SubgraphService@{SubgraphService}}
+\doxysubsubsection{\texorpdfstring{subGraph}{subGraph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Subgraph\+Service\+::sub\+Graph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Holds the subgraph. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/functionalities/4.\+3/\mbox{\hyperlink{_subgraph_service_8h}{Subgraph\+Service.\+h}}\item 
+classes/functionalities/4.\+3/\mbox{\hyperlink{_subgraph_service_8cpp}{Subgraph\+Service.\+cpp}}\end{DoxyCompactItemize}

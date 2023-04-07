@@ -1,0 +1,38 @@
+\hypertarget{_subgraph_service_8h_source}{}\doxysection{Subgraph\+Service.\+h}
+\label{_subgraph_service_8h_source}\index{classes/functionalities/4.3/SubgraphService.h@{classes/functionalities/4.3/SubgraphService.h}}
+\mbox{\hyperlink{_subgraph_service_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#ifndef PROJ1\_DA\_2022\_2023\_SUBGRAPHSERVICE\_H}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#define PROJ1\_DA\_2022\_2023\_SUBGRAPHSERVICE\_H}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../../../data-\/structure/Graph.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_subgraph_service}{SubgraphService}} \{}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{19     \mbox{\hyperlink{class_graph}{Graph}}* \mbox{\hyperlink{class_subgraph_service_a094b65e1ecc4eed9b67ae7475fb5aaaa}{originalGraph}};}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{22     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_subgraph_service_aa223a0a0c9c7707cee9f5ec1b8cfcef4}{subGraph}};}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{30     \mbox{\hyperlink{class_subgraph_service}{SubgraphService}}(\mbox{\hyperlink{class_graph}{Graph}}* graph);}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_subgraph_service_a638099f89f13152cd3df3a6e3d1cc604}{getID}}(std::string stationName);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{40     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_subgraph_service_a048bd8a52e881ee0daff89c85d39c788}{resetSubgraph}}();}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_subgraph_service_a63563e5fdeb3d90e31009a07218d985a}{deleteStation}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_subgraph_service_a12fd6bfb89da163935421c2988c890fd}{deleteEdge}}(\textcolor{keywordtype}{int} orig, \textcolor{keywordtype}{int} dest);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_subgraph_service_ac777b32c1b36aacf92da3a71044f05b7}{deleteService}}(\mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{ServiceType}} serviceType);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{79     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_subgraph_service_af8ed4511668ac8fe00b0bfbae1d65918}{maxFlow}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} target);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{90     std::vector<Vertex *> \mbox{\hyperlink{class_subgraph_service_a1bab2789f440d4afccd00c4e2c8f00e3}{mostAffectedStations}}(\textcolor{keywordtype}{int} source, \textcolor{keywordtype}{int} target, \textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{91 \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJ1\_DA\_2022\_2023\_SUBGRAPHSERVICE\_H}}
+
+\end{DoxyCode}

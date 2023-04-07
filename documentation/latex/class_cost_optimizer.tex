@@ -1,0 +1,122 @@
+\hypertarget{class_cost_optimizer}{}\doxysection{Cost\+Optimizer Class Reference}
+\label{class_cost_optimizer}\index{CostOptimizer@{CostOptimizer}}
+
+
+\mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}} class to represent all Operation Cost Optimization of a network and all implementations that uses a graph directly.  
+
+
+
+
+{\ttfamily \#include $<$Cost\+Optimizer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_cost_optimizer_a0240a16cb649ab9bb0fb2d6a00d95096}{Cost\+Optimizer}} (\mbox{\hyperlink{class_graph}{Graph}} $\ast$\mbox{\hyperlink{class_cost_optimizer_a05cf80b07404b0935d91d813a5809588}{graph}})
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}} for the respective graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_cost_optimizer_ab674e28f73a331932ba9f006db6e41db}{dijkstra}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$s, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Checks if there is a path between two stations. \end{DoxyCompactList}\item 
+std\+::pair$<$ int, int $>$ \mbox{\hyperlink{class_cost_optimizer_acafc0b37360a135a1a991b2044dd5e05}{Max\+Trains\+With\+Min\+Cost}} (int source, int target)
+\begin{DoxyCompactList}\small\item\em Calculates the maximum amount of trains that can simultaneously travel between two specific stations with minimum cost for the company. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_cost_optimizer_a7c114e89874d3fdd6fb0b4a9a6e3082b}{relax\+Edge}} (\mbox{\hyperlink{class_mutable_priority_queue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $>$ \&queue, const \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$u, \mbox{\hyperlink{class_edge}{Edge}} $\ast$edge, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v, double d, int residual\+Capacity) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph}{Graph}} $\ast$ \mbox{\hyperlink{class_cost_optimizer_a05cf80b07404b0935d91d813a5809588}{graph}}
+\begin{DoxyCompactList}\small\item\em Holds the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}} class to represent all Operation Cost Optimization of a network and all implementations that uses a graph directly. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_cost_optimizer_a0240a16cb649ab9bb0fb2d6a00d95096}\label{class_cost_optimizer_a0240a16cb649ab9bb0fb2d6a00d95096}} 
+\index{CostOptimizer@{CostOptimizer}!CostOptimizer@{CostOptimizer}}
+\index{CostOptimizer@{CostOptimizer}!CostOptimizer@{CostOptimizer}}
+\doxysubsubsection{\texorpdfstring{CostOptimizer()}{CostOptimizer()}}
+{\footnotesize\ttfamily Cost\+Optimizer\+::\+Cost\+Optimizer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Creates a new \mbox{\hyperlink{class_cost_optimizer}{Cost\+Optimizer}} for the respective graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & of Graph$\ast$ type. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_cost_optimizer_ab674e28f73a331932ba9f006db6e41db}\label{class_cost_optimizer_ab674e28f73a331932ba9f006db6e41db}} 
+\index{CostOptimizer@{CostOptimizer}!dijkstra@{dijkstra}}
+\index{dijkstra@{dijkstra}!CostOptimizer@{CostOptimizer}}
+\doxysubsubsection{\texorpdfstring{dijkstra()}{dijkstra()}}
+{\footnotesize\ttfamily bool Cost\+Optimizer\+::dijkstra (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{s,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{t }\end{DoxyParamCaption})}
+
+
+
+Checks if there is a path between two stations. 
+
+Time Complexity\+: O($\vert$V + E$\vert$ $\ast$ log(\+V)), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & of type Vertex$\ast$. \\
+\hline
+{\em t} & of type Vertex$\ast$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if there is a path, false if otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cost_optimizer_acafc0b37360a135a1a991b2044dd5e05}\label{class_cost_optimizer_acafc0b37360a135a1a991b2044dd5e05}} 
+\index{CostOptimizer@{CostOptimizer}!MaxTrainsWithMinCost@{MaxTrainsWithMinCost}}
+\index{MaxTrainsWithMinCost@{MaxTrainsWithMinCost}!CostOptimizer@{CostOptimizer}}
+\doxysubsubsection{\texorpdfstring{MaxTrainsWithMinCost()}{MaxTrainsWithMinCost()}}
+{\footnotesize\ttfamily std\+::pair$<$ int, int $>$ Cost\+Optimizer\+::\+Max\+Trains\+With\+Min\+Cost (\begin{DoxyParamCaption}\item[{int}]{source,  }\item[{int}]{target }\end{DoxyParamCaption})}
+
+
+
+Calculates the maximum amount of trains that can simultaneously travel between two specific stations with minimum cost for the company. 
+
+Time Complexity\+: O($\vert$V + E$\vert$ $\ast$ log(\+V)), in which V is the number of Vertexes and E is the number of Edges, in the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & of int type. \\
+\hline
+{\em target} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pair of the maximum flow and the minimum cut. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_cost_optimizer_a7c114e89874d3fdd6fb0b4a9a6e3082b}\label{class_cost_optimizer_a7c114e89874d3fdd6fb0b4a9a6e3082b}} 
+\index{CostOptimizer@{CostOptimizer}!relaxEdge@{relaxEdge}}
+\index{relaxEdge@{relaxEdge}!CostOptimizer@{CostOptimizer}}
+\doxysubsubsection{\texorpdfstring{relaxEdge()}{relaxEdge()}}
+{\footnotesize\ttfamily void Cost\+Optimizer\+::relax\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_mutable_priority_queue}{Mutable\+Priority\+Queue}}$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $>$ \&}]{queue,  }\item[{const \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{u,  }\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{edge,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v,  }\item[{double}]{d,  }\item[{int}]{residual\+Capacity }\end{DoxyParamCaption}) const}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_cost_optimizer_a05cf80b07404b0935d91d813a5809588}\label{class_cost_optimizer_a05cf80b07404b0935d91d813a5809588}} 
+\index{CostOptimizer@{CostOptimizer}!graph@{graph}}
+\index{graph@{graph}!CostOptimizer@{CostOptimizer}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}}$\ast$ Cost\+Optimizer\+::graph\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Holds the graph. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/functionalities/4.\+2/\mbox{\hyperlink{_cost_optimizer_8h}{Cost\+Optimizer.\+h}}\item 
+classes/functionalities/4.\+2/\mbox{\hyperlink{_cost_optimizer_8cpp}{Cost\+Optimizer.\+cpp}}\end{DoxyCompactItemize}

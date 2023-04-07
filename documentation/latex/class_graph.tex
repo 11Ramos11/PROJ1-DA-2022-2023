@@ -1,0 +1,242 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+\mbox{\hyperlink{class_graph}{Graph}} class to represent implementations that uses a graph directly.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{class_graph}{Graph}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph_a91d2dbcc749d03c6f6c9799d630edbf1}{Graph}} (\mbox{\hyperlink{class_graph}{Graph}} $\ast$graph)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{class_graph}{Graph}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_graph_a05c45e4efdf867792139ddf3628c0b60}{find\+Vertex}} (int id) const
+\begin{DoxyCompactList}\small\item\em Auxiliary function to find a vertex with a given ID. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_aa2c3dc848a3cb7fed150acc15ef25222}{add\+Vertex}} (const int \&id, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ station)
+\begin{DoxyCompactList}\small\item\em Adds a vertex with a given content to a graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a6754ab2c5240c193f393134db0999d60}{add\+Edge}} (const int \&sourc, const int \&dest, double w, \mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{Service\+Type}} service)
+\begin{DoxyCompactList}\small\item\em Adds an edge to a graph, given the contents of the source and destination vertices and the edge weight. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_af417fcbf0764f6e5816dd7297c3d6d2a}{add\+Bidirectional\+Edge}} (const int \&sourc, const int \&dest, double w, \mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{Service\+Type}} service)
+\begin{DoxyCompactList}\small\item\em Adds a bidirectional edge to a graph, given the contents of the source and destination vertices and the edge weight. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{get\+Num\+Vertex}} () const
+\begin{DoxyCompactList}\small\item\em Represents the number of vertex of a graph. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a619ac583094079134074658e29463c0e}{get\+Vertex\+Set}} () const
+\begin{DoxyCompactList}\small\item\em Represents the Vertex\+Set. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a77f17dd42e5b2c84d7d3ed097c24556a}{dfs}} (int source)
+\begin{DoxyCompactList}\small\item\em Represents the Depth First Search algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_af80b9cf957617232c2bb41c485ad10c4}{remove\+Vertex}} (int id)
+\begin{DoxyCompactList}\small\item\em Remove the vertex from the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}{vertex\+Set}}
+\begin{DoxyCompactList}\small\item\em Holds the vertex\+Set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_graph}{Graph}} class to represent implementations that uses a graph directly. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new \mbox{\hyperlink{class_graph}{Graph}}. 
+
+\mbox{\Hypertarget{class_graph_a91d2dbcc749d03c6f6c9799d630edbf1}\label{class_graph_a91d2dbcc749d03c6f6c9799d630edbf1}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Creates a new \mbox{\hyperlink{class_graph}{Graph}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & of \mbox{\hyperlink{class_graph}{Graph}} $\ast$ type. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_af417fcbf0764f6e5816dd7297c3d6d2a}\label{class_graph_af417fcbf0764f6e5816dd7297c3d6d2a}} 
+\index{Graph@{Graph}!addBidirectionalEdge@{addBidirectionalEdge}}
+\index{addBidirectionalEdge@{addBidirectionalEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addBidirectionalEdge()}{addBidirectionalEdge()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Bidirectional\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{sourc,  }\item[{const int \&}]{dest,  }\item[{double}]{w,  }\item[{\mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{Service\+Type}}}]{service }\end{DoxyParamCaption})}
+
+
+
+Adds a bidirectional edge to a graph, given the contents of the source and destination vertices and the edge weight. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sourc} & of const int type, by reference. \\
+\hline
+{\em dest} & of const int type, by reference. \\
+\hline
+{\em w} & of double type. \\
+\hline
+{\em service} & of Service\+Type type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, and false if the source or destination vertex does not exist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a6754ab2c5240c193f393134db0999d60}\label{class_graph_a6754ab2c5240c193f393134db0999d60}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{sourc,  }\item[{const int \&}]{dest,  }\item[{double}]{w,  }\item[{\mbox{\hyperlink{_vertex_edge_8h_a258ffd3a2330563bc310b4dd520832ca}{Service\+Type}}}]{service }\end{DoxyParamCaption})}
+
+
+
+Adds an edge to a graph, given the contents of the source and destination vertices and the edge weight. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sourc} & of const int type, by reference. \\
+\hline
+{\em dest} & of const int type, by reference. \\
+\hline
+{\em w} & of double type. \\
+\hline
+{\em service} & of Service\+Type type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, and false if the source or destination vertex does not exist 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aa2c3dc848a3cb7fed150acc15ef25222}\label{class_graph_aa2c3dc848a3cb7fed150acc15ef25222}} 
+\index{Graph@{Graph}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily bool Graph\+::add\+Vertex (\begin{DoxyParamCaption}\item[{const int \&}]{id,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$}]{station }\end{DoxyParamCaption})}
+
+
+
+Adds a vertex with a given content to a graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & of const int type, by reference. \\
+\hline
+{\em station} & of std\+::shared\+\_\+ptr$<$\+Station$>$ type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, and false if a vertex with that content already exists. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a77f17dd42e5b2c84d7d3ed097c24556a}\label{class_graph_a77f17dd42e5b2c84d7d3ed097c24556a}} 
+\index{Graph@{Graph}!dfs@{dfs}}
+\index{dfs@{dfs}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
+{\footnotesize\ttfamily void Graph\+::dfs (\begin{DoxyParamCaption}\item[{int}]{source }\end{DoxyParamCaption})}
+
+
+
+Represents the Depth First Search algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a05c45e4efdf867792139ddf3628c0b60}\label{class_graph_a05c45e4efdf867792139ddf3628c0b60}} 
+\index{Graph@{Graph}!findVertex@{findVertex}}
+\index{findVertex@{findVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{findVertex()}{findVertex()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Graph\+::find\+Vertex (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption}) const}
+
+
+
+Auxiliary function to find a vertex with a given ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Corresponding vertex. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}\label{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}} 
+\index{Graph@{Graph}!getNumVertex@{getNumVertex}}
+\index{getNumVertex@{getNumVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNumVertex()}{getNumVertex()}}
+{\footnotesize\ttfamily int Graph\+::get\+Num\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Represents the number of vertex of a graph. 
+
+\begin{DoxyReturn}{Returns}
+Number of vertex. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
+\index{Graph@{Graph}!getVertexSet@{getVertexSet}}
+\index{getVertexSet@{getVertexSet}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getVertexSet()}{getVertexSet()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ Graph\+::get\+Vertex\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Represents the Vertex\+Set. 
+
+\begin{DoxyReturn}{Returns}
+All vertex. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_af80b9cf957617232c2bb41c485ad10c4}\label{class_graph_af80b9cf957617232c2bb41c485ad10c4}} 
+\index{Graph@{Graph}!removeVertex@{removeVertex}}
+\index{removeVertex@{removeVertex}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{removeVertex()}{removeVertex()}}
+{\footnotesize\ttfamily void Graph\+::remove\+Vertex (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Remove the vertex from the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & of int type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Void. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}\label{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}} 
+\index{Graph@{Graph}!vertexSet@{vertexSet}}
+\index{vertexSet@{vertexSet}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{vertexSet}{vertexSet}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$$>$ Graph\+::vertex\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Holds the vertex\+Set. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+data-\/structure/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\item 
+data-\/structure/\mbox{\hyperlink{_graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,177 @@
+\hypertarget{class_file_reader}{}\doxysection{File\+Reader Class Reference}
+\label{class_file_reader}\index{FileReader@{FileReader}}
+
+
+\mbox{\hyperlink{class_file_reader}{File\+Reader}} class to deal with data set files.  
+
+
+
+
+{\ttfamily \#include $<$File\+Reader.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}{File\+Reader}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{class_file_reader}{File\+Reader}}. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_file_reader_a4e96692271b8bb9fd10bafdb090323fc}{read}} (std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&stations, \mbox{\hyperlink{class_graph}{Graph}} \&railway\+Network)
+\begin{DoxyCompactList}\small\item\em Stores all the information of the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_reader_a4d1e54053173a934d3daa488b484a6b6}{reset}} ()
+\begin{DoxyCompactList}\small\item\em resets attributes stations\+File\+Name and network\+File\+Name to the default files paths \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_file_reader_a610f71951408f71ee2f711aa05e0abc9}{set\+Files}} (std\+::string \mbox{\hyperlink{class_file_reader_ab38508a44fe2f2bccb1b21cc8f1da9e6}{stations\+File\+Name}}, std\+::string \mbox{\hyperlink{class_file_reader_af112d23a4bd14505ea08d56c2e63b65f}{network\+File\+Name}})
+\begin{DoxyCompactList}\small\item\em Sets both station file and network file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_file_reader_aaa2a03915031e635f3a561f19dd1ef40}{read\+Stations}} (std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&stations, \mbox{\hyperlink{class_graph}{Graph}} \&railway\+Network)
+\begin{DoxyCompactList}\small\item\em Reads stations input file and stores them accordingly. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_file_reader_afc5d832a8ebf91c8e5697d90bef49414}{read\+Network}} (std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&stations, \mbox{\hyperlink{class_graph}{Graph}} \&railway\+Network)
+\begin{DoxyCompactList}\small\item\em Reads network input file and stores them accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{class_file_reader_ab38508a44fe2f2bccb1b21cc8f1da9e6}{stations\+File\+Name}} = \char`\"{}../resources/stations.\+csv\char`\"{}
+\begin{DoxyCompactList}\small\item\em Holds the default stations file. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_file_reader_af112d23a4bd14505ea08d56c2e63b65f}{network\+File\+Name}} = \char`\"{}../resources/network.\+csv\char`\"{}
+\begin{DoxyCompactList}\small\item\em Holds the default network file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_file_reader}{File\+Reader}} class to deal with data set files. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}\label{class_file_reader_a615dcb2443cad1f2ca123c7c0c334480}} 
+\index{FileReader@{FileReader}!FileReader@{FileReader}}
+\index{FileReader@{FileReader}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{FileReader()}{FileReader()}}
+{\footnotesize\ttfamily File\+Reader\+::\+File\+Reader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Creates a new \mbox{\hyperlink{class_file_reader}{File\+Reader}}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_file_reader_a4e96692271b8bb9fd10bafdb090323fc}\label{class_file_reader_a4e96692271b8bb9fd10bafdb090323fc}} 
+\index{FileReader@{FileReader}!read@{read}}
+\index{read@{read}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily int File\+Reader\+::read (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&}]{stations,  }\item[{\mbox{\hyperlink{class_graph}{Graph}} \&}]{railway\+Network }\end{DoxyParamCaption})}
+
+
+
+Stores all the information of the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stations} & of std\+::unordered\+\_\+map$<$std\+::string, std\+::shared\+\_\+ptr$<$\+Station$>$$>$ type, by reference. \\
+\hline
+{\em railway\+Network} & of \mbox{\hyperlink{class_graph}{Graph}} type, by reference. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if one or mores files not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_reader_afc5d832a8ebf91c8e5697d90bef49414}\label{class_file_reader_afc5d832a8ebf91c8e5697d90bef49414}} 
+\index{FileReader@{FileReader}!readNetwork@{readNetwork}}
+\index{readNetwork@{readNetwork}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{readNetwork()}{readNetwork()}}
+{\footnotesize\ttfamily int File\+Reader\+::read\+Network (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&}]{stations,  }\item[{\mbox{\hyperlink{class_graph}{Graph}} \&}]{railway\+Network }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reads network input file and stores them accordingly. 
+
+Reads the file specified by the attribute network\+File\+Name and, for each line, it reads the name of two stations, its capacity and service.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stations} & of std\+::unordered\+\_\+map$<$std\+::string, std\+::shared\+\_\+ptr$<$\+Station$>$$>$ type, by reference. \\
+\hline
+{\em railway\+Network} & of \mbox{\hyperlink{class_graph}{Graph}} type, by reference. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if file not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_reader_aaa2a03915031e635f3a561f19dd1ef40}\label{class_file_reader_aaa2a03915031e635f3a561f19dd1ef40}} 
+\index{FileReader@{FileReader}!readStations@{readStations}}
+\index{readStations@{readStations}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{readStations()}{readStations()}}
+{\footnotesize\ttfamily int File\+Reader\+::read\+Stations (\begin{DoxyParamCaption}\item[{std\+::unordered\+\_\+map$<$ std\+::string, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_station}{Station}} $>$ $>$ \&}]{stations,  }\item[{\mbox{\hyperlink{class_graph}{Graph}} \&}]{railway\+Network }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Reads stations input file and stores them accordingly. 
+
+Reads the file specified by the attribute stations\+File\+Name and, for each line, it reads a station name, its district, municipality, township and line name. If the station corresponds to a new station, it creates a new station object and adds it to the unordered\+\_\+map of stations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em stations} & of std\+::unordered\+\_\+map$<$std\+::string, std\+::shared\+\_\+ptr$<$\+Station$>$$>$ type, by reference. \\
+\hline
+{\em railway\+Network} & of \mbox{\hyperlink{class_graph}{Graph}} type, by reference. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, -\/1 if file not found 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_file_reader_a4d1e54053173a934d3daa488b484a6b6}\label{class_file_reader_a4d1e54053173a934d3daa488b484a6b6}} 
+\index{FileReader@{FileReader}!reset@{reset}}
+\index{reset@{reset}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void File\+Reader\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+resets attributes stations\+File\+Name and network\+File\+Name to the default files paths 
+
+\mbox{\Hypertarget{class_file_reader_a610f71951408f71ee2f711aa05e0abc9}\label{class_file_reader_a610f71951408f71ee2f711aa05e0abc9}} 
+\index{FileReader@{FileReader}!setFiles@{setFiles}}
+\index{setFiles@{setFiles}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{setFiles()}{setFiles()}}
+{\footnotesize\ttfamily void File\+Reader\+::set\+Files (\begin{DoxyParamCaption}\item[{std\+::string}]{stations\+File\+Name,  }\item[{std\+::string}]{network\+File\+Name }\end{DoxyParamCaption})}
+
+
+
+Sets both station file and network file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stations\+File\+Name,path} & for the stations file \\
+\hline
+{\em network\+File\+Name,path} & for the network file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_file_reader_af112d23a4bd14505ea08d56c2e63b65f}\label{class_file_reader_af112d23a4bd14505ea08d56c2e63b65f}} 
+\index{FileReader@{FileReader}!networkFileName@{networkFileName}}
+\index{networkFileName@{networkFileName}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{networkFileName}{networkFileName}}
+{\footnotesize\ttfamily std\+::string File\+Reader\+::network\+File\+Name = \char`\"{}../resources/network.\+csv\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Holds the default network file. 
+
+\mbox{\Hypertarget{class_file_reader_ab38508a44fe2f2bccb1b21cc8f1da9e6}\label{class_file_reader_ab38508a44fe2f2bccb1b21cc8f1da9e6}} 
+\index{FileReader@{FileReader}!stationsFileName@{stationsFileName}}
+\index{stationsFileName@{stationsFileName}!FileReader@{FileReader}}
+\doxysubsubsection{\texorpdfstring{stationsFileName}{stationsFileName}}
+{\footnotesize\ttfamily std\+::string File\+Reader\+::stations\+File\+Name = \char`\"{}../resources/stations.\+csv\char`\"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Holds the default stations file. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+classes/file-\/reader/\mbox{\hyperlink{_file_reader_8h}{File\+Reader.\+h}}\item 
+classes/file-\/reader/\mbox{\hyperlink{_file_reader_8cpp}{File\+Reader.\+cpp}}\end{DoxyCompactItemize}
