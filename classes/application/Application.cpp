@@ -54,6 +54,7 @@ void Application::readMenu(){
             fileReader.reset();
             fileReader.read(stations, railwayNetwork);
             state.push(INITIAL_MENU);
+            std::cout << "Successfully read!";
             break;
         }
         case 2:{
@@ -76,6 +77,7 @@ void Application::readMenu(){
             }
 
             state.push(INITIAL_MENU);
+            std::cout << "Successfully read!";
             break;
         }
         case 0:
