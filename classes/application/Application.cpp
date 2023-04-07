@@ -172,22 +172,27 @@ void Application::servicesMenu(){
         }
         case 3: {
             int k_mun;
+            int index=1;
             std::cout << "Insert the number of municipalities: ";
             std::cin >> k_mun;
             std::cin.ignore();
             auto top = basicServices.topMunicipalitiesOrDistricts(true, k_mun);
+            std::cout << "The top " << k_mun << " municipalities: " << std::endl;
             for (auto m: top) {
-                std::cout << m << std::endl;
+                std::cout << index++ << ". " << m << std::endl;
             }
             break;
         }
         case 4: {
             int k_dist;
+            int index =1;
             std::cout << "Insert the number of districts: ";
             std::cin >> k_dist;
             std::cin.ignore();
-            for (auto d: basicServices.topMunicipalitiesOrDistricts(false, k_dist)) {
-                std::cout << d << std::endl;
+            auto top = basicServices.topMunicipalitiesOrDistricts(false, k_dist);
+            std::cout << "The top " << k_dist << " districts: " << std::endl;
+            for (auto d: top) {
+                std::cout << index++ << ". " << d << std::endl;
             }
             break;
         }
@@ -206,7 +211,8 @@ void Application::servicesMenu(){
                 std::cout<< "Invalid station name!";
                 break;
             }
-            std::cout << basicServices.max_trains_target( targetID);
+            int answer = basicServices.max_trains_target( targetID);
+            std::cout << "The maximum amount of trains: " << answer;
             break;
         }
         case 9: {
@@ -319,16 +325,18 @@ void Application::failureMenu(){
             }
 
             int k;
+            int index=1;
             std::cout << "Insert the number of stations: ";
             std::cin >> k;
             std::cin.ignore();
+            std::cout << "Calculating the most affected stations... " << std::endl;
             auto topAffected = subgraphService.mostAffectedStations(
                     sourceID->getId(),targetID->getId(), k);
             std::cout << std::endl;
             std::cout << "Removed the segment " << source << "->" << target << std::endl;
             std::cout << "Top " << k << " most affected stations:"  << std::endl;
             for (auto m: topAffected) {
-                std::cout << m->getStation()->getName() << std::endl;
+                std::cout << index++ << ". " << m->getStation()->getName() << std::endl;
             }
             break;
         }
@@ -382,6 +390,7 @@ void Application::graphsMenu(){
             }
 
             subgraphService.deleteStation(stationID);
+            std::cout << "Successfully deleted!";
             break;
         }
         case 2:{
@@ -401,6 +410,7 @@ void Application::graphsMenu(){
             }
 
             subgraphService.deleteEdge(sourceID, targetID);
+            std::cout << "Successfully deleted!";
             break;
         }
         case 3:{
@@ -417,10 +427,12 @@ void Application::graphsMenu(){
             else
                 subgraphService.deleteService(ALFA_PENDULAR);
 
+            std::cout << "Successfully deleted!";
             break;
         }
         case 4:
             subgraphService.resetSubgraph();
+            std::cout << "Successfully reset!";
             break;
         case 5: {
             std::string source;
@@ -438,7 +450,8 @@ void Application::graphsMenu(){
                 break;
             }
 
-            std::cout << subgraphService.maxFlow(sourceID, targetID);
+            int answer = subgraphService.maxFlow(sourceID, targetID);
+            std::cout << "The maximum amount of trains: " << answer << std::endl;
             break;
         }
         case 9: {
