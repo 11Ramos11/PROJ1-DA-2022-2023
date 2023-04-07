@@ -103,7 +103,6 @@ void Application::initialMenu(){
             state.push(COST_MENU);
             break;
         case 3: {
-            subgraphService.resetSubgraph();
             state.push(FAILURE_MENU);
             break;
         }
@@ -289,10 +288,14 @@ void Application::failureMenu(){
 
     switch(choice){
         case 1:{
+
+            subgraphService.resetSubgraph();
             state.push(GRAPHS_MENU);
             break;
         }
         case 2: {
+
+            subgraphService.resetSubgraph();
             std::string source;
             std::string target;
 

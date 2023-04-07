@@ -44,7 +44,7 @@ bool CostOptimizer::dijkstra(Vertex* s, Vertex* t){
             }
         }
         for (Edge* edge: u->getIncoming()){
-            Vertex* v = edge->getDest();
+            Vertex* v = edge->getOrig();
             if (!v->isVisited()) {
                 double w = edge->getService();
                 if (v->getDist() > u->getDist() + w && edge->getFlow() > 0) {
