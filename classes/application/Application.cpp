@@ -171,7 +171,13 @@ void Application::servicesMenu(){
                 break;
             }
             double maxFlow = basicServices.maxFlow(sourceID->getId(), targetID->getId());
-            std::cout << "The maximum amount of trains: " << maxFlow;
+            if(maxFlow == -1){
+                std::cout << "Inaccessible stations!";
+            }
+            else{
+                std::cout << "The maximum amount of trains: " << maxFlow;
+            }
+
             break;
         }
         case 2: {

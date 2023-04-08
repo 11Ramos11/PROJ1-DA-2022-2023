@@ -113,14 +113,19 @@ void BasicServices::edmondsKarp(int source, int target) {
 
 double BasicServices::maxFlow(int source, int target) {
 
-    edmondsKarp(source, target);
+    if(existsPath(graph->findVertex(source), graph->findVertex(target))){
+        edmondsKarp(source, target);
 
-    double max_flow = 0;
+        double max_flow = 0;
 
-    for (auto edge: graph->findVertex(source)->getAdj())
-        max_flow += edge->getFlow();
+        for (auto edge: graph->findVertex(source)->getAdj())
+            max_flow += edge->getFlow();
 
-    return max_flow;
+        return max_flow;
+    }
+    else{
+        return -1;
+    }
 }
 
 bool BasicServices::existsPath(Vertex * s, Vertex * t){
