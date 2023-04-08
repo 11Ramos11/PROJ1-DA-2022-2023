@@ -225,6 +225,11 @@ public:
      */
     void setFlow(double flow);
 
+    /** @brief Updates the minimum residual.
+     *
+     * @param int of int type.
+     * @return Void.
+     */
     void setMinResidual(int minResidual);
 
 protected:
