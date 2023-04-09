@@ -305,7 +305,7 @@ void Application::failureMenu(){
         std::cout << "     Reliability and Sensitivity to Line Failures" << std::endl;
         std::cout << "------------------------------------------------------" << std::endl;
         std::cout << "1. Maximum number of trains between two specific stations" << std::endl;
-        std::cout << "2. Top-k most affected stations for each segment" << std::endl;
+        std::cout << "2. Top-k most affected stations for a segment" << std::endl;
         std::cout << "9. Go Back" << std::endl;
         std::cout << "0. Quit" << std::endl;
         std::cout << "Enter your choice: ";
@@ -333,9 +333,9 @@ void Application::failureMenu(){
             std::string source;
             std::string target;
 
-            std::cout << "Name of the source station: ";
+            std::cout << "Name of the source station of the segment: ";
             getline(std::cin, source);
-            std::cout << "Name of the target station: ";
+            std::cout << "Name of the target station of the segment: ";
             getline(std::cin, target);
 
             auto sourceID = stations[source];
@@ -360,8 +360,12 @@ void Application::failureMenu(){
             if (topAffected.size() == 0){
                 std::cout << "No stations were affected";
             }
-            else if (topAffected.size() < k)
-                std::cout << "There were only " << topAffected.size() << " affected stations";
+            else if (topAffected.size() < k) {
+                std::cout << "There were only " << topAffected.size() << " affected stations:" << std::endl;
+                for (auto m: topAffected) {
+                    std::cout << index++ << ". " << m->getStation()->getName() << std::endl;
+                }
+            }
             else {
                 std::cout << "Top " << k << " most affected stations:" << std::endl;
                 for (auto m: topAffected) {
