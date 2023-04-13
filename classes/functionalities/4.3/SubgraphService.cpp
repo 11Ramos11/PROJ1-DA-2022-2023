@@ -61,7 +61,11 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, i
         for(Vertex* t: subGraph.getVertexSet()){
             if (s == t)
                 continue;
-            maxFlowSum += basicServices.maxFlow(s->getId(), t->getId());
+
+            int maxFlow = basicServices.maxFlow(s->getId(), t->getId());
+            if (maxFlow == -1)
+                continue;
+            maxFlowSum += maxFlow;
             count++;
         }
         og_averages.insert(std::make_pair(s, maxFlowSum/count));
@@ -76,7 +80,10 @@ std::vector<Vertex*> SubgraphService::mostAffectedStations(int orig, int dest, i
         for(Vertex* t: subGraph.getVertexSet()){
             if (s == t)
                 continue;
-            maxFlowSum += basicServices.maxFlow(s->getId(), t->getId());
+            int maxFlow = basicServices.maxFlow(s->getId(), t->getId());
+            if (maxFlow == -1)
+                continue;
+            maxFlowSum += maxFlow;
             count++;
         }
         new_averages.insert(std::make_pair(s, maxFlowSum/count));
